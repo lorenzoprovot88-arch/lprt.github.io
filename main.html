@@ -3,97 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Lorenzo Provot</title>
+    <title>Lorenzo Provot | Portfolio BTS SIO</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<nav>
-    <a href="#about">À propos</a>
-    <a href="#formations">Parcours</a>
-    <a href="#competences">Compétences</a>
-    <a href="#contact">Contact</a>
-</nav>
+    <nav>
+        <div class="logo">Lorenzo<span>.</span>P</div>
+        <ul>
+            <li><a href="#home">Profil</a></li>
+            <li><a href="#skills">Compétences</a></li>
+            <li><a href="#experience">Expériences</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-<header>
-    <h1>Lorenzo PROVOT</h1>
-    <p>Étudiant en BTS SIO - Option SISR</p>
-    <span class="status-badge">Recherche de stage : 11 Mai - 19 Juin</span>
-</header>
-
-<div class="container">
-
-    <section id="about">
-        <h2>À Propos</h2>
-        <p>Passionné par la création numérique et le développement de jeux vidéo, j'ai naturellement élargi mes compétences vers l'informatique technique et les réseaux. Je souhaite aujourd'hui approfondir mes connaissances théoriques et pratiques dans ce domaine pour enrichir mon expertise.</p>
-    </section>
-
-    <section id="formations">
-        <h2>Formations</h2>
-        <div class="exp-item">
-            <span class="exp-date">En cours</span>
-            <h3>BTS SIO SISR</h3>
-            <p><strong>Lycée La Martinière Duchère</strong> | Lyon, France</p>
-            <p>Spécialisation : Solutions d'infrastructure, systèmes et réseaux.</p>
+    <header id="home">
+        <div class="hero-content">
+            <h1>Lorenzo <span>Provot</span></h1>
+            <p>Étudiant en <strong>BTS SIO</strong> (Services Informatiques aux Organisations). Passionné par les réseaux, la création numérique et le développement.</p>
+            <div class="status-badge">🔍 Recherche de stage : 11 Mai – 19 Juin</div>
+            <a href="#contact" class="btn">Me contacter</a>
         </div>
-        <div class="exp-item">
-            <h3>Bac Général Technologique</h3>
-            <p>Mention Assez Bien</p>
-        </div>
-    </section>
+    </header>
 
-    <section id="competences">
-        <h2>Compétences Techniques</h2>
-        <div class="skills-grid">
-            <div>
-                <h3>Logiciels & Outils</h3>
-                <span class="skill-tag">Cisco Packet-Tracer</span>
-                <span class="skill-tag">VMWare</span>
-                <span class="skill-tag">WireShark</span>
-                <span class="skill-tag">Proxmox</span>
-                <span class="skill-tag">Autocad</span>
+    <section id="skills">
+        <h2 class="section-title">Expertise Technique</h2>
+        <div class="skills-container">
+            <div class="skill-card">
+                <h3>Réseaux & Admin</h3>
+                <ul>
+                    <li>Routage et administration</li>
+                    <li>Installation DNS & DHCP</li>
+                    <li>Configuration de VLAN</li>
+                </ul>
             </div>
-            <div>
-                <h3>Réseaux & Systèmes</h3>
-                <span class="skill-tag">Routage & Admin</span>
-                <span class="skill-tag">DNS / DHCP</span>
-                <span class="skill-tag">VLAN</span>
-                <span class="skill-tag">Architecture Réseau</span>
+            <div class="skill-card">
+                <h3>Logiciels</h3>
+                <ul>
+                    <li>Cisco Packet-Tracer</li>
+                    <li>VMware & Proxmox</li>
+                    <li>Wireshark</li>
+                </ul>
+            </div>
+            <div class="skill-card">
+                <h3>Création</h3>
+                <ul>
+                    <li>Montage Vidéo (Premiere)</li>
+                    <li>Modélisation (AutoCAD)</li>
+                    <li>Suite Office (Excel)</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <section id="experiences">
-        <h2>Expériences Professionnelles</h2>
-        <div class="exp-item">
-            <h3>Stage - France 3 Rhône Alpes</h3>
-            <ul>
-                <li>Réalisation d'un clip musical et documentaire.</li>
-                <li>Montage vidéo et manipulation sonore en direct.</li>
-            </ul>
-        </div>
-        <div class="exp-item">
-            <h3>Stage - Sinetudes</h3>
-            <ul>
-                <li>Modélisation de bâtiments (Autocad).</li>
-                <li>Création de plans de chalets et gestion Excel.</li>
-            </ul>
+    <section id="experience">
+        <h2 class="section-title">Parcours & Expériences</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="time-date">Stage de 1ère</div>
+                <h3>France 3 Rhône-Alpes</h3>
+                <p>Réalisation de clips musicaux, documentaires et montage vidéo. Manipulation du son en direct.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="time-date">Stage de 3ème</div>
+                <h3>Sinetudes</h3>
+                <p>Modélisation de bâtiments sur AutoCAD et création de plans de chalets.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="time-date">Formation</div>
+                <h3>BTS SIO - La Martinière Duchère</h3>
+                <p>Spécialisation en informatique technique et réseaux (en cours).</p>
+            </div>
         </div>
     </section>
 
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>📍 Mions, France</p>
-        <p>📧 <a href="mailto:lorenzo.provot88@gmail.com">lorenzo.provot88@gmail.com</a></p>
-        <p>📞 06 28 07 67 34</p>
-        <p>🌍 Langues : Français, Anglais</p>
-    </section>
-
-</div>
-
-<footer>
-    <p>&copy; 2026 Lorenzo Provot - Portfolio SISR</p>
-</footer>
+    <footer id="contact">
+        <h2>Travaillons ensemble.</h2>
+        <p>Basé à Mions, France</p>
+        <div class="contact-grid">
+            <a href="mailto:lorenzo.provot88@gmail.com" class="contact-link">lorenzo.provot88@gmail.com</a>
+            <p class="phone">06 28 07 67 34</p>
+        </div>
+    </footer>
 
 </body>
 </html>
