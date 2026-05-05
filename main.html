@@ -3,89 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lorenzo Provot | Portfolio BTS SIO</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Lorenzo Provot | Portfolio SIO</title>
+    <link rel="stylesheet" href="style.css?v=1">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <nav>
-        <div class="logo">Lorenzo<span>.</span>P</div>
+        <div class="logo">LORENZO<span>_</span></div>
         <ul>
-            <li><a href="#home">Profil</a></li>
-            <li><a href="#skills">Compétences</a></li>
-            <li><a href="#experience">Expériences</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home">/accueil</a></li>
+            <li><a href="#skills">/skills</a></li>
+            <li><a href="#experience">/xp</a></li>
+            <li><a href="#contact">/contact</a></li>
         </ul>
     </nav>
 
     <header id="home">
         <div class="hero-content">
-            <h1>Lorenzo <span>Provot</span></h1>
-            <p>Étudiant en <strong>BTS SIO</strong> (Services Informatiques aux Organisations). Passionné par les réseaux, la création numérique et le développement.</p>
-            <div class="status-badge">🔍 Recherche de stage : 11 Mai – 19 Juin</div>
-            <a href="#contact" class="btn">Me contacter</a>
+            <div class="terminal-header">system.status: <span class="online">online</span></div>
+            <h1>Lorenzo <span class="highlight">Provot</span></h1>
+            <p>Étudiant en BTS SIO. Spécialisation Réseaux & Infrastructure.</p>
+            <div class="search-box">
+                > RECHERCHE STAGE : 11 MAI - 19 JUIN
+            </div>
+            <a href="#contact" class="btn-main">INITIALISER CONTACT</a>
         </div>
     </header>
 
     <section id="skills">
-        <h2 class="section-title">Expertise Technique</h2>
-        <div class="skills-container">
-            <div class="skill-card">
-                <h3>Réseaux & Admin</h3>
+        <h2 class="title-glitch">COMPÉTENCES_TECH</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>ADMIN_RESEAU</h3>
                 <ul>
-                    <li>Routage et administration</li>
-                    <li>Installation DNS & DHCP</li>
-                    <li>Configuration de VLAN</li>
+                    <li>DNS / DHCP / VLAN</li>
+                    <li>Routage Cisco</li>
                 </ul>
             </div>
-            <div class="skill-card">
-                <h3>Logiciels</h3>
+            <div class="card">
+                <h3>VIRTUALISATION</h3>
                 <ul>
-                    <li>Cisco Packet-Tracer</li>
-                    <li>VMware & Proxmox</li>
+                    <li>VMware</li>
+                    <li>Proxmox</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>OUTILS</h3>
+                <ul>
                     <li>Wireshark</li>
-                </ul>
-            </div>
-            <div class="skill-card">
-                <h3>Création</h3>
-                <ul>
-                    <li>Montage Vidéo (Premiere)</li>
-                    <li>Modélisation (AutoCAD)</li>
-                    <li>Suite Office (Excel)</li>
+                    <li>Packet Tracer</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <section id="experience">
-        <h2 class="section-title">Parcours & Expériences</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="time-date">Stage de 1ère</div>
-                <h3>France 3 Rhône-Alpes</h3>
-                <p>Réalisation de clips musicaux, documentaires et montage vidéo. Manipulation du son en direct.</p>
+        <h2 class="title-glitch">LOG_EXPERIENCES</h2>
+        <div class="xp-list">
+            <div class="xp-item">
+                <span class="date">STAGE_01</span>
+                <h3>France 3 Rhône Alpes</h3>
+                <p>Montage vidéo & gestion du son en direct.</p>
             </div>
-            <div class="timeline-item">
-                <div class="time-date">Stage de 3ème</div>
+            <div class="xp-item">
+                <span class="date">STAGE_02</span>
                 <h3>Sinetudes</h3>
-                <p>Modélisation de bâtiments sur AutoCAD et création de plans de chalets.</p>
-            </div>
-            <div class="timeline-item">
-                <div class="time-date">Formation</div>
-                <h3>BTS SIO - La Martinière Duchère</h3>
-                <p>Spécialisation en informatique technique et réseaux (en cours).</p>
+                <p>Modélisation AutoCAD & Excel.</p>
             </div>
         </div>
     </section>
 
     <footer id="contact">
-        <h2>Travaillons ensemble.</h2>
-        <p>Basé à Mions, France</p>
-        <div class="contact-grid">
-            <a href="mailto:lorenzo.provot88@gmail.com" class="contact-link">lorenzo.provot88@gmail.com</a>
-            <p class="phone">06 28 07 67 34</p>
-        </div>
+        <p>LOCALISATION: Mions, France</p>
+        <a href="mailto:lorenzo.provot88@gmail.com" class="mail-neon">lorenzo.provot88@gmail.com</a>
+        <p class="phone">TEL: 06 28 07 67 34</p>
     </footer>
 
 </body>
