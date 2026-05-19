@@ -1,13 +1,12 @@
-
 :root {
-    --green: #00ff88;
-    --green-dim: #00c46a;
-    --green-dark: #003d22;
-    --black: #050a07;
-    --card-bg: #0a120d;
-    --border: #1a3325;
-    --text: #c8e6d5;
-    --muted: #4a7a5e;
+    --green: #00a2ff;        /* Bleu lumineux (ancien vert fluo) */
+    --green-dim: #007cc7;    /* Bleu intermédiaire */
+    --green-dark: #00233d;   /* Bleu sombre pour les structures/contours */
+    --black: #05070a;        /* Fond de page bleu nuit très foncé */
+    --card-bg: #0a0d12;      /* Fond des cartes légèrement bleuté */
+    --border: #1a2533;       /* Bordures bleutées discrètes */
+    --text: #c8dee6;         /* Couleur du texte claire légèrement teintée de bleu */
+    --muted: #4a677a;        /* Texte secondaire / estompé */
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,8 +29,8 @@
       0deg,
       transparent,
       transparent 2px,
-      rgba(0,255,136,0.015) 2px,
-      rgba(0,255,136,0.015) 4px
+      rgba(0,162,255,0.015) 2px,
+      rgba(0,162,255,0.015) 4px
     );
     pointer-events: none;
     z-index: 9999;
@@ -43,8 +42,8 @@
     position: fixed;
     inset: 0;
     background-image:
-      linear-gradient(rgba(0,255,136,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,255,136,0.04) 1px, transparent 1px);
+      linear-gradient(rgba(0,162,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,162,255,0.04) 1px, transparent 1px);
     background-size: 40px 40px;
     pointer-events: none;
     z-index: 0;
@@ -67,7 +66,7 @@
     position: absolute;
     width: 600px; height: 600px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,255,136,0.12) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(0,162,255,0.12) 0%, transparent 70%);
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
@@ -137,7 +136,7 @@
     line-height: 1;
     animation: fadeDown 0.8s 0.2s ease both;
   }
-  h1 span { color: var(--green); text-shadow: 0 0 30px rgba(0,255,136,0.5); }
+  h1 span { color: var(--green); text-shadow: 0 0 30px rgba(0,162,255,0.5); }
 
   .hero-title {
     font-family: 'Share Tech Mono', monospace;
@@ -157,12 +156,12 @@
     font-family: 'Share Tech Mono', monospace;
     font-size: 13px;
     color: var(--green);
-    background: rgba(0,255,136,0.06);
+    background: rgba(0,162,255,0.06);
     animation: pulse-border 2s infinite, fadeDown 0.8s 0.4s ease both;
   }
   @keyframes pulse-border {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(0,255,136,0.3); }
-    50% { box-shadow: 0 0 0 6px rgba(0,255,136,0); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,162,255,0.3); }
+    50% { box-shadow: 0 0 0 6px rgba(0,162,255,0); }
   }
 
   .hero-contacts {
@@ -276,7 +275,7 @@
     background: var(--green);
     transition: height 0.4s ease;
   }
-  .card:hover { border-color: rgba(0,255,136,0.3); transform: translateY(-3px); }
+  .card:hover { border-color: rgba(0,162,255,0.3); transform: translateY(-3px); }
   .card:hover::before { height: 100%; }
 
   .card-label {
@@ -335,10 +334,10 @@
     overflow: hidden;
     transition: border-color 0.3s, transform 0.3s;
   }
-  .stage-card:hover { border-color: rgba(0,255,136,0.4); transform: translateY(-4px); }
+  .stage-card:hover { border-color: rgba(0,162,255,0.4); transform: translateY(-4px); }
 
   .stage-header {
-    background: linear-gradient(135deg, var(--green-dark), #001a0e);
+    background: linear-gradient(135deg, var(--green-dark), #00111a);
     padding: 22px 24px;
     border-bottom: 1px solid var(--border);
     position: relative;
@@ -416,7 +415,7 @@
     font-size: 20px;
     width: 36px; height: 36px;
     display: flex; align-items: center; justify-content: center;
-    background: rgba(0,255,136,0.08);
+    background: rgba(0,162,255,0.08);
     border-radius: 2px;
     color: var(--green);
     flex-shrink: 0;
@@ -451,7 +450,7 @@
     gap: 20px;
     transition: border-color 0.3s;
   }
-  .formation-item:hover { border-color: rgba(0,255,136,0.3); }
+  .formation-item:hover { border-color: rgba(0,162,255,0.3); }
   .formation-dot {
     width: 12px; height: 12px;
     border-radius: 50%;
@@ -493,7 +492,7 @@
   .soft-chip:hover {
     border-color: var(--green);
     color: var(--green);
-    background: rgba(0,255,136,0.05);
+    background: rgba(0,162,255,0.05);
   }
 
   /* ── LANGUES ── */
@@ -536,7 +535,7 @@
     border: 1px solid var(--green);
     border-radius: 3px;
     padding: 18px 28px;
-    box-shadow: 0 0 20px rgba(0,255,136,0.1);
+    box-shadow: 0 0 20px rgba(0,162,255,0.1);
   }
   .certif-icon { font-size: 28px; }
   .certif-name {
@@ -575,7 +574,7 @@
     justify-content: center;
     gap: 32px;
     padding: 16px 20px;
-    background: rgba(5,10,7,0.85);
+    background: rgba(5,7,10,0.85);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
