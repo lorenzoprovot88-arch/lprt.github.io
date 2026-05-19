@@ -337,7 +337,7 @@
   .stage-card:hover { border-color: rgba(0,162,255,0.4); transform: translateY(-4px); }
 
   .stage-header {
-    background: linear-gradient(135deg, var(--green-dark), #00111a);
+    background: linear-gradient(135deg, var(--green-dark), #050a12); /* Corrigé ici : fond de l'en-tête bleu nuit foncé */
     padding: 22px 24px;
     border-bottom: 1px solid var(--border);
     position: relative;
@@ -511,90 +511,4 @@
     transition: border-color 0.3s;
   }
   .lang-card:hover { border-color: var(--green); }
-  .lang-flag { font-size: 30px; margin-bottom: 8px; }
-  .lang-name {
-    font-family: 'Rajdhani', sans-serif;
-    font-weight: 700;
-    font-size: 18px;
-    color: #fff;
-  }
-  .lang-level {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 10px;
-    color: var(--green);
-    letter-spacing: 2px;
-    margin-top: 4px;
-  }
-
-  /* ── CERTIF ── */
-  .certif-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    background: var(--card-bg);
-    border: 1px solid var(--green);
-    border-radius: 3px;
-    padding: 18px 28px;
-    box-shadow: 0 0 20px rgba(0,162,255,0.1);
-  }
-  .certif-icon { font-size: 28px; }
-  .certif-name {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--green);
-  }
-  .certif-sub {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 2px;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 40px 20px 60px;
-    border-top: 1px solid var(--border);
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 2px;
-  }
-  footer span { color: var(--green); }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-    padding: 16px 20px;
-    background: rgba(5,7,10,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  nav a {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-  nav a:hover { color: var(--green); }
-
-  /* DIVIDER */
-  .divider {
-    position: relative;
-    z-index: 1;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--border), transparent);
-    max-width: 960px;
-    margin: 0 auto;
-  }
+  .lang-flag { font-size: 30px; margin-bottom: 8px;
