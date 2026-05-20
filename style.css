@@ -1,357 +1,432 @@
-/* ==========================================================================
-   VARIABLES CORE & THÈME RGB MATRIX (CYBERPUNK OVERDRIVE)
-   ========================================================================== */
 :root {
-  --bg-dark: #0a0a12;
-  --bg-card: rgba(16, 16, 28, 0.75);
-  --text-main: #e2f1f5;
-  --muted: #6272a4;
+  --green: #00a2ff;        /* Bleu lumineux */
+  --green-dim: #007cc7;    /* Bleu intermédiaire */
+  --green-dark: #001524;   /* Bleu sombre plus profond */
+  --black: #020406;        /* Fond noir abyssal pour faire claquer les lueurs */
+  --card-bg: #050910;      /* Fond des cartes ultra-sombre */
+  --border: #132237;       /* Bordures cyber */
+  --text: #c8dee6;         /* Texte clair */
+  --muted: #4a677a;        /* Texte secondaire */
+  --laser-glow: rgba(0, 162, 255, 0.6);
   
-  /* Les 3 piliers du RGB Laser */
-  --rgb-red: #ff0055;
-  --rgb-green: #00ffcc;
-  --rgb-blue: #0077ff;
-  
-  /* Couleurs de glitch */
-  --glitch-pink: #ff007f;
-  --glitch-yellow: #ffff00;
-  --glitch-cyan: #00ffff;
-  
-  --font-mono: 'Share Tech Mono', monospace;
-  --font-title: 'Rajdhani', sans-serif;
-  --font-body: 'Exo 2', sans-serif;
-  
-  --border-glow: 0 0 10px rgba(0, 255, 204, 0.3), 0 0 20px rgba(0, 255, 204, 0.2);
+  /* ULTRA-EFFECTS VARIABLES */
+  --glitch-pink: #ff007c;
+  --glitch-yellow: #00ffaa;
+  --neon-shine: linear-gradient(120deg, transparent, rgba(0, 162, 255, 0.6), transparent);
 }
 
-/* ==========================================================================
-   ANIMATIONS CHROMATIQUES (LE SECRET DU RGB CYBER)
-   ========================================================================== */
-@keyframes rgb-cycle {
-  0% { color: var(--rgb-red); text-shadow: 0 0 15px rgba(255, 0, 85, 0.8); }
-  33% { color: var(--rgb-green); text-shadow: 0 0 15px rgba(0, 255, 204, 0.8); }
-  66% { color: var(--rgb-blue); text-shadow: 0 0 15px rgba(0, 119, 255, 0.8); }
-  100% { color: var(--rgb-red); text-shadow: 0 0 15px rgba(255, 0, 85, 0.8); }
+*, *::before, *::after { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
 }
 
-@keyframes rgb-border-cycle {
-  0% { border-color: var(--rgb-red); box-shadow: 0 0 15px rgba(255, 0, 85, 0.4); }
-  33% { border-color: var(--rgb-green); box-shadow: 0 0 15px rgba(0, 255, 204, 0.4); }
-  66% { border-color: var(--rgb-blue); box-shadow: 0 0 15px rgba(0, 119, 255, 0.4); }
-  100% { border-color: var(--rgb-red); box-shadow: 0 0 15px rgba(255, 0, 85, 0.4); }
-}
-
-@keyframes laser-move {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
-}
-
-@keyframes scanline {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100%); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.15; }
-  50% { opacity: 0.35; }
-}
-
-/* ==========================================================================
-   STRUCTURE GLOBALE & EFFETS D'ÉCRAN (CRT / SCANLINES)
-   ========================================================================== */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  scroll-behavior: smooth;
+html { 
+  scroll-behavior: smooth; 
 }
 
 body {
-  background-color: var(--bg-dark);
-  color: var(--text-main);
-  font-family: var(--font-body);
+  background: var(--black);
+  color: var(--text);
+  font-family: 'Exo 2', sans-serif;
   overflow-x: hidden;
   position: relative;
-  background-image: 
-    radial-gradient(circle at 50% 10%, rgba(20, 20, 35, 0.9) 0%, var(--bg-dark) 70%),
-    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%), 
-    linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.04));
-  background-size: 100% 100%, 100% 4px, 6px 100%;
+  /* Écran CRT incurvé + scintillement constant */
+  animation: screen-flicker 0.1s infinite alternate steps(2), crt-distortion 20s infinite linear;
 }
 
-/* Couche de balayage CRT */
-.scanline-layer {
+/* DISTORSION DU MONITEUR SOUVENT RECHERCHÉE (VRAI APPAREIL RETRO) */
+@keyframes crt-distortion {
+  0% { filter: contrast(1) brightness(1) saturate(1); }
+  5% { filter: contrast(1.1) brightness(1.05) saturate(1.2); }
+  6% { filter: contrast(1) brightness(1) saturate(1); }
+  50% { filter: contrast(1) brightness(1) saturate(1); }
+  51% { filter: contrast(1.3) brightness(0.9) saturate(0.8) hue-rotate(10deg); }
+  52% { filter: contrast(1) brightness(1) saturate(1); }
+}
+
+@keyframes screen-flicker {
+  0% { opacity: 0.96; }
+  100% { opacity: 1; }
+}
+
+/* HALO DE FOND SURVITAMINÉ */
+body::before {
+  content: '';
   position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
-  background-size: 100% 4px;
-  z-index: 9999;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(0,162,255,0.18) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255, 0, 124, 0.08) 0%, transparent 50%),
+    radial-gradient(transparent, rgba(0,0,0,0.7) 90%); /* Vignettage d'écran */
+  z-index: 1;
   pointer-events: none;
-  opacity: 0.4;
 }
 
-/* Les Lasers Verticaux RGB en arrière-plan */
-.laser-container {
+/* GRILLE PRINCIPALE DE DATA AVEC UN EFFET DE PERSPECTIVE */
+body::after {
+  content: '';
   position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
+  inset: -100px;
+  background-image:
+    linear-gradient(rgba(0,162,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,162,255,0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
   pointer-events: none;
   z-index: 1;
-  display: flex;
-  justify-content: space-around;
-  opacity: 0.15;
+  animation: grid-glitch 4s infinite steps(1);
+}
+
+@keyframes grid-glitch {
+  0%, 94%, 100% { transform: translate(0, 0); filter: none; opacity: 1; }
+  95% { transform: translate(7px, -3px); filter: hue-rotate(90deg) contrast(1.5); opacity: 0.8; }
+  97% { transform: translate(-10px, 5px); filter: saturate(3); }
+  99% { transform: translate(2px, 2px); }
+}
+
+/* CALQUE DES LIGNES CRT AVEC EFFET DE BALAYAGE */
+.scanline-layer {
+  position: fixed;
+  inset: 0;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3) 2px,
+      rgba(0,162,255,0.04) 2px,
+      rgba(0,162,255,0.04) 4px
+    );
+  pointer-events: none;
+  z-index: 9999;
+}
+.scanline-layer::after {
+  content: '';
+  position: absolute;
+  width: 100%; height: 10px;
+  background: rgba(0, 162, 255, 0.08);
+  box-shadow: 0 0 20px rgba(0, 162, 255, 0.2);
+  top: -10px;
+  animation: scanline-move 8s infinite linear;
+}
+@keyframes scanline-move {
+  0% { top: -10px; }
+  100% { top: 100%; }
+}
+
+/* FAISCEAUX DE DONNÉES LASER ULTRA-VISIBLES */
+.laser-container {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
 }
 .laser-line {
-  width: 2px;
-  height: 250px;
-  background: linear-gradient(to bottom, transparent, var(--rgb-green), transparent);
-  animation: laser-move 8s linear infinite;
+  position: absolute;
+  background: linear-gradient(90deg, transparent, #fff, var(--green), transparent);
+  height: 3px;
+  width: 60%;
+  opacity: 0;
+  filter: drop-shadow(0 0 15px var(--green)) drop-shadow(0 0 5px #fff);
 }
-.laser-line:nth-child(2) {
-  background: linear-gradient(to bottom, transparent, var(--rgb-red), transparent);
-  animation-delay: 2.5s;
-  animation-duration: 6s;
-}
-.laser-line:nth-child(3) {
-  background: linear-gradient(to bottom, transparent, var(--rgb-blue), transparent);
-  animation-delay: 5s;
-  animation-duration: 10s;
+.laser-line:nth-child(1) { top: 15%; left: -60%; animation: laser-sweep 3.5s infinite linear; }
+.laser-line:nth-child(2) { top: 45%; left: -60%; animation: laser-sweep 5s infinite linear 1.5s; }
+.laser-line:nth-child(3) { top: 75%; left: -60%; animation: laser-sweep 4s infinite linear 0.5s; }
+
+@keyframes laser-sweep {
+  0% { left: -60%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 110%; opacity: 0; }
 }
 
-/* ==========================================================================
-   NAVBAR HUD ANIMÉE
-   ========================================================================== */
+/* NAVIGATION ULTRA-GLOW AVEC EFFET CYBER-DECOUPE */
 nav {
   position: fixed;
-  top: 0; left: 0; width: 100%;
-  background: rgba(6, 6, 12, 0.9);
-  backdrop-filter: blur(12px);
-  border-bottom: 2px solid var(--rgb-green);
-  animation: rgb-border-cycle 12s infinite linear;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
   display: flex;
   justify-content: center;
-  gap: 25px;
-  padding: 18px 0;
-  z-index: 1000;
+  gap: 32px;
+  padding: 20px;
+  background: rgba(2, 4, 6, 0.93);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 2px solid var(--green);
+  box-shadow: 0 0 30px rgba(0, 162, 255, 0.25), inset 0 -5px 15px rgba(0, 162, 255, 0.05);
 }
 
-nav a {
-  font-family: var(--font-mono);
-  font-size: 14px;
+nav a, nav a:visited, nav a:active {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  color: var(--text) !important;
+  text-decoration: none !important;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #fff;
-  text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   position: relative;
+  display: inline-block;
   padding: 5px 10px;
 }
 
-nav a:hover {
-  color: var(--glitch-cyan);
-  text-shadow: 0 0 10px var(--glitch-cyan), 0 0 20px var(--glitch-cyan);
+nav a:hover { 
+  color: #fff !important; 
+  text-shadow: 0 0 10px var(--green), 0 0 20px var(--green);
+  transform: scale(1.1) translateY(-2px);
 }
 
 nav a::after {
   content: '';
   position: absolute;
-  bottom: 0; left: 0; width: 0; height: 2px;
-  background: var(--glitch-pink);
-  transition: width 0.3s ease;
-  box-shadow: 0 0 10px var(--glitch-pink);
+  bottom: -22px; left: 50%;
+  width: 0; height: 3px;
+  background: linear-gradient(90deg, var(--green), var(--glitch-pink), var(--glitch-yellow));
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
+  box-shadow: 0 0 15px var(--green);
 }
+nav a:hover::after { width: 120%; }
 
-nav a:hover::after {
-  width: 100%;
-}
-
-/* ==========================================================================
-   SECTION HERO & EFFET LOGO RGB
-   ========================================================================== */
+/* HERO D'ALERTE SYSTEME */
 #hero {
+  position: relative;
+  z-index: 10;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 120px 20px 60px 20px;
-  position: relative;
+  padding: 140px 20px 60px;
 }
 
 .hero-glow {
   position: absolute;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(0, 255, 204, 0.1) 0%, transparent 70%);
+  width: 800px; height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,162,255,0.28) 0%, transparent 70%);
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  animation: pulse-glow 4s infinite ease-in-out;
   pointer-events: none;
+  animation: aura-pulse 3s infinite alternate ease-in-out;
+}
+@keyframes aura-pulse {
+  0% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.7; filter: blur(5px); }
+  100% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; filter: blur(0px); }
 }
 
-/* Avatar Cyber Hologramme */
+/* AVATAR SYSTEM OVERRIDE */
 .avatar-wrap {
   position: relative;
-  width: 100px;
-  height: 100px;
-  margin-bottom: 25px;
+  width: 150px; height: 150px;
+  margin: 0 auto 35px;
+  cursor: pointer;
 }
-
 .avatar-ring {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  border: 3px dashed var(--rgb-green);
+  inset: -15px;
   border-radius: 50%;
-  animation: rgb-border-cycle 6s infinite linear, spin 20s linear infinite;
+  border: 3px double var(--green);
+  animation: spin 8s linear infinite;
+  box-shadow: 0 0 25px rgba(0,162,255,0.5), inset 0 0 15px rgba(0,162,255,0.2);
 }
-
-@keyframes spin { 100% { transform: rotate(360deg); } }
+.avatar-ring::before {
+  content: '';
+  position: absolute;
+  top: -8px; left: 50%;
+  width: 14px; height: 14px;
+  background: var(--glitch-yellow);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 15px var(--glitch-yellow), 0 0 30px var(--green);
+}
+@keyframes spin { to { transform: rotate(360deg); } }
 
 .avatar-placeholder {
-  width: 100%;
-  height: 100%;
+  width: 150px; height: 150px;
   border-radius: 50%;
-  background: rgba(16, 16, 28, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-title);
-  font-size: 32px;
-  font-weight: 800;
-  color: var(--glitch-cyan);
-  border: 2px solid rgba(255,255,255,0.1);
-  text-shadow: 0 0 10px var(--glitch-cyan);
+  background: radial-gradient(circle, var(--green-dark), #000);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 52px;
+  font-weight: 900;
+  color: #fff;
+  font-family: 'Share Tech Mono', monospace;
+  box-shadow: inset 0 0 35px rgba(0, 162, 255, 0.8), 0 0 25px rgba(0,162,255,0.4);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 2px solid var(--border);
+}
+
+.avatar-wrap:hover .avatar-placeholder {
+  transform: scale(1.15) rotate(-5deg);
+  color: #fff;
+  background: var(--glitch-pink);
+  box-shadow: 0 0 50px var(--glitch-pink), inset 0 0 20px #fff;
+  border-color: #fff;
+}
+.avatar-wrap:hover .avatar-ring {
+  animation: spin 1.5s linear infinite;
+  border-color: var(--glitch-yellow);
+  box-shadow: 0 0 40px var(--glitch-yellow);
 }
 
 .hero-label {
-  font-family: var(--font-mono);
-  color: var(--glitch-pink);
-  letter-spacing: 4px;
-  margin-bottom: 10px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  color: var(--glitch-yellow);
+  letter-spacing: 6px;
   text-transform: uppercase;
-  text-shadow: 0 0 8px var(--glitch-pink);
+  margin-bottom: 14px;
+  text-shadow: 0 0 10px var(--glitch-yellow);
 }
 
-/* Le Titre Maître RGB */
-#hero h1 {
-  font-family: var(--font-title);
-  font-size: 75px;
+/* H1 GLITCH ULTIME ET CHOC GRAPHIQUE */
+h1 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(54px, 9vw, 100px);
   font-weight: 900;
-  letter-spacing: -2px;
-  margin-bottom: 15px;
   color: #fff;
+  letter-spacing: -2px;
+  line-height: 0.95;
+  position: relative;
+  text-shadow: 0 0 15px rgba(255,255,255,0.3);
+  animation: text-shake 5s infinite;
+}
+h1 span { 
+  color: var(--green); 
+  text-shadow: 0 0 20px var(--green), 0 0 50px rgba(0,162,255,0.6); 
 }
 
-#hero h1 span {
-  animation: rgb-cycle 8s infinite linear;
+@keyframes text-shake {
+  0%, 98%, 100% { transform: skew(0deg); text-shadow: 0 0 15px rgba(255,255,255,0.3); }
+  98.5% { transform: skew(5deg) scaleY(0.95); text-shadow: -3px 0 var(--glitch-pink), 3px 0 var(--glitch-yellow); }
+  99% { transform: skew(-8deg); text-shadow: 3px 0 var(--glitch-pink), -3px 0 var(--green); }
+  99.5% { transform: skew(0deg); }
+}
+
+h1:hover {
+  animation: matrix-glitch-text 0.15s linear infinite;
+}
+@keyframes matrix-glitch-text {
+  0% { text-shadow: 4px -3px 0 var(--glitch-pink), -4px 3px 0 var(--glitch-yellow); transform: translate(2px, -2px); filter: hue-rotate(45deg); }
+  25% { text-shadow: -4px 4px 0 var(--glitch-pink), 4px -2px 0 var(--green); transform: translate(-2px, 3px); }
+  50% { text-shadow: 3px -4px 0 var(--glitch-yellow), -3px -3px 0 var(--glitch-pink); transform: translate(-3px, -2px); filter: blur(1px); }
+  75% { text-shadow: -2px 3px 0 var(--green), 3px 4px 0 var(--glitch-pink); transform: translate(3px, 2px); }
+  100% { text-shadow: 4px -3px 0 var(--glitch-pink), -4px 3px 0 var(--glitch-yellow); transform: translate(0, 0); }
 }
 
 .hero-title {
-  font-family: var(--font-mono);
-  font-size: 18px;
-  color: var(--muted);
-  letter-spacing: 1px;
-  margin-bottom: 35px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: clamp(14px, 2.5vw, 18px);
+  color: var(--text);
+  margin-top: 16px;
+  letter-spacing: 3px;
+  background: rgba(0, 162, 255, 0.08);
+  padding: 6px 16px;
+  border-radius: 4px;
+  border: 1px dashed rgba(0, 162, 255, 0.3);
+  display: inline-block;
 }
 
-/* Badge de recherche de stage Luminescent */
+/* BADGE AVEC DECOUPE MILITAIRE TACTIQUE (CLIP PATH) */
 .hero-badge {
-  background: rgba(255, 0, 127, 0.1);
-  border: 1px solid var(--glitch-pink);
-  padding: 10px 24px;
-  font-family: var(--font-mono);
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 36px;
+  background: linear-gradient(135deg, rgba(255,0,124,0.15), rgba(0,162,255,0.15));
+  border: 2px solid var(--green);
+  font-family: 'Share Tech Mono', monospace;
   font-size: 14px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  font-weight: bold;
   color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 0 15px rgba(255, 0, 127, 0.3), inset 0 0 15px rgba(255, 0, 127, 0.2);
-  margin-bottom: 40px;
-  animation: alert-blink 2s infinite alternate;
-}
-
-@keyframes alert-blink {
-  0% { box-shadow: 0 0 5px rgba(255, 0, 127, 0.2); }
-  100% { box-shadow: 0 0 25px rgba(255, 0, 127, 0.6); border-color: var(--rgb-red); }
-}
-
-/* Contacts Link HUD */
-.hero-contacts {
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.hero-contacts a {
-  color: var(--text-main);
-  text-decoration: none;
-  font-family: var(--font-mono);
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  box-shadow: 0 0 25px rgba(0, 162, 255, 0.4), inset 0 0 15px rgba(0, 162, 255, 0.2);
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
   transition: all 0.3s ease;
+  cursor: pointer;
+}
+.hero-badge:hover {
+  border-color: var(--glitch-yellow);
+  box-shadow: 0 0 40px var(--glitch-yellow), inset 0 0 20px rgba(0,255,170,0.3);
+  text-shadow: 0 0 10px #fff;
+  transform: translateY(-2px) scale(1.05);
+}
+.hero-badge::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -150%;
+  width: 80%; height: 100%;
+  background: var(--neon-shine);
+  transform: skewX(-25deg);
+  animation: neon-flash 2s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+@keyframes neon-flash {
+  0% { left: -150%; }
+  50%, 100% { left: 200%; }
 }
 
-.hero-contacts a:hover {
-  background: rgba(0, 255, 204, 0.08);
-  border-color: var(--rgb-green);
-  box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
-  transform: translateY(-2px);
+/* CONTACTS HUD BUTTONS */
+.hero-contacts {
+  display: flex; gap: 24px; flex-wrap: wrap; justify-content: center;
+  margin-top: 40px;
 }
-
-.hero-contacts .icon {
-  color: var(--rgb-green);
+.hero-contacts a {
+  display: flex; align-items: center; gap: 10px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  font-family: 'Share Tech Mono', monospace;
+  padding: 10px 20px;
+  background: rgba(19, 34, 55, 0.4);
+  border: 1px solid var(--border);
+  border-radius: 0px; /* Style Cyber brutal */
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
+.hero-contacts a::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, var(--green), var(--glitch-pink)) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.hero-contacts a:hover { 
+  background: rgba(0, 162, 255, 0.15);
+  border-color: var(--green);
+  text-shadow: 0 0 8px #fff;
+  box-shadow: 0 0 25px rgba(0,162,255,0.35);
+  transform: translateY(-5px); 
+}
+.hero-contacts a:hover::before { opacity: 1; }
+.hero-contacts .icon { font-size: 18px; color: var(--glitch-yellow); filter: drop-shadow(0 0 5px var(--glitch-yellow)); }
 
-/* Scroll Hint Indicator */
+/* FLÈCHE SCROLL ANIMÉE */
 .scroll-hint {
   position: absolute;
-  bottom: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 3px;
-  color: var(--muted);
+  bottom: 25px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  opacity: 0.8;
+}
+.scroll-hint span { font-family: 'Share Tech Mono', monospace; font-size: 11px; letter-spacing: 4px; color: var(--green); text-shadow: 0 0 8px var(--green); text-transform: uppercase; }
+.scroll-arrow { width: 16px; height: 16px; border-right: 3px solid var(--green); border-bottom: 3px solid var(--green); transform: rotate(45deg); animation: bounce 1.2s infinite ease-in-out; filter: drop-shadow(0 0 8px var(--green)); }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) rotate(45deg); opacity: 0.4; }
+  50% { transform: translateY(10px) rotate(45deg); opacity: 1; filter: drop-shadow(0 0 15px var(--green)); }
 }
 
-.scroll-arrow {
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(to bottom, var(--rgb-green), transparent);
-  animation: scroll-line 2s infinite ease-in-out;
-}
-
-@keyframes scroll-line {
-  0% { transform: scaleY(0); transform-origin: top; }
-  50% { transform: scaleY(1); transform-origin: top; }
-  51% { transform: scaleY(1); transform-origin: bottom; }
-  100% { transform: scaleY(0); transform-origin: bottom; }
-}
-
-/* ==========================================================================
-   SECTIONS STANDARD & HEADERS BRUTALISTES
-   ========================================================================== */
+/* SECTIONS STRUCTURES INTENSIFIÉES */
 section {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 100px 24px;
   position: relative;
   z-index: 10;
-}
-
-.divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--muted), transparent);
-  opacity: 0.3;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 100px 24px;
 }
 
 .section-header {
@@ -360,317 +435,365 @@ section {
   gap: 20px;
   margin-bottom: 50px;
 }
-
 .section-num {
-  font-family: var(--font-mono);
-  font-size: 18px;
-  color: var(--glitch-pink);
-  border: 1px solid var(--glitch-pink);
-  padding: 2px 8px;
-  text-shadow: 0 0 8px var(--glitch-pink);
-}
-
-.section-title {
-  font-family: var(--font-title);
-  font-size: 36px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  color: #fff;
-  text-shadow: 0 0 10px rgba(255,255,255,0.2);
-}
-
-.section-line {
-  flex-grow: 1;
-  height: 1px;
-  background: linear-gradient(90deg, var(--muted), transparent);
-  opacity: 0.4;
-}
-
-/* ==========================================================================
-   GRILLES DE CARTES ÉVOLUÉES (ABOUT / STAGES / EXPERIENCES)
-   ========================================================================== */
-.about-grid, .stage-grid, .skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-}
-
-.about-text {
-  background: var(--bg-card);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-left: 4px solid var(--rgb-blue);
-  padding: 30px;
+  font-family: 'Share Tech Mono', monospace;
   font-size: 16px;
-  line-height: 1.8;
-  border-radius: 0 8px 8px 0;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-/* Cartes Stage & Expériences Laser-Border */
-.stage-card, .card {
-  background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 30px;
-  border-radius: 8px;
-  position: relative;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-}
-
-.stage-card:hover, .card:hover {
-  transform: translateY(-5px);
-  border-color: transparent;
-  animation: rgb-border-cycle 4s infinite linear;
-}
-
-.stage-year, .card-label {
-  font-family: var(--font-mono);
-  font-size: 12px;
   color: var(--glitch-pink);
-  letter-spacing: 2px;
-  margin-bottom: 12px;
-}
-
-.stage-name, .card-title {
-  font-family: var(--font-title);
-  font-size: 24px;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 5px;
-}
-
-.stage-company, .card-sub {
-  font-size: 14px;
-  color: var(--muted);
-  font-family: var(--font-mono);
-  margin-bottom: 20px;
-}
-
-/* Listes customisées type terminaux */
-.stage-body ul, .card ul {
-  list-style: none;
-}
-
-.stage-body li, .card li {
-  font-size: 14px;
-  color: var(--text-main);
-  margin-bottom: 10px;
-  padding-left: 15px;
-  position: relative;
-}
-
-.stage-body li::before, .card li::before {
-  content: '>';
-  position: absolute;
-  left: 0;
-  color: var(--rgb-green);
-  font-family: var(--font-mono);
+  letter-spacing: 4px;
   font-weight: bold;
+  text-shadow: 0 0 10px var(--glitch-pink);
 }
-
-/* ==========================================================================
-   COMPÉTENCES : CHIPS ULTRA-RGB & SOFT SKILLS BISEAUTÉS
-   ========================================================================== */
-.skill-chip {
-  background: rgba(20, 20, 35, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-bottom: 2px solid var(--rgb-blue);
-  padding: 20px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  transition: all 0.3s ease;
-}
-
-.skill-chip:hover {
-  background: rgba(16, 16, 28, 0.9);
-  border-bottom: 2px solid var(--rgb-green);
-  box-shadow: 0 5px 20px rgba(0, 255, 204, 0.2);
-  transform: scale(1.02);
-}
-
-.skill-icon {
-  font-size: 28px;
-  filter: drop-shadow(0 0 8px currentColor);
-}
-
-.skill-name {
-  font-family: var(--font-title);
-  font-size: 18px;
-  font-weight: 700;
+.section-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 38px;
+  font-weight: 800;
   color: #fff;
-}
-
-.skill-type {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--muted);
-}
-
-/* Grille Soft Skills Néon */
-.soft-grid {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.soft-chip {
-  background: transparent;
-  border: 1px solid var(--glitch-pink);
-  color: #fff;
-  padding: 10px 24px;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  border-radius: 4px;
-  box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
-  transition: all 0.3s ease;
+  text-shadow: 0 0 10px rgba(255,255,255,0.1);
 }
-
-.soft-chip:hover {
-  background: var(--glitch-pink);
-  color: #000;
-  font-weight: bold;
-  box-shadow: 0 0 20px var(--glitch-pink);
-}
-
-/* ==========================================================================
-   FORMATIONS & COMPOSANTS SURVITAMINÉS
-   ========================================================================== */
-.formation-list {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
+.section-line {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(to right, var(--green), var(--glitch-pink), transparent);
+  opacity: 0.6;
   position: relative;
 }
-
-.formation-list::before {
+.section-line::after {
   content: '';
   position: absolute;
-  left: 7px; top: 10px; width: 1px; height: calc(100% - 20px);
-  background: var(--muted);
-  opacity: 0.3;
+  top: -2px; left: 0;
+  width: 60px; height: 6px;
+  background: linear-gradient(90deg, #fff, var(--glitch-yellow), transparent);
+  box-shadow: 0 0 15px var(--glitch-yellow);
+  animation: line-runner 2.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes line-runner {
+  0% { left: 0; transform: translateX(-100%); }
+  100% { left: 100%; transform: translateX(0%); }
 }
 
-.formation-item {
-  display: flex;
-  gap: 25px;
+/* ABOUT & CARNET DE SUIVI TEXTS */
+.about-text {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--text);
+  padding: 30px;
+  background: linear-gradient(180deg, var(--card-bg), rgba(3,5,8,0.95));
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--green);
+  border-radius: 4px;
   position: relative;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6), inset 0 0 20px rgba(0,162,255,0.05);
 }
-
-.formation-dot {
-  width: 15px;
-  height: 15px;
-  background: var(--rgb-green);
-  border-radius: 50%;
-  margin-top: 5px;
-  box-shadow: 0 0 10px var(--rgb-green);
-  z-index: 2;
-}
-
-.formation-name {
-  font-family: var(--font-title);
-  font-size: 20px;
-  font-weight: 700;
-  color: #fff;
-}
-
-.formation-detail {
-  font-size: 14px;
+.about-text::after {
+  content: '// DATA_SYSTEM_CONNECTED';
+  position: absolute;
+  bottom: 8px; right: 15px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
   color: var(--muted);
-  font-family: var(--font-mono);
-  margin-top: 4px;
+  letter-spacing: 1px;
 }
 
-/* Grid de drapeaux / Langues */
-.lang-grid {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+/* CARDS CYBERPUNK DE SÉRIE LUXE (ANGLES DE COUPES + EFFET HOLOGRAMME) */
+.skills-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+  gap: 24px !important;
+  width: 100%;
 }
 
-.lang-card {
-  background: var(--bg-card);
-  border: 1px solid rgba(255,255,255,0.05);
-  padding: 20px;
-  border-radius: 6px;
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 0px; /* Finition angulaire hardcore */
+  padding: 32px;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.15, 0.85, 0.35, 1.2);
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+/* Découpe cybernétique en haut à droite de chaque carte */
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 15px; height: 15px;
+  background: var(--border);
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  transition: background 0.3s;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 5px; height: 0;
+  background: linear-gradient(to bottom, var(--green), var(--glitch-yellow), var(--glitch-pink));
+  transition: height 0.4s ease;
+  z-index: 5;
+}
+.card:hover { 
+  border-color: var(--green);
+  transform: translateY(-10px) scale(1.03); 
+  box-shadow: 0 20px 40px rgba(0, 162, 255, 0.2), inset 0 0 15px rgba(0,162,255,0.1); 
+}
+.card:hover::before { height: 100%; }
+.card:hover::after { background: var(--green); }
+
+.card-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: var(--glitch-yellow);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  text-shadow: 0 0 5px rgba(0,255,170,0.4);
+}
+.card-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+.card-sub {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+.card ul {
+  list-style: none;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 140px;
-  text-align: center;
+  gap: 12px;
 }
-
-.lang-name {
-  font-family: var(--font-title);
-  font-weight: 600;
-  margin-top: 10px;
+.card ul li {
   font-size: 15px;
-}
-
-.lang-level {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--glitch-cyan);
-  margin-top: 2px;
-}
-
-/* Badge Certification */
-.certif-badge {
-  background: linear-gradient(135deg, rgba(20,20,35,0.8), rgba(10,10,18,0.9));
-  border: 1px solid rgba(255,255,255,0.05);
-  border-left: 4px solid var(--glitch-yellow);
-  padding: 20px;
-  border-radius: 0 6px 6px 0;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  max-width: 450px;
-}
-
-.certif-icon { font-size: 24px; }
-.certif-name { font-family: var(--font-title); font-weight: 700; color: #fff; }
-.certif-sub { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
-
-/* ==========================================================================
-   MONOSPACE LOGS DESIGN (POUR LE CARNET DE SUIVI TEXTE BRUT)
-   ========================================================================== */
-#carnet .about-text {
-  font-family: var(--font-mono) !important;
-  font-size: 14px !important;
-  line-height: 1.7 !important;
-  border-left: 4px solid var(--glitch-pink);
-  background: rgba(10, 10, 18, 0.9);
-  letter-spacing: 0.5px;
-}
-
-#carnet strong {
-  text-shadow: 0 0 8px currentColor;
-  font-size: 15px;
-  letter-spacing: 1px;
-}
-
-/* ==========================================================================
-   HUD FOOTER SYSTEM
-   ========================================================================== */
-footer {
-  background: #06060c;
-  border-top: 1px solid rgba(255,255,255,0.05);
-  padding: 30px;
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--muted);
-  letter-spacing: 1px;
+  color: var(--text);
+  padding-left: 22px;
   position: relative;
-  z-index: 10;
+  transition: transform 0.2s;
+}
+.card ul li::before {
+  content: '⚡';
+  position: absolute; left: 0;
+  color: var(--green);
+  font-size: 12px;
+  filter: drop-shadow(0 0 5px var(--green));
+}
+.card:hover ul li { transform: translateX(3px); color: #fff; }
+
+/* STAGES STYLISÉS (EFFET DOSSIER CLASSIFIÉ) */
+.stage-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+  gap: 30px !important;
+}
+.stage-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 0px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.15, 0.85, 0.35, 1.2);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+}
+.stage-card:hover { 
+  border-color: var(--glitch-pink) !important; 
+  transform: translateY(-10px);
+  box-shadow: 0 25px 45px rgba(255, 0, 124, 0.15);
+}
+.stage-header {
+  background: linear-gradient(135deg, rgba(0,35,61,0.6), #030508) !important;
+  padding: 24px 28px;
+  border-bottom: 2px solid var(--border);
+  position: relative;
+}
+.stage-card:hover .stage-header { border-color: var(--glitch-pink); }
+.stage-year {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  color: var(--glitch-pink);
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+  text-shadow: 0 0 8px var(--glitch-pink);
+}
+.stage-name {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 1px;
+}
+.stage-company {
+  font-size: 14px;
+  color: var(--green);
+  font-family: 'Share Tech Mono', monospace;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+.stage-body { padding: 24px 28px; }
+.stage-body ul li { font-size: 15px; padding-left: 22px; }
+.stage-body ul li::before { content: '>>'; color: var(--glitch-pink); font-weight: bold; text-shadow: 0 0 5px var(--glitch-pink); }
+
+/* SKILLS CHIPS GEEK MODERNE */
+.skill-chip {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 0px;
+  padding: 20px 24px;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+.skill-chip:hover { 
+  border-color: var(--glitch-yellow); 
+  box-shadow: 0 0 25px rgba(0,255,170,0.3);
+  transform: translateY(-5px) scale(1.02);
+}
+.skill-icon {
+  font-size: 22px; width: 44px; height: 44px;
+  background: rgba(0,162,255,0.12); border-radius: 0px;
+  border: 1px solid rgba(0, 162, 255, 0.3);
+}
+.skill-chip:hover .skill-icon {
+  background: var(--glitch-yellow); color: var(--black);
+  box-shadow: 0 0 20px var(--glitch-yellow);
+}
+.skill-name { font-size: 19px; font-weight: 800; letter-spacing: 0.5px; }
+.skill-type { color: var(--green); }
+
+/* COMPÉTENCES PERSONNELLES (SOFT CHIPS OVERPOWERED) */
+.soft-grid {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 16px !important;
+  margin-top: 15px;
+}
+.soft-chip {
+  background: rgba(19, 34, 55, 0.3) !important;
+  border: 1px dashed var(--border) !important;
+  border-radius: 0px;
+  padding: 16px 24px !important;
+  font-size: 17px;
+  letter-spacing: 1px;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+.soft-chip:hover {
+  border-color: var(--glitch-pink) !important;
+  border-style: solid !important;
+  color: #fff !important;
+  background: rgba(255, 0, 124, 0.18) !important;
+  box-shadow: 0 0 25px rgba(255, 0, 124, 0.4);
+  transform: scale(1.08) rotate(-1deg);
 }
 
-/* ==========================================================================
-   REDIRECTION DES VARIABLES INTERNES HTML COULEUR VERTE
-   ========================================================================== */
-:root {
-  --green: var(--rgb-green);
+/* FORMATIONS INDUSTRIALTIMELINE */
+.formation-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 24px !important;
+}
+.formation-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 0px;
+  padding: 26px 32px;
+  border-right: 4px solid rgba(19, 34, 55, 0.5);
+}
+.formation-item:hover { 
+  border-color: var(--green);
+  border-right-color: var(--green);
+  transform: translateX(12px);
+  box-shadow: -10px 10px 30px rgba(0,162,255,0.1);
+}
+.formation-dot {
+  width: 16px; height: 16px;
+  background: var(--glitch-yellow); box-shadow: 0 0 15px var(--glitch-yellow);
+}
+.formation-item:hover .formation-dot {
+  background: #fff;
+  box-shadow: 0 0 20px #fff, 0 0 40px var(--green);
+  animation: pulse-border 0.5s infinite alternate;
+}
+.formation-name { font-size: 22px; font-weight: 800; }
+.formation-detail { font-size: 13px; color: var(--text); opacity: 0.7; }
+
+/* MODULE DE LANGUES MATRICE MATRIX */
+.lang-grid {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 24px !important;
+}
+.lang-card {
+  background: linear-gradient(145deg, var(--card-bg), rgba(2,4,6,0.8)) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 0px !important;
+  padding: 30px !important;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+.lang-card:hover { 
+  border-color: var(--green) !important; 
+  transform: scale(1.08) rotate(1deg);
+  box-shadow: 0 20px 40px rgba(0,162,255,0.25);
+}
+.lang-card img {
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.7));
+  margin-bottom: 15px;
+}
+.lang-card:hover img {
+  transform: scale(1.25) rotate(7deg) !important;
+  filter: drop-shadow(0 0 15px var(--green));
+}
+.lang-name { font-size: 20px; font-weight: 800; letter-spacing: 1px; }
+.lang-level { font-size: 12px; color: var(--glitch-yellow); text-shadow: 0 0 5px var(--glitch-yellow); font-weight: bold; }
+
+/* MASTER CERTIFICATION BADGE */
+.certif-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  background: linear-gradient(90deg, #020406, var(--card-bg));
+  border: 2px dashed var(--green);
+  border-radius: 0px;
+  padding: 24px 36px;
+  box-shadow: 0 0 35px rgba(0,162,255,0.3), inset 0 0 20px rgba(0,162,255,0.1);
+  position: relative;
+}
+.certif-badge::before {
+  content: 'OFFICIAL_VALIDATION';
+  position: absolute;
+  top: -10px; left: 15px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  background: var(--green);
+  color: var(--black);
+  padding: 1px 6px;
+  font-weight: bold;
+}
+.certif-badge:hover { 
+  transform: translateY(-8px); 
+  border-color: var(--glitch-pink); 
+  border-style: solid;
+  box-shadow: 0 0 50px rgba(255,0,124,0.4);
+}
+.certif-name { font-size: 24px; font-weight: 800; }
+.certif-sub { color: var(--glitch-yellow); text-shadow: 0 0 5px var(--glitch-yellow); font-weight: bold; }
+
+/* SEPARATEURS ET BAS DE PAGE */
+.divider {
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--glitch-pink), var(--green), var(--glitch-yellow), transparent);
+  max-width: 1000px;
+  opacity: 0.8;
+}
+footer {
+  padding: 80px 20px;
+  border-top: 2px solid var(--border);
+  font-size: 12px;
+  background: #010204;
+}
+footer span { 
+  color: var(--glitch-pink); 
+  text-shadow: 0 0 10px var(--glitch-pink);
 }
