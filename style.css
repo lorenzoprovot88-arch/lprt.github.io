@@ -116,7 +116,7 @@ body::before {
 .laser-line:nth-child(3) { animation-delay: 4s; }
 
 /* ==========================================================================
-   NAVIGATION HUD & BORDURE FLUIDE RVB
+   NAVIGATION BAR (HUD GLASS RVB)
    ========================================================================== */
 nav {
   position: fixed;
@@ -125,7 +125,6 @@ nav {
   backdrop-filter: blur(25px) saturate(200%);
   -webkit-backdrop-filter: blur(25px) saturate(200%);
   border-bottom: 2px solid transparent;
-  /* Bordure animée RGB magique */
   border-image: linear-gradient(90deg, #00d2ff, #7928ca, #ff007f, #00d2ff) 1;
   display: flex;
   justify-content: center;
@@ -140,7 +139,7 @@ nav a {
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--text-main);
+  color: var(--muted);
   text-decoration: none;
   transition: var(--transition-cyber);
   position: relative;
@@ -169,7 +168,7 @@ nav a {
 }
 
 /* ==========================================================================
-   SECTION HERO & EFFET DE GLITCH / RVB SPECTACULAIRE
+   SECTION HERO & EFFET DE GLITCH / RVB
    ========================================================================== */
 #hero {
   min-height: 100vh;
@@ -188,7 +187,6 @@ nav a {
   margin-bottom: 25px;
 }
 
-/* Double anneaux de tracking cybernétique */
 .avatar-ring {
   position: absolute;
   top: -8px; left: -8px; right: -8px; bottom: -8px;
@@ -197,13 +195,14 @@ nav a {
   animation: spin 15s linear infinite;
   filter: drop-shadow(0 0 8px var(--blue-neon));
 }
+
 .avatar-wrap::after {
   content: '';
   position: absolute;
   top: -15px; left: -15px; right: -15px; bottom: -15px;
   border: 1px dotted var(--pink-neon);
   border-radius: 50%;
-  animation: spin Reverse 10s linear infinite;
+  animation: spinReverse 10s linear infinite;
   opacity: 0.6;
 }
 
@@ -213,7 +212,6 @@ nav a {
   border-radius: 50%;
   background: linear-gradient(135deg, #060b22, #020208);
   border: 2px solid transparent;
-  border-image: linear-gradient(135deg, var(--blue-neon), var(--pink-neon)) 1;
   box-shadow: inset 0 0 25px rgba(0, 210, 255, 0.4), 0 0 40px rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
@@ -223,6 +221,15 @@ nav a {
   font-weight: 700;
   color: #fff;
   animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.hero-label {
+  font-family: var(--font-mono);
+  color: var(--muted);
+  font-size: 14px;
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
 }
 
 #hero h1 {
@@ -236,7 +243,6 @@ nav a {
   position: relative;
 }
 
-/* Animation de texte RVB + Glitch permanent sur le Span */
 #hero h1 span {
   background: var(--rgb-gradient);
   background-size: 400% auto;
@@ -244,6 +250,15 @@ nav a {
   -webkit-text-fill-color: transparent;
   animation: rgbText 6s linear infinite, cyberGlitch 4s infinite;
   display: inline-block;
+}
+
+.hero-title {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--text-main);
+  opacity: 0.8;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
 }
 
 .hero-badge {
@@ -260,8 +275,112 @@ nav a {
   animation: neonPulse 2s infinite ease-in-out;
 }
 
+.hero-contacts {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-contacts a {
+  color: var(--text-main);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-cyber);
+  padding: 8px 16px;
+  border-radius: 4px;
+  background: rgba(10, 16, 42, 0.4);
+  border: 1px solid rgba(0, 210, 255, 0.1);
+
+  &:hover {
+    color: var(--text-bright);
+    background: rgba(0, 210, 255, 0.15);
+    border-color: var(--blue-neon);
+    box-shadow: 0 0 20px var(--blue-glow);
+    transform: translateY(-2px);
+  }
+}
+
+.hero-contacts .icon {
+  color: var(--blue-neon);
+}
+
+.scroll-hint {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+}
+
+.scroll-arrow {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--blue-neon), transparent);
+  animation: pulseHeight 2s infinite ease-in-out;
+}
+
 /* ==========================================================================
-   CARTES PREMIUM AVEC BORDURE INTEGRALE INTERACTIVE RVB 
+   SECTIONS STANDARDS ET LIGNES DE SÉPARATION
+   ========================================================================== */
+section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 90px 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 210, 255, 0.2), transparent);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.section-num {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--blue-neon);
+  text-shadow: 0 0 8px var(--blue-glow);
+}
+
+.section-title {
+  font-family: var(--font-title);
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--text-bright);
+  text-transform: uppercase;
+}
+
+.section-line {
+  flex-grow: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0, 210, 255, 0.25), transparent);
+}
+
+.about-grid, .stage-grid, .skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+/* ==========================================================================
+   CARTES PREMIUM AVEC EFFET RVB & LASER SCAN OVERLAY
    ========================================================================== */
 .about-text, .stage-card, .card {
   background: var(--bg-card);
@@ -275,7 +394,6 @@ nav a {
   overflow: hidden;
 }
 
-/* Le scanner Laser oblique en continu */
 .about-text::after, .stage-card::after, .card::after {
   content: '';
   position: absolute;
@@ -295,10 +413,70 @@ nav a {
 .about-text:hover, .stage-card:hover, .card:hover {
   transform: translateY(-8px) scale(1.01);
   background: var(--bg-card-hover);
-  /* Changement de bordure en RVB Éclatant au survol */
   border-color: transparent;
   border-image: linear-gradient(135deg, var(--blue-neon), var(--pink-neon), var(--green-neon)) 1;
   box-shadow: 0 30px 50px -10px rgba(0, 0, 0, 0.9), 0 0 30px rgba(0, 210, 255, 0.2);
+}
+
+.stage-year, .card-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--blue-neon);
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.stage-name, .card-title {
+  font-family: var(--font-title);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-bright);
+  margin-bottom: 4px;
+}
+
+.stage-company, .card-sub {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.stage-body ul, .card ul {
+  list-style: none;
+}
+
+.stage-body li, .card li {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #a9b8e8;
+  position: relative;
+  padding-left: 20px;
+  line-height: 1.5;
+
+  &::before {
+    content: '▪';
+    position: absolute;
+    left: 0;
+    color: var(--blue-neon);
+    text-shadow: 0 0 5px var(--blue-neon);
+  }
+}
+
+/* Badge Statut avec Impulsion RGB Alerte */
+.status-badge {
+  color: #fff !important;
+  background: linear-gradient(90deg, var(--blue-neon), var(--pink-neon));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: var(--font-mono);
+  font-weight: bold;
+  font-size: 15px;
+  letter-spacing: 2px;
+  padding-left: 0 !important;
+  animation: blinkFast 1s infinite alternate, rgbText 3s linear infinite;
+
+  &::before {
+    display: none !important;
+  }
 }
 
 /* ==========================================================================
@@ -323,82 +501,252 @@ nav a {
   transform: translateY(-4px);
 }
 
-/* Icônes vibrantes */
 .skill-icon {
   font-size: 28px;
   animation: floatIcon 3s ease-in-out infinite alternate;
 }
 
-/* Status badge avec impulsion RVB extrême */
-.status-badge {
-  color: #fff !important;
-  background: linear-gradient(90deg, var(--blue-neon), var(--pink-neon));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.skill-name {
+  font-family: var(--font-title);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-bright);
+}
+
+.skill-type {
   font-family: var(--font-mono);
-  font-weight: bold;
-  animation: blinkFast 1s infinite alternate, rgbText 3s linear infinite;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.soft-grid {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.soft-chip {
+  background: var(--bg-card);
+  border: 1px solid rgba(0, 210, 255, 0.1);
+  padding: 10px 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-main);
+  border-radius: 4px;
+  transition: var(--transition-cyber);
+
+  &:hover {
+    border-color: var(--blue-neon);
+    color: var(--text-bright);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.15);
+    background: rgba(0, 210, 255, 0.04);
+  }
 }
 
 /* ==========================================================================
-   NOUVELLES KEYFRAMES ANIMATIONS ULTRA-TAPAGEUSES (RGB & CYBER)
+   FORMATIONS & BLOCS PRÉ-STYLES
    ========================================================================== */
+.formation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
 
-/* Animation défilement du fond quadrillé 3D (Effet de vitesse Cyber) */
+.formation-item {
+  display: flex;
+  gap: 20px;
+  background: var(--bg-card);
+  padding: 22px 25px;
+  border-radius: 6px;
+  border-left: 3px solid var(--blue-neon);
+  transition: var(--transition-cyber);
+
+  &:hover {
+    border-left-color: var(--purple-accent);
+    background: var(--bg-card-hover);
+    transform: translateX(6px);
+  }
+}
+
+.formation-name {
+  font-family: var(--font-title);
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text-bright);
+  margin-bottom: 4px;
+}
+
+.formation-detail {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.lang-grid {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.lang-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(0, 210, 255, 0.05);
+  padding: 20px 15px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120px;
+  transition: var(--transition-cyber);
+
+  img {
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+  }
+
+  &:hover {
+    border-color: var(--blue-neon);
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.1);
+    transform: translateY(-3px);
+  }
+}
+
+.lang-name {
+  font-family: var(--font-title);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-bright);
+  margin-top: 10px;
+}
+
+.lang-level {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--blue-neon);
+  margin-top: 2px;
+  text-shadow: 0 0 5px var(--blue-glow);
+}
+
+.certif-badge {
+  background: var(--bg-card);
+  border: 1px solid rgba(121, 40, 202, 0.3);
+  box-shadow: inset 0 0 15px rgba(121, 40, 202, 0.1);
+  padding: 20px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 450px;
+  margin-top: 15px;
+  transition: var(--transition-cyber);
+
+  &:hover {
+    border-color: var(--blue-neon);
+    box-shadow: 0 0 25px rgba(0, 210, 255, 0.15);
+  }
+}
+
+.certif-icon {
+  font-size: 24px;
+}
+
+.certif-name {
+  font-family: var(--font-title);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-bright);
+}
+
+.certif-sub {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   CARNET DE SUIVI (STYLISATION DU TEXTE ET DATES)
+   ========================================================================== */
+#carnet .about-text {
+  line-height: 1.9;
+}
+
+.day-highlight {
+  color: var(--blue-neon);
+  font-weight: bold;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  letter-spacing: 2px;
+  display: inline-block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  text-shadow: 0 0 8px var(--blue-glow);
+}
+
+/* ==========================================================================
+   FOOTER SOMBRE HUD
+   ========================================================================== */
+footer {
+  background: #020206;
+  padding: 30px 20px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  border-top: 1px solid rgba(0, 210, 255, 0.05);
+  letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   ANIMATIONS KEYFRAMES CRITIQUES
+   ========================================================================== */
 @keyframes gridScroll {
   from { background-position: 0 0; }
   to { background-position: 0 1000px; }
 }
 
-/* Fluctuation subtile type écran cathodique CRT */
 @keyframes flickerCRT {
   0% { opacity: 0.27; }
   50% { opacity: 0.23; }
   100% { opacity: 0.27; }
 }
 
-/* Cycle de couleurs RVB pour les bordures */
 @keyframes rgbShift {
   0% { border-image-source: linear-gradient(90deg, #00d2ff, #7928ca, #ff007f, #00d2ff); }
   100% { border-image-source: linear-gradient(450deg, #00d2ff, #7928ca, #ff007f, #00d2ff); }
 }
 
-/* Cycle RVB Arc-en-ciel fluide sur le texte */
 @keyframes rgbText {
   to { background-position: 400% center; }
 }
 
-/* Déplacement des lignes lasers verticales */
 @keyframes laserFlow {
   0% { background-position: 0% 0%; }
   100% { background-position: 0% 200%; }
 }
 
-/* Balayage laser diagonal à l'intérieur des cartes */
 @keyframes laserScan {
   0% { top: -150%; left: -150%; }
   50%, 100% { top: 150%; left: 150%; }
 }
 
-/* Pulsation lumineuse de l'avatar */
 @keyframes pulseGlow {
   0%, 100% { box-shadow: inset 0 0 20px rgba(0, 210, 255, 0.4), 0 0 30px rgba(0, 210, 255, 0.2); }
   50% { box-shadow: inset 0 0 40px rgba(255, 0, 127, 0.6), 0 0 50px rgba(255, 0, 127, 0.4); border-color: var(--pink-neon); }
 }
 
-/* Flottaison des icônes de compétences */
 @keyframes floatIcon {
   0% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 5px var(--blue-neon)); }
   100% { transform: translateY(-6px) scale(1.1); filter: drop-shadow(0 0 12px var(--pink-neon)); }
 }
 
-/* Clignotement "Alerte Système" pour les statuts importants */
 @keyframes blinkFast {
   0% { opacity: 0.3; filter: saturate(0.5); }
   100% { opacity: 1; filter: saturate(2); }
 }
 
-/* Effet Micro-Glitch Cyberpunk destructuré sur le prénom */
 @keyframes cyberGlitch {
   0%, 92%, 100% { transform: skew(0deg) scale(1); }
   93% { transform: skew(4deg) scale(1.05); clip-path: inset(10% 0 30% 0); }
@@ -410,7 +758,18 @@ nav a {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
 @keyframes spinReverse {
   from { transform: rotate(360deg); }
   to { transform: rotate(0deg); }
+}
+
+@keyframes pulseHeight {
+  0%, 100% { height: 30px; opacity: 0.3; }
+  50% { height: 50px; opacity: 1; }
+}
+
+@keyframes neonPulse {
+  0%, 100% { opacity: 0.6; box-shadow: 0 0 15px rgba(0, 210, 255, 0.2); }
+  50% { opacity: 1; box-shadow: 0 0 25px var(--blue-neon); }
 }
