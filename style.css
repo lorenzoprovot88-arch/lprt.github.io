@@ -1,94 +1,148 @@
 /* ==========================================================================
-   VARIABLES ULTRA-PREMIUM : MATRIX CORE & RGB LIGHTING
+   1. CYBERPUNK CORE ARCHITECTURE & SYSTEM VARIABLES (VARIABLES GLOBAL)
    ========================================================================== */
 :root {
-  /* Nuances de l'Espace Profond */
-  --bg-pure: #010206;
-  --bg-surface: rgba(4, 8, 24, 0.75);
-  --bg-surface-elevated: rgba(9, 18, 54, 0.9);
-  
-  /* Textes Lumineux & Contraste Élevé */
-  --text-primary: #e2ebff;
-  --text-glow: #ffffff;
-  --text-muted: #566f9f;
-  
-  /* Sources Laser Cyber & Spectres Lumineux */
-  --neon-cyan: #00f0ff;
-  --glow-cyan: rgba(0, 240, 255, 0.4);
-  --neon-magenta: #ff0055;
-  --glow-magenta: rgba(255, 0, 85, 0.4);
-  --neon-green: #00ff66;
-  --neon-purple: #9d4edd;
-  
-  /* Gradients Dynamiques Haute Performance */
-  --gradient-rgb: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-magenta), var(--neon-green), var(--neon-cyan));
-  --gradient-hud: linear-gradient(180deg, rgba(0, 240, 255, 0.15) 0%, transparent 100%);
+  /* Profondeurs de la matrice - Nuances spatiales */
+  --bg-dark-absolute: #010103;
+  --bg-dark-prime: #030611;
+  --bg-dark-secondary: #060c22;
+  --bg-card-base: rgba(4, 9, 29, 0.75);
+  --bg-card-elevated: rgba(8, 17, 51, 0.92);
+  --bg-hud-translucent: rgba(0, 240, 255, 0.03);
 
-  /* Polices & Transitions Métriques */
+  /* Éclairage et Spectres de couleurs photoniques */
+  --neon-cyan: #00f0ff;
+  --neon-cyan-rgb: 0, 240, 255;
+  --neon-magenta: #ff0055;
+  --neon-magenta-rgb: 255, 0, 85;
+  --neon-purple: #a020f0;
+  --neon-green: #00ff66;
+  --neon-amber: #ffaa00;
+  
+  /* Lueurs spectrales diffuses */
+  --glow-cyan: rgba(0, 240, 255, 0.45);
+  --glow-magenta: rgba(255, 0, 85, 0.45);
+  --glow-purple: rgba(160, 32, 240, 0.3);
+  --glow-green: rgba(0, 255, 102, 0.3);
+
+  /* Typographies et Structures de caractères */
   --font-mono: 'Share Tech Mono', monospace;
   --font-display: 'Rajdhani', sans-serif;
   --font-sans: 'Exo 2', sans-serif;
-  --curve-cyber: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --transition-fast: all 0.25s var(--curve-cyber);
-  --transition-slow: all 0.6s var(--curve-cyber);
+
+  /* Courbes physiques d'animation et chronomètres */
+  --cyber-ease: cubic-bezier(0.19, 1, 0.22, 1);
+  --glitch-duration: 4s;
+  --transition-ultra-fast: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-normal: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  --transition-slow: all 0.85s cubic-bezier(0.19, 1, 0.22, 1);
+
+  /* Gradients complexes et masques d'effets */
+  --spectrum-gradient: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-magenta), var(--neon-green), var(--neon-cyan));
+  --spectrum-gradient-vertical: linear-gradient(180deg, var(--neon-magenta), var(--neon-purple), var(--neon-cyan));
+  --hud-scan-gradient: linear-gradient(180deg, transparent 0%, rgba(0, 240, 255, 0.12) 10%, transparent 20%);
 }
 
 /* ==========================================================================
-   RESET & STRUCTURE CRITIQUE D'AVANT-GARDE
+   2. GLOBAL RESET & DEFENSE OVERLAYS (OPTIMISATION DU RENDU ENGINE)
    ========================================================================== */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  outline: none;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background-color: var(--bg-pure);
+  background-color: var(--bg-dark-absolute);
   color: var(--text-primary);
   font-family: var(--font-sans);
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
-  /* Superposition de gradients pour créer de la profondeur */
   background-image: 
-    radial-gradient(circle at 50% 15%, rgba(0, 240, 255, 0.15) 0%, transparent 60%),
-    radial-gradient(circle at 85% 85%, rgba(255, 0, 85, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 50%, #03071e 0%, var(--bg-pure) 100%);
+    radial-gradient(circle at 50% 10%, rgba(0, 240, 255, 0.18) 0%, transparent 55%),
+    radial-gradient(circle at 15% 75%, rgba(255, 0, 85, 0.06) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 50%, var(--bg-dark-prime) 0%, var(--bg-dark-absolute) 100%);
   background-attachment: fixed;
 }
 
+/* Sélection de texte style Terminal Hacker */
+::selection {
+  background: var(--neon-magenta);
+  color: #fff;
+  text-shadow: 0 0 5px #fff;
+}
+
+/* Barre de défilement entièrement customisée */
+::-webkit-scrollbar {
+  width: 8px;
+  background: var(--bg-dark-absolute);
+}
+::-webkit-scrollbar-track {
+  border-left: 1px solid rgba(0, 240, 255, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--neon-cyan), var(--neon-purple));
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-magenta);
+  box-shadow: 0 0 10px var(--neon-magenta);
+}
+
 /* ==========================================================================
-   EFFETS MATRICIELS DE TOILE DE FOND (SCANLINES & GRILLES CYBER)
+   3. ADVANCED BACKGROUND ENGINES (MOTEURS DE GRILLES ET LUMINESCENCES)
    ========================================================================== */
-/* Trame Cathodique CRT Haute Densité */
+/* Moteur CRT Scanline Cathodique */
 .scanline-layer {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%);
-  background-size: 100% 3px;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.4) 50%
+  );
+  background-size: 100% 4px;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.4;
+  opacity: 0.35;
+  animation: crtFlicker 0.2s infinite;
 }
 
-/* Grille Vectorielle Anime Perspective 3D */
+/* Grille Vectorielle Active #1 - Effet Volumétrique 3D */
 body::before {
   content: "";
   position: fixed;
   top: -50%; left: -50%; width: 200%; height: 200%;
   background-image: 
-    linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(rgba(0, 240, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.06) 1px, transparent 1px);
+  background-size: 50px 50px;
   background-position: center;
   z-index: 0;
   pointer-events: none;
-  transform: perspective(600px) rotateX(60deg) translateY(-100px);
-  animation: gridDrive 12s linear infinite;
+  transform: perspective(700px) rotateX(60deg) translateY(-200px);
+  animation: gridPropulsion 14s linear infinite;
 }
 
-/* Flux de Lignes Laser RVB d'Arrière-Plan */
+/* Grille Vectorielle Active #2 - Effet Matrice Secondaire de croisement */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: 
+    linear-gradient(rgba(255, 0, 85, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 85, 0.02) 1px, transparent 1px);
+  background-size: 250px 250px;
+  z-index: 0;
+  pointer-events: none;
+  animation: gridWarp 30s ease-in-out infinite alternate;
+}
+
+/* Générateur de flux énergétiques Laser */
 .laser-container {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
@@ -96,81 +150,92 @@ body::before {
   z-index: 1;
   display: flex;
   justify-content: space-between;
-  padding: 0 10%;
-  opacity: 0.2;
+  padding: 0 5%;
+  opacity: 0.25;
 }
 
 .laser-line {
   width: 1px;
   height: 100%;
-  background: linear-gradient(to bottom, transparent, var(--neon-cyan), var(--neon-magenta), transparent);
+  background: linear-gradient(to bottom, transparent, var(--neon-cyan), var(--neon-purple), transparent);
   background-size: 100% 200%;
-  animation: laserPulse 6s ease-in-out infinite alternate;
+  animation: energyFlow 9s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
 }
-.laser-line:nth-child(2) { animation-delay: 2s; background: linear-gradient(to bottom, transparent, var(--neon-purple), var(--neon-green), transparent); }
-.laser-line:nth-child(3) { animation-delay: 4s; }
+.laser-line:nth-child(2) { 
+  animation-delay: 2.5s; 
+  animation-duration: 6s;
+  background: linear-gradient(to bottom, transparent, var(--neon-magenta), var(--neon-green), transparent); 
+}
+.laser-line:nth-child(3) { 
+  animation-delay: 4.5s;
+  animation-duration: 12s;
+  background: linear-gradient(to bottom, transparent, var(--neon-amber), var(--neon-cyan), transparent);
+}
 
 /* ==========================================================================
-   NAVIGATION BAR : INTERFACE HUD AVANCÉE
+   4. NAVIGATION CORE : HIGH-TECH GLASS HUD INTERFACE
    ========================================================================== */
 nav {
   position: fixed;
   top: 0; left: 0; width: 100%;
-  background: rgba(1, 2, 6, 0.85);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+  background: rgba(1, 2, 6, 0.88);
+  backdrop-filter: blur(25px) saturate(190%);
+  -webkit-backdrop-filter: blur(25px) saturate(190%);
+  border-bottom: 1px solid rgba(0, 240, 255, 0.25);
   display: flex;
   justify-content: center;
-  gap: 20px;
-  padding: 15px 0;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 0;
   z-index: 1000;
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.9);
 }
 
 nav a {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: var(--text-muted);
   text-decoration: none;
-  padding: 8px 16px;
+  padding: 10px 18px;
   position: relative;
-  transition: var(--transition-fast);
+  transition: var(--transition-normal);
   border: 1px solid transparent;
 }
 
 nav a::before {
-  content: '[';
+  content: '<';
   position: absolute;
-  left: 0; opacity: 0;
-  transform: translateX(5px);
-  transition: var(--transition-fast);
+  left: -2px; opacity: 0;
+  transform: translateX(8px);
+  transition: var(--transition-ultra-fast);
   color: var(--neon-cyan);
+  font-weight: bold;
 }
 
 nav a::after {
-  content: ']';
+  content: '/>';
   position: absolute;
-  right: 0; opacity: 0;
-  transform: translateX(-5px);
-  transition: var(--transition-fast);
+  right: -8px; opacity: 0;
+  transform: translateX(-8px);
+  transition: var(--transition-ultra-fast);
   color: var(--neon-cyan);
+  font-weight: bold;
 }
 
 nav a:hover {
-  color: var(--text-glow);
-  text-shadow: 0 0 8px var(--neon-cyan);
-  background: rgba(0, 240, 255, 0.05);
+  color: #fff;
+  text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
+  background: rgba(0, 240, 255, 0.08);
   border-radius: 4px;
 }
 
-nav a:hover::before { opacity: 1; transform: translateX(-4px); }
-nav a:hover::after { opacity: 1; transform: translateX(4px); }
+nav a:hover::before { opacity: 1; transform: translateX(-6px); }
+nav a:hover::after { opacity: 1; transform: translateX(6px); }
 
 /* ==========================================================================
-   SECTION HERO : CENTRE DE DESIGN CORE CONTRAST
+   5. SECTION HERO : SYSTEME DE GLITCH EMBARQUÉ ET ANALYSE VISUELLE
    ========================================================================== */
 #hero {
   min-height: 100vh;
@@ -179,565 +244,40 @@ nav a:hover::after { opacity: 1; transform: translateX(4px); }
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 100px 20px;
+  padding: 120px 20px 80px 20px;
   position: relative;
 }
 
-/* Avatar Cybernétique Rotatif Tridimensionnel */
+/* Structure Tridimensionnelle de l'Avatar */
 .avatar-wrap {
   position: relative;
-  width: 140px;
-  height: 140px;
-  margin-bottom: 30px;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 35px;
 }
 
 .avatar-ring {
   position: absolute;
-  top: -10px; left: -10px; right: -10px; bottom: -10px;
+  top: -12px; left: -12px; right: -12px; bottom: -12px;
   border: 2px dashed var(--neon-cyan);
   border-radius: 50%;
-  animation: orbit Clockwise 20s linear infinite;
-  filter: drop-shadow(0 0 10px var(--neon-cyan));
+  animation: planetaryRotationClockwise 24s linear infinite;
+  filter: drop-shadow(0 0 12px var(--neon-cyan));
+}
+
+.avatar-wrap::before {
+  content: '';
+  position: absolute;
+  top: -6px; left: -6px; right: -6px; bottom: -6px;
+  border: 2px dotted var(--neon-green);
+  border-radius: 50%;
+  animation: planetaryRotationCounter 8s linear infinite;
 }
 
 .avatar-wrap::after {
   content: '';
   position: absolute;
-  top: -18px; left: -18px; right: -18px; bottom: -18px;
-  border: 1px dotted var(--neon-magenta);
+  top: -20px; left: -20px; right: -20px; bottom: -20px;
+  border: 1px solid var(--neon-magenta);
   border-radius: 50%;
-  animation: orbit CounterClockwise 12s linear infinite;
-}
-
-.avatar-placeholder {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: radial-gradient(circle, #091236 0%, #010206 100%);
-  border: 2px solid var(--neon-cyan);
-  box-shadow: inset 0 0 30px var(--glow-cyan), 0 0 40px rgba(0,0,0,0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-size: 42px;
-  font-weight: 800;
-  color: #fff;
-  letter-spacing: -1px;
-  animation: internalGlow 4s ease-in-out infinite;
-}
-
-.hero-label {
-  font-family: var(--font-mono);
-  color: var(--neon-cyan);
-  font-size: 13px;
-  letter-spacing: 5px;
-  margin-bottom: 10px;
-  text-shadow: 0 0 8px var(--glow-cyan);
-}
-
-#hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(48px, 10vw, 92px);
-  font-weight: 900;
-  letter-spacing: -3px;
-  line-height: 0.95;
-  margin-bottom: 20px;
-  color: #fff;
-}
-
-#hero h1 span {
-  background: var(--gradient-rgb);
-  background-size: 400% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: spectrumText 8s linear infinite, glitchBlast 5s infinite;
-  display: inline-block;
-  position: relative;
-}
-
-.hero-title {
-  font-family: var(--font-mono);
-  font-size: 16px;
-  color: var(--text-primary);
-  opacity: 0.85;
-  margin-bottom: 35px;
-  letter-spacing: 2px;
-}
-
-/* Badge d'Alerte Pulse Réactif */
-.hero-badge {
-  background: rgba(0, 240, 255, 0.03);
-  border: 1px solid var(--neon-cyan);
-  box-shadow: 0 0 25px rgba(0, 240, 255, 0.15), inset 0 0 15px rgba(0, 240, 255, 0.1);
-  padding: 14px 32px;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: #fff;
-  border-radius: 4px;
-  margin-bottom: 45px;
-  letter-spacing: 1px;
-  animation: badgeSignal 2.5s infinite ease-in-out;
-}
-
-.hero-contacts {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.hero-contacts a {
-  color: var(--text-primary);
-  text-decoration: none;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  transition: var(--transition-fast);
-  padding: 10px 20px;
-  border-radius: 4px;
-  background: rgba(5, 10, 35, 0.6);
-  border: 1px solid rgba(0, 240, 255, 0.15);
-
-  &:hover {
-    color: #fff;
-    background: rgba(0, 240, 255, 0.12);
-    border-color: var(--neon-cyan);
-    box-shadow: 0 0 25px var(--glow-cyan);
-    transform: translateY(-3px);
-  }
-}
-
-.hero-contacts .icon { color: var(--neon-cyan); }
-
-.scroll-hint {
-  margin-top: 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-muted);
-  letter-spacing: 3px;
-}
-
-.scroll-arrow {
-  width: 2px;
-  height: 45px;
-  background: linear-gradient(to bottom, var(--neon-cyan), transparent);
-  animation: verticalStretch 2s infinite ease-in-out;
-}
-
-/* ==========================================================================
-   SECTIONS & ACCENTS DE GRILLE HUD
-   ========================================================================== */
-section {
-  max-width: 1150px;
-  margin: 0 auto;
-  padding: 100px 24px;
-  position: relative;
-  z-index: 5;
-}
-
-.divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.3), transparent);
-}
-
-.section-header {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  margin-bottom: 60px;
-}
-
-.section-num {
-  font-family: var(--font-mono);
-  font-size: 18px;
-  color: var(--neon-magenta);
-  text-shadow: 0 0 10px var(--glow-magenta);
-  font-weight: bold;
-}
-
-.section-title {
-  font-family: var(--font-display);
-  font-size: clamp(26px, 4vw, 36px);
-  font-weight: 800;
-  letter-spacing: 3px;
-  color: #fff;
-}
-
-.section-line {
-  flex-grow: 1;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(0, 240, 255, 0.3), transparent);
-}
-
-.about-grid, .stage-grid, .skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
-}
-
-/* ==========================================================================
-   CARTES INTERACTIVES AVEC BALAYAGE CHROMATIQUE ET OVERLAY SPECTRE
-   ========================================================================== */
-.about-text, .stage-card, .card {
-  background: var(--bg-surface);
-  border: 1px solid rgba(0, 240, 255, 0.15);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  padding: 40px;
-  border-radius: 16px;
-  transition: var(--transition-slow);
-  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.9);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Overlay holographique diagonal automatique */
-.about-text::before, .stage-card::before, .card::before {
-  content: '';
-  position: absolute;
-  top: -150%; left: -150%; width: 300%; height: 300%;
-  background: linear-gradient(45deg, 
-    transparent 45%, 
-    rgba(0, 240, 255, 0.2) 50%, 
-    rgba(255, 0, 85, 0.2) 55%, 
-    transparent 60%
-  );
-  transform: rotate(45deg);
-  pointer-events: none;
-  animation: dynamicScanner 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-.about-text:hover, .stage-card:hover, .card:hover {
-  transform: translateY(-10px) scale(1.02);
-  background: var(--bg-surface-elevated);
-  border-color: rgba(255, 0, 85, 0.6);
-  box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.95), 0 0 30px rgba(255, 0, 85, 0.2);
-}
-
-.stage-year, .card-label {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--neon-cyan);
-  letter-spacing: 2px;
-  margin-bottom: 12px;
-  font-weight: 600;
-}
-
-.stage-name, .card-title {
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 6px;
-}
-
-.stage-company, .card-sub {
-  font-size: 14px;
-  color: var(--text-muted);
-  margin-bottom: 25px;
-}
-
-.stage-body ul, .card ul { list-style: none; }
-
-.stage-body li, .card li {
-  font-size: 15px;
-  margin-bottom: 12px;
-  color: #b8c7e6;
-  position: relative;
-  padding-left: 22px;
-  line-height: 1.6;
-}
-
-.stage-body li::before, .card li::before {
-  content: '▪';
-  position: absolute;
-  left: 0;
-  color: var(--neon-cyan);
-  text-shadow: 0 0 6px var(--neon-cyan);
-}
-
-/* Badge de statut avec hyper-fréquence spectrale */
-.status-badge {
-  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-family: var(--font-mono);
-  font-weight: 800;
-  font-size: 15px;
-  letter-spacing: 3px;
-  padding-left: 0 !important;
-  animation: signalFlicker 1.5s infinite alternate, spectrumText 4s linear infinite;
-}
-.status-badge::before { display: none !important; }
-
-/* ==========================================================================
-   COMPÉTENCES & CHIPS DE COMPOSANTS HUD
-   ========================================================================== */
-.skill-chip {
-  background: rgba(6, 12, 38, 0.7);
-  border: 1px solid rgba(0, 240, 255, 0.12);
-  padding: 24px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  transition: var(--transition-fast);
-}
-
-.skill-chip:hover {
-  background: rgba(10, 22, 64, 0.9);
-  border-color: var(--neon-green);
-  box-shadow: 0 12px 35px rgba(0, 255, 102, 0.15);
-  transform: translateY(-5px);
-}
-
-.skill-icon {
-  font-size: 32px;
-  animation: microFloat 3s ease-in-out infinite alternate;
-}
-
-.skill-name {
-  font-family: var(--font-display);
-  font-size: 19px;
-  font-weight: 700;
-  color: #fff;
-}
-
-.skill-type {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-.soft-grid {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-
-.soft-chip {
-  background: var(--bg-surface);
-  border: 1px solid rgba(0, 240, 255, 0.15);
-  padding: 12px 22px;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--text-primary);
-  border-radius: 6px;
-  transition: var(--transition-fast);
-}
-
-.soft-chip:hover {
-  border-color: var(--neon-cyan);
-  color: #fff;
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
-  background: rgba(0, 240, 255, 0.05);
-}
-
-/* ==========================================================================
-   MODULES DE TIMELINE FORMATION ET CERTIFICATION
-   ========================================================================== */
-.formation-list {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-.formation-item {
-  display: flex;
-  background: var(--bg-surface);
-  padding: 25px 30px;
-  border-radius: 8px;
-  border-left: 4px solid var(--neon-cyan);
-  transition: var(--transition-fast);
-}
-
-.formation-item:hover {
-  border-left-color: var(--neon-magenta);
-  background: var(--bg-surface-elevated);
-  transform: translateX(8px);
-}
-
-.formation-name {
-  font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 6px;
-}
-
-.formation-detail {
-  font-size: 14px;
-  color: var(--text-muted);
-}
-
-.lang-grid {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-
-.lang-card {
-  background: var(--bg-surface);
-  border: 1px solid rgba(0, 240, 255, 0.08);
-  padding: 25px 20px;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 130px;
-  transition: var(--transition-fast);
-}
-
-.lang-card img {
-  width: 44px;
-  height: 44px;
-  filter: drop-shadow(0 5px 8px rgba(0,0,0,0.5));
-}
-
-.lang-card:hover {
-  border-color: var(--neon-cyan);
-  box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
-  transform: translateY(-4px);
-}
-
-.lang-name {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 700;
-  color: #fff;
-  margin-top: 12px;
-}
-
-.lang-level {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--neon-cyan);
-  margin-top: 4px;
-  text-shadow: 0 0 6px var(--glow-cyan);
-  font-weight: 600;
-}
-
-.certif-badge {
-  background: var(--bg-surface);
-  border: 1px solid rgba(157, 78, 221, 0.4);
-  box-shadow: inset 0 0 20px rgba(157, 78, 221, 0.15);
-  padding: 25px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  max-width: 500px;
-  margin-top: 20px;
-  transition: var(--transition-fast);
-}
-
-.certif-badge:hover {
-  border-color: var(--neon-cyan);
-  box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
-}
-
-.certif-icon { font-size: 28px; }
-.certif-name { font-family: var(--font-display); font-size: 19px; font-weight: 700; color: #fff; }
-.certif-sub { font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); margin-top: 3px; }
-
-/* ==========================================================================
-   CARNET DE SUIVI : CORE READABILITY STYLING
-   ========================================================================== */
-#carnet .about-text {
-  line-height: 2;
-  letter-spacing: 0.3px;
-}
-
-.day-highlight {
-  color: var(--neon-cyan);
-  font-weight: 800;
-  font-family: var(--font-mono);
-  font-size: 17px;
-  letter-spacing: 3px;
-  display: inline-block;
-  margin-top: 20px;
-  margin-bottom: 6px;
-  text-shadow: 0 0 10px var(--glow-cyan);
-}
-
-/* ==========================================================================
-   FOOTER CONSOLE LOG TERMINAL
-   ========================================================================== */
-footer {
-  background: #010103;
-  padding: 40px 20px;
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--text-muted);
-  border-top: 1px solid rgba(0, 240, 255, 0.1);
-  letter-spacing: 2px;
-}
-
-/* ==========================================================================
-   BLOCS DE TRAJECTOIRES D'ANIMATIONS (KEYFRAMES 60 FPS)
-   ========================================================================== */
-@keyframes gridDrive {
-  from { background-position: 0 0; }
-  to { background-position: 0 1000px; }
-}
-
-@keyframes spectrumText {
-  to { background-position: 400% center; }
-}
-
-@keyframes laserPulse {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 0% 200%; }
-}
-
-@keyframes dynamicScanner {
-  0% { top: -150%; left: -150%; }
-  50%, 100% { top: 150%; left: 150%; }
-}
-
-@keyframes internalGlow {
-  0%, 100% { box-shadow: inset 0 0 25px var(--glow-cyan), 0 0 35px rgba(0, 240, 255, 0.3); }
-  50% { box-shadow: inset 0 0 45px var(--glow-magenta), 0 0 55px rgba(255, 0, 85, 0.4); border-color: var(--neon-magenta); }
-}
-
-@keyframes microFloat {
-  0% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 4px var(--neon-cyan)); }
-  100% { transform: translateY(-8px) scale(1.08); filter: drop-shadow(0 0 15px var(--neon-magenta)); }
-}
-
-@keyframes signalFlicker {
-  0% { opacity: 0.4; filter: saturate(0.6); }
-  100% { opacity: 1; filter: saturate(2.5); }
-}
-
-@keyframes glitchBlast {
-  0%, 94%, 100% { transform: skew(0deg) scale(1); filter: hue-rotate(0deg); }
-  95% { transform: skew(5deg) scale(1.03); clip-path: inset(15% 0 45% 0); filter: hue-rotate(90deg); }
-  97% { transform: skew(-8deg) scale(0.97); clip-path: inset(55% 0 10% 0); filter: hue-rotate(180deg); }
-  99% { transform: skew(2deg) scale(1.01); clip-path: inset(80% 0 5% 0); filter: hue-rotate(270deg); }
-}
-
-@keyframes orbit {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes verticalStretch {
-  0%, 100% { height: 35px; opacity: 0.4; }
-  50% { height: 60px; opacity: 1; }
-}
-
-@keyframes badgeSignal {
-  0%, 100% { opacity: 0.7; box-shadow: 0 0 15px rgba(0, 240, 255, 0.1); }
-  50% { opacity: 1; box-shadow: 0 0 30px rgba(0, 240, 255, 0.4); border-color: var(--neon-magenta); }
-}
+  clip-path: polygon(0 0, 50% 0, 50% 100%, 0% 100%);
