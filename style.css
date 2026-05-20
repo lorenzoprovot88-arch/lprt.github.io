@@ -1,470 +1,961 @@
 /* ==========================================================================
-   1. CORE VARIABLES & HYPER-LISIBILITÉ CYBERTECH
+   1. SYSTEM CORE & NEO-SPECTRUM VARIABLES (0 - 100)
    ========================================================================== */
 :root {
-  /* Palettes Bleues Profondes Lumineuses */
-  --bg-void: #020617;
-  --bg-matrix: #070f26;
-  --bg-solid-card: rgba(11, 21, 54, 0.8);
-  --bg-overdrive: rgba(30, 41, 107, 0.9);
+  /* Élimination du Noir - Remplacement par des Profondeurs Luminescentes */
+  --bg-deep-space: #030712;
+  --bg-nebula-core: #070f26;
+  --bg-void-glow: #0d1b3e;
+  --bg-card-matrix: rgba(6, 16, 44, 0.82);
+  --bg-card-overdrive: rgba(12, 28, 77, 0.95);
+  --bg-hud-glass: rgba(0, 240, 255, 0.04);
 
-  /* Spectre Énergétique RGB */
+  /* Spectre Photonique Actif (Haute Intensité) */
   --neon-cyan: #00f0ff;
   --neon-magenta: #ff0055;
   --neon-purple: #9d4edd;
   --neon-green: #00ff66;
   --neon-gold: #ffb703;
+  --neon-electric-blue: #3a86ff;
+  
+  /* Valeurs RVB pour la translucidité dynamique */
+  --rgb-cyan: 0, 240, 255;
+  --rgb-magenta: 255, 0, 85;
+  --rgb-purple: 157, 78, 221;
+  --rgb-green: 0, 255, 102;
 
-  /* Ombres Cubiques Fines (Pas de gros blocs lourds) */
-  --shadow-cyber-cyan: 4px 4px 0px var(--neon-cyan);
-  --shadow-cyber-magenta: 4px 4px 0px var(--neon-magenta);
-  --glow-cyan: 0 0 15px rgba(0, 240, 255, 0.3);
+  /* Rétroéclairages et Couronnes de lueurs */
+  --glow-cyan-intense: 0 0 15px var(--neon-cyan), 0 0 30px rgba(0, 240, 255, 0.6);
+  --glow-magenta-intense: 0 0 15px var(--neon-magenta), 0 0 30px rgba(255, 0, 85, 0.6);
+  --glow-green-intense: 0 0 15px var(--neon-green), 0 0 30px rgba(0, 255, 102, 0.6);
+  --glow-purple-intense: 0 0 15px var(--neon-purple), 0 0 30px rgba(157, 78, 221, 0.6);
 
-  /* Fonts Réduites & Ultra-Précises */
-  --font-display: 'Rajdhani', sans-serif;
+  /* Typographies et Vecteurs de Caractères */
   --font-mono: 'Share Tech Mono', monospace;
+  --font-display: 'Rajdhani', sans-serif;
   --font-sans: 'Exo 2', sans-serif;
 
-  --transition-fast: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Moteurs de Vélocité et Interpolations */
+  --ease-io-cyber: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  --transition-instant: all 0.1s linear;
+  --transition-fast: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-medium: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-slow: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+
+  /* Gradients Complexes de Structure */
+  --grad-vortex: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-magenta), var(--neon-green), var(--neon-cyan));
+  --grad-sunset: linear-gradient(135deg, var(--neon-magenta) 0%, var(--neon-purple) 50%, var(--neon-cyan) 100%);
+  --grad-matrix-flow: linear-gradient(180deg, rgba(0, 240, 255, 0.15) 0%, rgba(157, 78, 221, 0.05) 50%, transparent 100%);
 }
 
 /* ==========================================================================
-   2. GLOBAL RESET & CONFIGURATION COMPACTE
+   2. MATRIX GLOBAL RESET & TERMINAL OVERRIDES (101 - 200)
    ========================================================================== */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   outline: none;
-  border-radius: 0px !important; /* Maintien du côté cubique mais raffiné */
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background-color: var(--bg-void);
-  color: #e2e8f0;
+  background-color: var(--bg-deep-space);
+  color: #f1f5f9;
   font-family: var(--font-sans);
-  font-size: 14px; /* Taille générale réduite pour plus de finesse */
-  line-height: 1.5;
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
+  background-image: 
+    radial-gradient(circle at 50% 12%, rgba(0, 240, 255, 0.22) 0%, transparent 50%),
+    radial-gradient(circle at 85% 70%, rgba(255, 0, 85, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 15% 30%, rgba(157, 78, 221, 0.08) 0%, transparent 45%),
+    linear-gradient(to bottom, var(--bg-deep-space), var(--bg-nebula-core));
+  background-attachment: fixed;
 }
 
-/* Bannissement du noir pour les textes */
+/* Élimination absolue des textes noirs natifs */
 h1, h2, h3, h4, h5, h6, p, span, li, a, div {
-  color: #f8fafc;
-  text-shadow: 0 2px 4px rgba(2, 6, 23, 0.8);
+  color: #f1f5f9;
+  text-shadow: 0 2px 4px rgba(2, 6, 23, 0.6);
 }
 
-/* Scrollbar Fine Cyber */
+/* Customisation de l'affichage de sélection */
+::selection {
+  background: var(--neon-magenta);
+  color: #ffffff;
+  text-shadow: 0 0 8px #ffffff;
+}
+
+/* Moteur de défilement de la scène */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 10px;
+  background: var(--bg-deep-space);
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-void);
+  background: var(--bg-nebula-core);
+  border-left: 1px solid rgba(0, 240, 255, 0.15);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--neon-cyan);
+  background: linear-gradient(to bottom, var(--neon-cyan), var(--neon-purple), var(--neon-magenta));
+  border-radius: 5px;
+  border: 2px solid var(--bg-deep-space);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--neon-green), var(--neon-cyan));
+  box-shadow: 0 0 15px var(--neon-cyan);
 }
 
 /* ==========================================================================
-   3. MOTEUR DE BACKGROUND DYNAMIQUE ULTRA-VIVANT (RGB HYPER-ANIMÉ)
+   3. MULTI-LAYER VORTEX BACKGROUND ENGINES (201 - 350)
    ========================================================================== */
-.background-engine {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  z-index: -2;
-  background: radial-gradient(circle at center, #081135 0%, #020617 100%);
-  overflow: hidden;
-}
-
-/* Animation 1 : Aurores et Nébuleuses en mouvement perpétuel */
-.background-engine::before {
-  content: '';
-  position: absolute;
-  width: 150%; height: 150%;
-  top: -25%; left: -25%;
-  background-image: 
-    radial-gradient(circle at 15% 20%, rgba(0, 240, 255, 0.25) 0%, transparent 35%),
-    radial-gradient(circle at 85% 30%, rgba(255, 0, 85, 0.2) 0%, transparent 40%),
-    radial-gradient(circle at 50% 75%, rgba(0, 255, 102, 0.15) 0%, transparent 35%);
-  filter: blur(60px);
-  animation: dynamicNebula 12s ease-in-out infinite alternate;
-}
-
-/* Animation 2 : Pluie de lignes RGB horizontales et bruit numérique */
-.background-engine::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: 
-    linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  animation: gridPulse 4s ease-in-out infinite alternate;
-}
-
-/* Animation 3 : Lignes laser transversales ultra-rapides */
-.laser-beam {
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--neon-cyan), var(--neon-magenta), transparent);
-  opacity: 0.6;
-  animation: laserFly 6s linear infinite;
-}
-.laser-beam:nth-child(2) {
-  animation-delay: 2s;
-  animation-duration: 8s;
-  background: linear-gradient(90deg, transparent, var(--neon-green), transparent);
-}
-
-/* Ligne de scan perturbatrice */
+/* Moteur Cathodique CRT Haute Densité */
 .scanline-layer {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
-  background: linear-gradient(transparent 50%, rgba(0, 240, 255, 0.08) 50%);
-  background-size: 100% 6px;
-  z-index: 999;
+  background: linear-gradient(
+    rgba(13, 27, 62, 0) 50%, 
+    rgba(3, 7, 18, 0.5) 50%
+  );
+  background-size: 100% 5px;
+  z-index: 9999;
   pointer-events: none;
-  animation: scanlineMove 10s linear infinite;
+  opacity: 0.4;
+  animation: crtElectronBeam 0.15s infinite;
+}
+
+/* Grille Alpha : Perspective 3D Accélérée */
+body::before {
+  content: "";
+  position: fixed;
+  top: -60%; left: -60%; width: 220%; height: 220%;
+  background-image: 
+    linear-gradient(rgba(0, 240, 255, 0.08) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.08) 2px, transparent 2px);
+  background-size: 60px 60px;
+  background-position: center;
+  z-index: 0;
+  pointer-events: none;
+  transform: perspective(650px) rotateX(65deg) translateY(-150px);
+  animation: matrixGridDrive 10s linear infinite;
+}
+
+/* Grille Beta : Grille Hexagonale Latente de Profondeur */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: 
+    linear-gradient(rgba(255, 0, 85, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 0, 85, 0.04) 1px, transparent 1px);
+  background-size: 180px 180px;
+  background-position: center;
+  z-index: 0;
+  pointer-events: none;
+  animation: gridOscillation 25s ease-in-out infinite alternate;
+}
+
+/* Générateur de flux de particules Laser */
+.laser-container {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4%;
+  opacity: 0.3;
+}
+
+.laser-line {
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--neon-cyan), var(--neon-purple), transparent);
+  background-size: 100% 200%;
+  animation: plasmaVortexFlow 8s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+.laser-line:nth-child(2) { 
+  animation-delay: 2s; 
+  animation-duration: 5s;
+  background: linear-gradient(to bottom, transparent, var(--neon-magenta), var(--neon-gold), transparent); 
+}
+.laser-line:nth-child(3) { 
+  animation-delay: 4s;
+  animation-duration: 11s;
+  background: linear-gradient(to bottom, transparent, var(--neon-green), var(--neon-electric-blue), transparent);
 }
 
 /* ==========================================================================
-   4. NAVIGATION COMPACTE TOP-BAR
+   4. NAVIGATION CORE : KINETIC HUD MENU (351 - 480)
    ========================================================================== */
 nav {
   position: fixed;
   top: 0; left: 0; width: 100%;
-  background: rgba(4, 10, 31, 0.9);
-  border-bottom: 2px solid var(--neon-cyan);
+  background: rgba(7, 15, 38, 0.9);
+  backdrop-filter: blur(30px) saturate(210%);
+  -webkit-backdrop-filter: blur(30px) saturate(210%);
+  border-bottom: 2px solid rgba(0, 240, 255, 0.3);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 0 40px;
-  height: 60px;
+  gap: 8px;
+  padding: 22px 0;
   z-index: 1000;
+  box-shadow: 0 10px 45px rgba(2, 6, 23, 0.95);
 }
 
 nav a {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13px;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #94a3b8;
+  letter-spacing: 3px;
+  color: #7dd3fc;
   text-decoration: none;
-  padding: 21px 20px;
+  padding: 12px 22px;
+  position: relative;
+  transition: var(--transition-medium);
+  border: 1px solid transparent;
+}
+
+nav a::before {
+  content: '⚡';
+  position: absolute;
+  left: 2px; opacity: 0;
+  transform: scale(0) rotate(-180deg);
   transition: var(--transition-fast);
+  color: var(--neon-magenta);
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%; width: 0; height: 2px;
+  background: var(--grad-vortex);
+  transition: var(--transition-medium);
 }
 
 nav a:hover {
   color: #ffffff;
-  background: rgba(0, 240, 255, 0.1);
-  box-shadow: inset 0 -3px 0 var(--neon-magenta);
+  text-shadow: var(--glow-cyan-intense);
+  background: rgba(0, 240, 255, 0.12);
+  border-radius: 6px;
+  transform: translateY(-2px);
+}
+
+nav a:hover::before { 
+  opacity: 1; 
+  transform: scale(1.2) rotate(0deg); 
+  left: -8px;
+}
+
+nav a:hover::after { 
+  left: 0; 
+  width: 100%;
 }
 
 /* ==========================================================================
-   5. DECK HERO HORIZONTAL COMPACT
+   5. HERO ARCHITECTURE : GLITCH ENGINE & 3D ROTATORS (481 - 650)
    ========================================================================== */
 #hero {
-  min-height: 80vh;
+  min-height: 100vh;
   display: flex;
-  flex-direction: row; /* Aligné horizontalement */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 60px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 100px 40px 40px 40px;
+  text-align: center;
+  padding: 140px 24px 100px 24px;
+  position: relative;
 }
 
+/* Structure Macro-Orbitale de l'Avatar */
 .avatar-wrap {
   position: relative;
-  width: 110px;  /* Taille réduite */
-  height: 110px;
-  flex-shrink: 0;
+  width: 160px;
+  height: 160px;
+  margin-bottom: 40px;
 }
 
 .avatar-ring {
   position: absolute;
-  top: -6px; left: -6px; right: -6px; bottom: -6px;
-  border: 2px solid var(--neon-magenta);
-  animation: squarePulse 2s ease-in-out infinite alternate;
+  top: -15px; left: -15px; right: -15px; bottom: -15px;
+  border: 3px dashed var(--neon-cyan);
+  border-radius: 50%;
+  animation: orbitalSpinClockwise 18s linear infinite;
+  filter: drop-shadow(0 0 15px var(--neon-cyan));
+}
+
+.avatar-wrap::before {
+  content: '';
+  position: absolute;
+  top: -8px; left: -8px; right: -8px; bottom: -8px;
+  border: 2px dotted var(--neon-magenta);
+  border-radius: 50%;
+  animation: orbitalSpinCounter 6s linear infinite;
+}
+
+.avatar-wrap::after {
+  content: '';
+  position: absolute;
+  top: -25px; left: -25px; right: -25px; bottom: -25px;
+  border: 2px solid var(--neon-green);
+  border-radius: 50%;
+  clip-path: polygon(0 0, 30% 0, 30% 100%, 0% 100%);
+  animation: orbitalSpinClockwise 3s cubic-bezier(0.68, -0.6, 0.32, 1.6) infinite;
 }
 
 .avatar-placeholder {
-  width: 100%; height: 100%;
-  background: var(--bg-matrix);
-  border: 2px solid var(--neon-cyan);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--bg-void-glow) 0%, var(--bg-deep-space) 100%);
+  border: 3px solid var(--neon-cyan);
+  box-shadow: inset 0 0 40px var(--glow-cyan-intense), 0 0 60px rgba(2, 6, 23, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
-  font-size: 40px;
+  font-size: 52px;
   font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -2px;
+  animation: coreQuantumPulse 2.8s ease-in-out infinite;
 }
 
-.hero-content-right {
-  text-align: left; /* Alignement propre à gauche */
+.hero-label {
+  font-family: var(--font-mono);
+  color: var(--neon-cyan);
+  font-size: 15px;
+  letter-spacing: 8px;
+  margin-bottom: 15px;
+  text-shadow: var(--glow-cyan-intense);
+  text-transform: uppercase;
 }
 
 #hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(40px, 6vw, 75px); /* Moins massif */
+  font-size: clamp(55px, 12vw, 115px);
   font-weight: 900;
-  line-height: 1;
-  margin-bottom: 15px;
+  letter-spacing: -5px;
+  line-height: 0.85;
+  margin-bottom: 30px;
+  color: #ffffff;
+  position: relative;
 }
 
 #hero h1 span {
-  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta), var(--neon-cyan));
-  background-size: 200% auto;
+  background: var(--grad-vortex);
+  background-size: 400% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: textFlow 4s linear infinite;
-}
-
-.hero-badge {
+  animation: kineticSpectrum 6s linear infinite, totalQuantumGlitch 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
   display: inline-block;
-  background: var(--bg-matrix);
-  border: 2px solid var(--neon-green);
-  padding: 8px 20px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 1px;
-  margin-bottom: 25px;
 }
 
+.hero-title {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: #cbd5e1;
+  margin-bottom: 45px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* Insigne d'Alerte Tactique */
+.hero-badge {
+  background: rgba(6, 16, 44, 0.6);
+  border: 2px solid var(--neon-cyan);
+  box-shadow: 0 0 35px rgba(0, 240, 255, 0.3), inset 0 0 25px rgba(0, 240, 255, 0.15);
+  padding: 18px 40px;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: #ffffff;
+  border-radius: 6px;
+  margin-bottom: 55px;
+  letter-spacing: 2px;
+  position: relative;
+  animation: structuralBeacon 1.8s infinite ease-in-out;
+}
+
+.hero-badge::before {
+  content: '🔥 LINKING STATUS : ACTIVE';
+  position: absolute;
+  top: -12px; left: 20px;
+  background: var(--bg-deep-space);
+  font-size: 10px;
+  padding: 2px 8px;
+  color: var(--neon-green);
+  border: 1px solid var(--neon-green);
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* Boutons Réseaux à Onde de Choc Visuelle */
 .hero-contacts {
   display: flex;
-  gap: 15px;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .hero-contacts a {
-  color: #ffffff;
+  color: #f1f5f9;
   text-decoration: none;
   font-family: var(--font-mono);
-  font-size: 12px;
-  padding: 10px 22px;
-  background: var(--bg-void);
-  border: 1px solid var(--neon-cyan);
-  box-shadow: var(--shadow-cyber-magenta);
-  transition: var(--transition-fast);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: var(--transition-medium);
+  padding: 14px 28px;
+  border-radius: 8px;
+  background: var(--bg-card-matrix);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-contacts a::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%; width: 300%; height: 300%;
+  background: radial-gradient(circle, var(--neon-magenta) 0%, transparent 60%);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.6s var(--ease-io-cyber);
+  z-index: 0;
+  mix-blend-mode: screen;
 }
 
 .hero-contacts a:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0px var(--neon-cyan);
-  background: var(--bg-overdrive);
-}
-
-/* ==========================================================================
-   6. RENDER DE GRILLE HORIZONTALE (BENTO STYLE)
-   ========================================================================== */
-/* Force tes sections de contenu à s'aligner horizontalement au lieu d'empiler */
-.horizontal-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Aligné horizontalement côte à côte */
-  gap: 25px;
-  width: 100%;
-}
-
-.about-text, .stage-card, .card {
-  background: var(--bg-solid-card);
-  border: 1px solid rgba(0, 240, 255, 0.4);
-  padding: 30px; /* Moins gros, plus aéré */
-  position: relative;
-  box-shadow: var(--shadow-cyber-cyan);
-  transition: var(--transition-fast);
-}
-
-.about-text:hover, .stage-card:hover, .card:hover {
-  transform: translate(-4px, -4px);
-  background: var(--bg-overdrive);
+  color: #ffffff;
   border-color: var(--neon-magenta);
-  box-shadow: var(--shadow-cyber-magenta), var(--glow-cyan);
+  box-shadow: var(--glow-magenta-intense), 0 0 40px rgba(255, 0, 85, 0.2);
+  transform: translateY(-5px) scale(1.05);
 }
 
-.stage-year, .card-label {
-  font-family: var(--font-mono);
-  color: var(--neon-green);
-  font-size: 12px;
-  margin-bottom: 10px;
-  letter-spacing: 1.5px;
+.hero-contacts a:hover::before {
+  transform: translate(-50%, -50%) scale(1);
 }
 
-.stage-name, .card-title {
-  font-family: var(--font-display);
-  font-size: 24px; /* Plus petit, très lisible */
-  font-weight: 800;
-  text-transform: uppercase;
-  margin-bottom: 5px;
-}
-
-.stage-company, .card-sub {
-  font-size: 14px;
-  color: #94a3b8;
-  margin-bottom: 15px;
-}
-
-.stage-body li, .card li {
-  font-size: 13px;
-  margin-bottom: 10px;
-  list-style: none;
-  padding-left: 20px;
+.hero-contacts span, .hero-contacts .icon {
   position: relative;
+  z-index: 1;
 }
 
-.stage-body li::before, .card li::before {
-  content: '■';
-  position: absolute;
-  left: 0; color: var(--neon-cyan);
-  font-size: 10px;
+.hero-contacts .icon { 
+  color: var(--neon-cyan); 
+  font-size: 18px;
 }
 
-/* Status Badge Clignotant fin */
-.status-badge {
-  color: var(--neon-gold) !important;
-  font-family: var(--font-mono);
-  font-weight: bold;
-  animation: dynamicPulse 1.5s infinite ease-in-out alternate;
-}
-
-/* ==========================================================================
-   7. SKILLS & COMPOSANTS HORIZONTAUX COMPACTS
-   ========================================================================== */
-.skills-container {
+/* Indicateur cinétique de défilement */
+.scroll-hint {
+  margin-top: 80px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.skill-chip {
-  background: var(--bg-matrix);
-  border: 1px solid rgba(0, 240, 255, 0.3);
-  padding: 15px 20px;
-  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 15px;
-  flex: 1 1 calc(33.333% - 12px); /* Alignés à 3 par ligne horizontalement */
-  transition: var(--transition-fast);
-}
-
-.skill-chip:hover {
-  border-color: var(--neon-green);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 255, 102, 0.15);
-}
-
-.skill-name {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.soft-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.soft-chip {
-  background: var(--bg-solid-card);
-  border: 1px solid var(--neon-purple);
-  padding: 8px 16px;
+  gap: 16px;
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13px;
+  color: #94a3b8;
+  letter-spacing: 5px;
 }
 
-/* Formations Alignées horizontalement */
-.formation-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-.formation-item {
-  background: var(--bg-solid-card);
-  padding: 20px;
-  border-left: 4px solid var(--neon-purple);
+.scroll-arrow {
+  width: 3px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--neon-cyan), var(--neon-magenta), transparent);
+  animation: expansionFaisceau 1.8s infinite ease-in-out;
 }
 
 /* ==========================================================================
-   8. SECTION STRUCTURAL CODES
+   6. HIGH-PERFORMANCE GRID LAYER ARCHITECTURE (651 - 780)
    ========================================================================== */
 section {
-  max-width: 1200px;
+  max-width: 1250px;
   margin: 0 auto;
-  padding: 60px 40px; /* Espacement réduit pour éviter le vide */
+  padding: 120px 32px;
+  position: relative;
+  z-index: 5;
+}
+
+.divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--neon-cyan), var(--neon-magenta), var(--neon-green), transparent);
+  background-size: 200% auto;
+  animation: kineticSpectrum 4s linear infinite;
 }
 
 .section-header {
   display: flex;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 40px;
+  gap: 30px;
+  margin-bottom: 80px;
+}
+
+.section-num {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  color: var(--neon-magenta);
+  text-shadow: var(--glow-magenta-intense);
+  font-weight: 900;
 }
 
 .section-title {
   font-family: var(--font-display);
-  font-size: 28px;
-  font-weight: 800;
+  font-size: clamp(32px, 5vw, 44px);
+  font-weight: 900;
+  letter-spacing: 5px;
+  color: #ffffff;
   text-transform: uppercase;
-  letter-spacing: 2px;
 }
 
 .section-line {
   flex-grow: 1;
   height: 2px;
-  background: linear-gradient(90deg, var(--neon-cyan), transparent);
-}
-
-footer {
-  background: #020514;
-  padding: 30px;
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  border-top: 2px solid var(--neon-magenta);
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), transparent);
 }
 
 /* ==========================================================================
-   9. COMMANDE DES KINETIC MOTIONS (FONDS ULTRA-VIVANTS & FLUIDES)
+   7. CYBER CARD COMPONENT MECHANICAL OVERHAUL (781 - 920)
    ========================================================================== */
-@keyframes dynamicNebula {
-  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-  50% { transform: translate(-4%, 6%) scale(1.08) rotate(3deg); }
-  100% { transform: translate(4%, -4%) scale(1) rotate(-3deg); }
+.about-text, .stage-card, .card {
+  background: var(--bg-card-matrix);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  backdrop-filter: blur(25px) saturate(220%);
+  -webkit-backdrop-filter: blur(25px) saturate(220%);
+  padding: 50px;
+  border-radius: 20px;
+  transition: var(--transition-slow);
+  box-shadow: 0 35px 70px -15px rgba(2, 6, 23, 0.95);
+  position: relative;
+  overflow: hidden;
 }
 
-@keyframes gridPulse {
-  0% { opacity: 0.3; }
-  100% { opacity: 0.7; }
+/* Balayage Laser Diagonal Permanent */
+.about-text::before, .stage-card::before, .card::before {
+  content: '';
+  position: absolute;
+  top: -150%; left: -150%; width: 300%; height: 300%;
+  background: linear-gradient(45deg, 
+    transparent 40%, 
+    rgba(0, 240, 255, 0.3) 50%, 
+    rgba(255, 0, 85, 0.3) 53%, 
+    transparent 65%
+  );
+  transform: rotate(45deg);
+  pointer-events: none;
+  animation: dynamicScannerSweeper 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
 }
 
-@keyframes laserFly {
-  0% { top: -10%; transform: translateY(0); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { top: 110%; transform: translateY(100vh); opacity: 0; }
+/* Fabrication de Repères Angulaires HUD Actifs */
+.about-text::after, .stage-card::after, .card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 20px; height: 20px;
+  border-bottom: 3px solid var(--neon-cyan);
+  border-left: 3px solid var(--neon-cyan);
+  opacity: 0.5;
+  transition: var(--transition-medium);
 }
 
-@keyframes scanlineMove {
-  from { background-position: 0 0; }
-  to { background-position: 0 100%; }
+/* État Hover : Surcadencement de la carte */
+.about-text:hover, .stage-card:hover, .card:hover {
+  transform: translateY(-15px) scale(1.03) rotateZ(0.5deg);
+  background: var(--bg-card-overdrive);
+  border-color: var(--neon-magenta);
+  box-shadow: 0 45px 85px -15px rgba(2, 6, 23, 1), var(--glow-magenta-intense);
 }
 
-@keyframes squarePulse {
-  0% { transform: scale(1); border-color: var(--neon-magenta); }
-  100% { transform: scale(1.04); border-color: var(--neon-cyan); }
+.about-text:hover::after, .stage-card:hover::after, .card:hover::after {
+  border-color: var(--neon-magenta);
+  width: 40px; height: 40px;
+  filter: drop-shadow(0 0 10px var(--neon-magenta));
 }
 
-@keyframes textFlow {
-  to { background-position: 200% center; }
+.stage-year, .card-label {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--neon-cyan);
+  letter-spacing: 3px;
+  margin-bottom: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
-@keyframes dynamicPulse {
-  0% { opacity: 0.4; }
-  100% { opacity: 1; text-shadow: 0 0 8px var(--neon-gold); }
+.stage-name, .card-title {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.stage-company, .card-sub {
+  font-size: 16px;
+  color: #94a3b8;
+  margin-bottom: 32px;
+}
+
+/* Gestion du Contenu Interne */
+.stage-body li, .card li {
+  font-size: 16px;
+  margin-bottom: 16px;
+  color: #cbd5e1;
+  position: relative;
+  padding-left: 30px;
+  line-height: 1.7;
+  transition: var(--transition-fast);
+}
+
+.stage-body li::before, .card li::before {
+  content: '⚡';
+  position: absolute;
+  left: 2px;
+  color: var(--neon-cyan);
+  text-shadow: var(--glow-cyan-intense);
+  font-size: 12px;
+}
+
+.stage-body li:hover, .card li:hover {
+  color: #ffffff;
+  transform: translateX(8px);
+  text-shadow: 0 0 8px rgba(255,255,255,0.4);
+}
+
+/* Badge de Processus Critique (En Cours) */
+.status-badge {
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta), var(--neon-gold));
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: var(--font-mono);
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: 5px;
+  padding-left: 0 !important;
+  animation: oscillationFlash 1s infinite alternate, kineticSpectrum 2.5s linear infinite;
+}
+.status-badge::before { display: none !important; }
+
+/* ==========================================================================
+   8. SKILLS DESIGN HARDWARE DECK (921 - 1050)
+   ========================================================================== */
+.skill-chip {
+  background: rgba(7, 16, 43, 0.9);
+  border: 2px solid rgba(0, 240, 255, 0.2);
+  padding: 30px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  transition: var(--transition-medium);
+  position: relative;
+}
+
+.skill-chip::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; width: 4px; height: 100%;
+  background: linear-gradient(to bottom, var(--neon-cyan), var(--neon-purple));
+  transition: var(--transition-medium);
+}
+
+.skill-chip:hover {
+  background: rgba(14, 32, 84, 0.98);
+  border-color: var(--neon-green);
+  box-shadow: var(--glow-green-intense);
+  transform: translateY(-8px) scale(1.04);
+}
+
+.skill-chip:hover::before {
+  background: linear-gradient(to bottom, var(--neon-green), var(--neon-gold));
+}
+
+.skill-icon {
+  font-size: 40px;
+  animation: flottaisonSublime 3s ease-in-out infinite alternate;
+}
+
+.skill-name {
+  font-family: var(--font-display);
+  font-size: 23px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.skill-type {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* Puces de Compétences Douces */
+.soft-grid {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.soft-chip {
+  background: var(--bg-card-matrix);
+  border: 2px solid rgba(0, 240, 255, 0.2);
+  padding: 16px 28px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: #f1f5f9;
+  border-radius: 8px;
+  transition: var(--transition-fast);
+}
+
+.soft-chip:hover {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.4);
+  background: rgba(0, 240, 255, 0.1);
+  transform: scale(1.08) rotate(-1deg);
+}
+
+/* ==========================================================================
+   9. TRAINING MODULES & SMART CERTIFICATIONS (1051 - 1180)
+   ========================================================================== */
+.formation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.formation-item {
+  display: flex;
+  background: var(--bg-card-matrix);
+  padding: 35px 40px;
+  border-radius: 16px;
+  border-left: 6px solid var(--neon-cyan);
+  transition: var(--transition-medium);
+}
+
+.formation-item:hover {
+  border-left-color: var(--neon-magenta);
+  background: var(--bg-card-overdrive);
+  transform: translateX(12px);
+  box-shadow: 0 20px 40px rgba(2, 6, 23, 0.8);
+}
+
+.formation-name {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.formation-detail {
+  font-size: 15px;
+  color: #94a3b8;
+  font-family: var(--font-mono);
+}
+
+/* Composants de Langues */
+.lang-grid {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.lang-card {
+  background: var(--bg-card-matrix);
+  border: 2px solid rgba(0, 240, 255, 0.15);
+  padding: 32px 28px;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150px;
+  transition: var(--transition-medium);
+}
+
+.lang-card img {
+  width: 52px;
+  height: 52px;
+  filter: drop-shadow(0 8px 12px rgba(2, 6, 23, 0.7));
+  transition: var(--transition-medium);
+}
+
+.lang-card:hover {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 35px rgba(0, 240, 255, 0.35);
+  transform: translateY(-6px);
+}
+
+.lang-card:hover img {
+  transform: scale(1.2) rotate(8deg);
+}
+
+.lang-name {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-top: 16px;
+}
+
+.lang-level {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--neon-cyan);
+  margin-top: 6px;
+  text-shadow: var(--glow-cyan-intense);
+  font-weight: bold;
+}
+
+/* Module d'Honneur de Certification PIX */
+.certif-badge {
+  background: var(--bg-card-matrix);
+  border: 2px solid var(--neon-purple);
+  box-shadow: inset 0 0 30px rgba(157, 78, 221, 0.25);
+  padding: 32px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  max-width: 600px;
+  margin-top: 30px;
+  transition: var(--transition-medium);
+}
+
+.certif-badge:hover {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.4), inset 0 0 20px rgba(0, 240, 255, 0.2);
+}
+
+.certif-icon { 
+  font-size: 38px; 
+  filter: drop-shadow(0 0 12px var(--neon-purple));
+}
+.certif-name { font-family: var(--font-display); font-size: 23px; font-weight: 800; color: #ffffff; }
+.certif-sub { font-family: var(--font-mono); font-size: 15px; color: #94a3b8; margin-top: 6px; }
+
+/* ==========================================================================
+   10. CARNET DE SUIVI CORE INTERPRETER SYSTEM (1181 - 1280)
+   ========================================================================== */
+#carnet .about-text {
+  line-height: 2.2;
+  letter-spacing: 0.6px;
+  font-size: 16px;
+  color: #e2e8f0;
+}
+
+.day-highlight {
+  color: var(--neon-cyan);
+  font-weight: 900;
+  font-family: var(--font-mono);
+  font-size: 20px;
+  letter-spacing: 4px;
+  display: inline-block;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  text-shadow: var(--glow-cyan-intense);
+  position: relative;
+}
+
+.day-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0; width: 60px; height: 2px;
+  background: var(--neon-magenta);
+  box-shadow: var(--glow-magenta-intense);
+}
+
+/* ==========================================================================
+   11. TERMINAL FOOTER OUTPUT DECK (1281 - 1340)
+   ========================================================================== */
+footer {
+  background: #02040a;
+  padding: 60px 24px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: #64748b;
+  border-top: 2px solid rgba(0, 240, 255, 0.25);
+  letter-spacing: 3px;
+}
+
+/* ==========================================================================
+   12. MATHEMATICAL 60FPS KINETIC ENGINE KEYFRAMES (1341 - END)
+   ========================================================================== */
+@keyframes matrixGridDrive {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 1200px; }
+}
+
+@keyframes gridOscillation {
+  0% { transform: scale(1) rotate(0deg); opacity: 0.4; }
+  100% { transform: scale(1.2) rotate(3deg); opacity: 0.7; }
+}
+
+@keyframes crtElectronBeam {
+  0% { opacity: 0.42; }
+  50% { opacity: 0.36; }
+  100% { opacity: 0.43; }
+}
+
+@keyframes kineticSpectrum {
+  to { background-position: 400% center; }
+}
+
+@keyframes plasmaVortexFlow {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 0% 200%; }
+}
+
+@keyframes dynamicScannerSweeper {
+  0% { top: -150%; left: -150%; }
+  45%, 100% { top: 150%; left: 150%; }
+}
+
+@keyframes coreQuantumPulse {
+  0%, 100% { box-shadow: inset 0 0 35px var(--neon-cyan), 0 0 45px rgba(0, 240, 255, 0.4); }
+  50% { box-shadow: inset 0 0 55px var(--neon-magenta), 0 0 70px rgba(255, 0, 85, 0.6); border-color: var(--neon-magenta); }
+}
+
+@keyframes flottaisonSublime {
+  0% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 8px var(--neon-cyan)); }
+  100% { transform: translateY(-12px) scale(1.15); filter: drop-shadow(0 0 22px var(--neon-magenta)); }
+}
+
+@keyframes oscillationFlash {
+  0% { opacity: 0.3; filter: saturate(0.4) blur(0.5px); }
+  100% { opacity: 1; filter: saturate(2.5) drop-shadow(0 0 12px var(--neon-magenta)); }
+}
+
+@keyframes totalQuantumGlitch {
+  0%, 92%, 100% { transform: skew(0deg) scale(1); filter: hue-rotate(0deg); }
+  93% { transform: skew(8deg) scale(1.05); clip-path: inset(10% 0 50% 0); filter: hue-rotate(45deg); text-shadow: 3px -3px var(--neon-magenta); }
+  95% { transform: skew(-12deg) scale(0.93); clip-path: inset(40% 0 20% 0); filter: hue-rotate(90deg); text-shadow: -4px 3px var(--neon-cyan); }
+  97% { transform: skew(4deg) scale(1.03); clip-path: inset(70% 0 5% 0); filter: hue-rotate(180deg); }
+}
+
+@keyframes orbitalSpinClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbitalSpinCounter {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes expansionFaisceau {
+  0%, 100% { height: 45px; opacity: 0.3; }
+  50% { height: 85px; opacity: 1; }
+}
+
+@keyframes structuralBeacon {
+  0%, 100% { opacity: 0.8; box-shadow: 0 0 25px rgba(0, 240, 255, 0.2); border-color: var(--neon-cyan); }
+  50% { opacity: 1; box-shadow: 0 0 45px rgba(0, 240, 255, 0.6); border-color: var(--neon-purple); }
 }
