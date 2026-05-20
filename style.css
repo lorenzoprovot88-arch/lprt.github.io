@@ -281,3 +281,665 @@ nav a:hover::after { opacity: 1; transform: translateX(6px); }
   border: 1px solid var(--neon-magenta);
   border-radius: 50%;
   clip-path: polygon(0 0, 50% 0, 50% 100%, 0% 100%);
+  animation: planetaryRotationClockwise 4s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--bg-dark-secondary) 0%, var(--bg-dark-absolute) 100%);
+  border: 3px solid var(--neon-cyan);
+  box-shadow: inset 0 0 35px var(--glow-cyan), 0 0 50px rgba(0,0,0,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 46px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -2px;
+  animation: nodalPulse 3.5s ease-in-out infinite;
+}
+
+/* Libellés de Données HUD */
+.hero-label {
+  font-family: var(--font-mono);
+  color: var(--neon-cyan);
+  font-size: 14px;
+  letter-spacing: 6px;
+  margin-bottom: 12px;
+  text-shadow: 0 0 10px var(--glow-cyan);
+  text-transform: uppercase;
+}
+
+#hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 11vw, 105px);
+  font-weight: 900;
+  letter-spacing: -4px;
+  line-height: 0.9;
+  margin-bottom: 25px;
+  color: #fff;
+  position: relative;
+}
+
+#hero h1 span {
+  background: var(--spectrum-gradient);
+  background-size: 400% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: chromashiftText 8s linear infinite, hardwareGlitch 4.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  display: inline-block;
+}
+
+.hero-title {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  color: #c5d4f5;
+  opacity: 0.9;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+}
+
+/* Badge d'Alerte Fréquentiel */
+.hero-badge {
+  background: rgba(0, 240, 255, 0.02);
+  border: 1px solid var(--neon-cyan);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.2), inset 0 0 20px rgba(0, 240, 255, 0.1);
+  padding: 16px 36px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: #fff;
+  border-radius: 4px;
+  margin-bottom: 50px;
+  letter-spacing: 1.5px;
+  position: relative;
+  animation: systemPulseSignal 2s infinite ease-in-out;
+}
+
+.hero-badge::before {
+  content: '⚡ CORE ACTIVE';
+  position: absolute;
+  top: -10px; left: 15px;
+  background: var(--bg-dark-absolute);
+  font-size: 9px;
+  padding: 0 6px;
+  color: var(--neon-green);
+  border: 1px solid var(--neon-green);
+  border-radius: 2px;
+}
+
+/* Boutons Réseaux à Rétroéclairage Dynamique */
+.hero-contacts {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-contacts a {
+  color: #e2ebff;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: var(--transition-normal);
+  padding: 12px 24px;
+  border-radius: 6px;
+  background: rgba(4, 9, 33, 0.7);
+  border: 1px solid rgba(0, 240, 255, 0.18);
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 0, 85, 0.25), transparent);
+    transition: var(--transition-slow);
+  }
+
+  &:hover {
+    color: #fff;
+    background: rgba(0, 240, 255, 0.15);
+    border-color: var(--neon-magenta);
+    box-shadow: 0 0 30px rgba(255, 0, 85, 0.35);
+    transform: translateY(-4px) scale(1.03);
+
+    &::after {
+      left: 100%;
+    }
+  }
+}
+
+.hero-contacts .icon { 
+  color: var(--neon-cyan); 
+  font-size: 16px;
+}
+
+/* Indicateur cinétique de Scroll */
+.scroll-hint {
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 4px;
+}
+
+.scroll-arrow {
+  width: 2px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--neon-cyan), var(--neon-purple), transparent);
+  animation: linearExpansion 2.2s infinite ease-in-out;
+}
+
+/* ==========================================================================
+   6. GRID ARCHITECTURE FOR MAIN CONTENT SECTIONS (SECTIONS GENERALES)
+   ========================================================================== */
+section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 110px 30px;
+  position: relative;
+  z-index: 5;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.4), rgba(255, 0, 85, 0.4), transparent);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 70px;
+}
+
+.section-num {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--neon-magenta);
+  text-shadow: 0 0 12px var(--glow-magenta);
+  font-weight: bold;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4.5vw, 40px);
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.section-line {
+  flex-grow: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0, 240, 255, 0.35), rgba(160, 32, 240, 0.1), transparent);
+}
+
+/* ==========================================================================
+   7. CYBER CARD COMPONENT ENGINE (LE MOTEUR DE CARTES ULTRA-PREMIUM)
+   ========================================================================== */
+.about-text, .stage-card, .card {
+  background: var(--bg-card-base);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  backdrop-filter: blur(20px) saturate(200%);
+  -webkit-backdrop-filter: blur(20px) saturate(200%);
+  padding: 45px;
+  border-radius: 16px;
+  transition: var(--transition-slow);
+  box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.95);
+  position: relative;
+  overflow: hidden;
+}
+
+/* scanner de faisceau laser diagonal */
+.about-text::before, .stage-card::before, .card::before {
+  content: '';
+  position: absolute;
+  top: -150%; left: -150%; width: 300%; height: 300%;
+  background: linear-gradient(45deg, 
+    transparent 42%, 
+    rgba(0, 240, 255, 0.25) 50%, 
+    rgba(255, 0, 85, 0.25) 54%, 
+    transparent 62%
+  );
+  transform: rotate(45deg);
+  pointer-events: none;
+  animation: radarScanSweep 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+/* Rétroéclairage d'angle HUD */
+.about-text::after, .stage-card::after, .card::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 15px; height: 15px;
+  border-top: 2px solid var(--neon-cyan);
+  border-right: 2px solid var(--neon-cyan);
+  opacity: 0.6;
+  transition: var(--transition-normal);
+}
+
+.about-text:hover, .stage-card:hover, .card:hover {
+  transform: translateY(-12px) scale(1.025);
+  background: var(--bg-card-elevated);
+  border-color: rgba(255, 0, 85, 0.7);
+  box-shadow: 0 40px 75px -20px rgba(0, 0, 0, 1), 0 0 35px rgba(255, 0, 85, 0.25);
+  
+  &::after {
+    border-color: var(--neon-magenta);
+    width: 30px; height: 30px;
+    filter: drop-shadow(0 0 8px var(--neon-magenta));
+  }
+}
+
+.stage-year, .card-label {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--neon-cyan);
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stage-name, .card-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.stage-company, .card-sub {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+  font-family: var(--font-sans);
+}
+
+/* Éléments de listes internes */
+.stage-body li, .card li {
+  font-size: 15px;
+  margin-bottom: 14px;
+  color: #bcccf0;
+  position: relative;
+  padding-left: 26px;
+  line-height: 1.6;
+  transition: var(--transition-normal);
+}
+
+.stage-body li::before, .card li::before {
+  content: '↳';
+  position: absolute;
+  left: 4px;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 8px var(--neon-cyan);
+  font-weight: bold;
+}
+
+.stage-body li:hover, .card li:hover {
+  color: #fff;
+  transform: translateX(5px);
+}
+
+/* Alerte de statut (En Cours) à oscillation chromatique */
+.status-badge {
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta), var(--neon-green));
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: var(--font-mono);
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: 4px;
+  padding-left: 0 !important;
+  animation: criticalBlink 1.2s infinite alternate, chromashiftText 3s linear infinite;
+}
+.status-badge::before { display: none !important; }
+
+/* ==========================================================================
+   8. COMPÉTENCES MODULAIRES & CHIPS MATRICIELLES
+   ========================================================================== */
+.skill-chip {
+  background: rgba(5, 11, 36, 0.8);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  padding: 26px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  transition: var(--transition-normal);
+  position: relative;
+}
+
+.skill-chip::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 25%; width: 3px; height: 50%;
+  background: var(--neon-cyan);
+  transition: var(--transition-normal);
+}
+
+.skill-chip:hover {
+  background: rgba(11, 23, 69, 0.95);
+  border-color: var(--neon-green);
+  box-shadow: 0 15px 40px rgba(0, 255, 102, 0.2);
+  transform: translateY(-6px) scale(1.02);
+  
+  &::before {
+    background: var(--neon-green);
+    height: 100%;
+    top: 0;
+  }
+}
+
+.skill-icon {
+  font-size: 36px;
+  animation: dynamicHoverFloat 3.5s ease-in-out infinite alternate;
+}
+
+.skill-name {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.skill-type {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Grille de Soft Skills */
+.soft-grid {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.soft-chip {
+  background: var(--bg-card-base);
+  border: 1px solid rgba(0, 240, 255, 0.18);
+  padding: 14px 24px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: #e2ebff;
+  border-radius: 6px;
+  transition: var(--transition-normal);
+  position: relative;
+}
+
+.soft-chip:hover {
+  border-color: var(--neon-cyan);
+  color: #fff;
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.3);
+  background: rgba(0, 240, 255, 0.06);
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   9. EDUCATION & TIMELINES MODULES (TIMELINE DE FORMATION)
+   ========================================================================== */
+.formation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  position: relative;
+}
+
+.formation-item {
+  display: flex;
+  background: var(--bg-card-base);
+  padding: 30px 35px;
+  border-radius: 12px;
+  border-left: 5px solid var(--neon-cyan);
+  transition: var(--transition-normal);
+  position: relative;
+}
+
+.formation-item:hover {
+  border-left-color: var(--neon-magenta);
+  background: var(--bg-card-elevated);
+  transform: translateX(10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+.formation-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.formation-detail {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+/* Cartes de Langues Intelligentes */
+.lang-grid {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.lang-card {
+  background: var(--bg-card-base);
+  border: 1px solid rgba(0, 240, 255, 0.12);
+  padding: 28px 24px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 140px;
+  transition: var(--transition-normal);
+}
+
+.lang-card img {
+  width: 48px;
+  height: 48px;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.6));
+  transition: var(--transition-normal);
+}
+
+.lang-card:hover {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.25);
+  transform: translateY(-5px);
+  
+  img {
+    transform: scale(1.15) rotate(5deg);
+  }
+}
+
+.lang-name {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 14px;
+}
+
+.lang-level {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--neon-cyan);
+  margin-top: 5px;
+  text-shadow: 0 0 8px var(--glow-cyan);
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Badge Certification PIX Haute Performance */
+.certif-badge {
+  background: var(--bg-card-base);
+  border: 1px solid rgba(160, 32, 240, 0.5);
+  box-shadow: inset 0 0 25px rgba(160, 32, 240, 0.2);
+  padding: 28px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  max-width: 550px;
+  margin-top: 25px;
+  transition: var(--transition-normal);
+}
+
+.certif-badge:hover {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 35px rgba(0, 240, 255, 0.3), inset 0 0 15px rgba(0, 240, 255, 0.1);
+}
+
+.certif-icon { 
+  font-size: 32px; 
+  filter: drop-shadow(0 0 10px var(--neon-purple));
+}
+.certif-name { font-family: var(--font-display); font-size: 21px; font-weight: 700; color: #fff; }
+.certif-sub { font-family: var(--font-mono); font-size: 14px; color: var(--text-muted); margin-top: 4px; }
+
+/* ==========================================================================
+   10. CARNET DE SUIVI RESTRUCTURING (CORE LOG PARSER DISPLAY)
+   ========================================================================== */
+#carnet .about-text {
+  line-height: 2.1;
+  letter-spacing: 0.5px;
+  font-size: 15px;
+  color: #d1dfef;
+}
+
+/* Mise en évidence des balises de jours */
+.day-highlight {
+  color: var(--neon-cyan);
+  font-weight: 900;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  letter-spacing: 3px;
+  display: inline-block;
+  margin-top: 25px;
+  margin-bottom: 8px;
+  text-shadow: 0 0 12px var(--glow-cyan);
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; width: 40px; height: 1px;
+    background: var(--neon-magenta);
+  }
+}
+
+/* ==========================================================================
+   11. TERMINAL FOOTER DECK (CONSOLE OUTPUT LOG)
+   ========================================================================== */
+footer {
+  background: #000002;
+  padding: 50px 20px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+  border-top: 1px solid rgba(0, 240, 255, 0.15);
+  letter-spacing: 2px;
+  text-shadow: 0 0 4px rgba(0,0,0,0.5);
+}
+
+/* ==========================================================================
+   12. HIGH-DENSITY ANIMATION BALANCES (MOTEUR ENGINE KEYFRAMES 60FPS)
+   ========================================================================== */
+@keyframes gridPropulsion {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 1400px; }
+}
+
+@keyframes gridWarp {
+  0% { transform: scale(1) rotate(0deg); opacity: 0.3; }
+  100% { transform: scale(1.15) rotate(2deg); opacity: 0.6; }
+}
+
+@keyframes crtFlicker {
+  0% { opacity: 0.38; }
+  50% { opacity: 0.33; }
+  100% { opacity: 0.39; }
+}
+
+@keyframes chromashiftText {
+  to { background-position: 400% center; }
+}
+
+@keyframes energyFlow {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 0% 200%; }
+}
+
+@keyframes radarScanSweep {
+  0% { top: -150%; left: -150%; }
+  50%, 100% { top: 150%; left: 150%; }
+}
+
+@keyframes nodalPulse {
+  0%, 100% { box-shadow: inset 0 0 30px var(--glow-cyan), 0 0 40px rgba(0, 240, 255, 0.3); }
+  50% { box-shadow: inset 0 0 50px var(--glow-magenta), 0 0 65px rgba(255, 0, 85, 0.5); border-color: var(--neon-magenta); }
+}
+
+@keyframes dynamicHoverFloat {
+  0% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 6px var(--neon-cyan)); }
+  100% { transform: translateY(-10px) scale(1.12); filter: drop-shadow(0 0 18px var(--neon-magenta)); }
+}
+
+@keyframes criticalBlink {
+  0% { opacity: 0.35; filter: saturate(0.5) blur(0.2px); }
+  100% { opacity: 1; filter: saturate(3) drop-shadow(0 0 8px var(--neon-magenta)); }
+}
+
+@keyframes hardwareGlitch {
+  0%, 93%, 100% { transform: skew(0deg) scale(1); filter: hue-rotate(0deg); }
+  94% { transform: skew(6deg) scale(1.04); clip-path: inset(20% 0 40% 0); filter: hue-rotate(60deg); text-shadow: 2px -2px var(--neon-magenta); }
+  96% { transform: skew(-10deg) scale(0.95); clip-path: inset(60% 0 12% 0); filter: hue-rotate(120deg); text-shadow: -3px 2px var(--neon-cyan); }
+  98% { transform: skew(3deg) scale(1.02); clip-path: inset(85% 0 3% 0); filter: hue-rotate(240deg); }
+}
+
+@keyframes planetaryRotationClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes planetaryRotationCounter {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes linearExpansion {
+  0%, 100% { height: 40px; opacity: 0.3; }
+  50% { height: 75px; opacity: 1; }
+}
+
+@keyframes systemPulseSignal {
+  0%, 100% { opacity: 0.75; box-shadow: 0 0 20px rgba(0, 240, 255, 0.15); border-color: var(--neon-cyan); }
+  50% { opacity: 1; box-shadow: 0 0 35px rgba(0, 240, 255, 0.5); border-color: var(--neon-purple); }
+}
+
+@keyframes microFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
