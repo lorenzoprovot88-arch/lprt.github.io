@@ -35,7 +35,11 @@ body {
   min-height: 100vh;
 }
 
-/* ── LE FOND : VAGUES KC LIQUIDES EN MOUVEMENT ── */
+/* ── LA SOLUTION RADICALE POUR LE FOND ── */
+/* On réunit la grille et les vagues dans des pseudo-éléments du BODY, 
+   mais en forçant un z-index négatif global très bas qui les sépare à coup sûr du contenu */
+
+/* Le fond flou (Vagues) */
 body::after {
   content: '';
   position: fixed;
@@ -43,7 +47,7 @@ body::after {
   left: -20%;
   width: 140%;
   height: 140%;
-  z-index: -2; /* Placé tout au fond, derrière la grille */
+  z-index: -999; /* Sécurité maximale : écrase tous les conflits */
   pointer-events: none;
   background-color: var(--black);
   
@@ -59,12 +63,12 @@ body::after {
   animation: kcWaves 16s ease-in-out infinite alternate;
 }
 
-/* GRILLE CYBERNETIQUE DISCRÈTE (CORRIGÉE : PASSE BIEN DERRIÈRE LE TEXTE) */
+/* La Grille Cybernétique */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  z-index: -1; /* Derrière le contenu (z-index: 1), devant le fond flou (z-index: -2) */
+  z-index: -998; /* Juste devant les vagues, mais toujours loin derrière le texte */
   background-image: linear-gradient(var(--border) 1px, transparent 1px), 
                     linear-gradient(90deg, var(--border) 1px, transparent 1px);
   background-size: 50px 50px;
@@ -124,7 +128,7 @@ nav a:hover::after {
 /* ── HERO SECTION ── */
 #hero {
   position: relative;
-  z-index: 1;
+  z-index: 10;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -275,11 +279,6 @@ h1 span {
   background: linear-gradient(135deg, rgba(255, 82, 185, 0.3), rgba(0, 132, 255, 0.3));
 }
 
-@keyframes pulse-border {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.4), inset 0 0 0 0 rgba(0, 132, 255, 0.2); }
-  50% { box-shadow: 0 0 15px 4px rgba(0, 132, 255, 0), inset 0 0 10px 2px rgba(0, 132, 255, 0.4); }
-}
-
 .hero-contacts {
   display: flex; gap: 28px; flex-wrap: wrap; justify-content: center;
   margin-top: 36px;
@@ -347,15 +346,10 @@ h1 span {
   animation: bounce 1.8s infinite ease-in-out; 
 }
 
-@keyframes bounce { 
-  0%, 100% { transform: rotate(45deg) translate(0, 0); opacity: 0.4; }
-  50% { transform: rotate(45deg) translate(6px, 6px); opacity: 1; filter: drop-shadow(0 0 5px var(--kc-pink)); } 
-}
-
 /* ── SECTIONS STRUCTURAL ── */
 section {
-  position: relative; /* Indispensable pour forcer le plan par-dessus la grille arrière */
-  z-index: 1;         /* Passe officiellement devant la grille arrière */
+  position: relative; 
+  z-index: 10; /* Augmenté à 10 pour passer au-dessus des fonds isolés à -999 */
   max-width: 960px;
   margin: 0 auto;
   padding: 80px 24px;
@@ -448,10 +442,9 @@ section {
   text-shadow: 0 0 8px rgba(255, 121, 0, 0.3);
 }
 
-/* ── CARDS (PROJETS & EXPÉRIENCES) ── */
+/* ── CARDS GENERALES ── */
 .card {
   position: relative;
-  z-index: 2;
   background: linear-gradient(135deg, rgba(7, 13, 25, 0.8), rgba(4, 8, 16, 0.9));
   border: 1px solid var(--border);
   border-radius: 6px;
@@ -541,7 +534,7 @@ section {
   text-shadow: 0 0 8px var(--kc-blue);
 }
 
-/* ── STAGES GRID (CORRIGÉ : PUCES ET ALIGNEMENT FLÈCHES) ── */
+/* ── STAGES GRID (CORRECTION DÉFINITIVE DE L'ALIGNEMENT DES FLÈCHES) ── */
 .stage-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -551,7 +544,6 @@ section {
 
 .stage-card {
   position: relative;
-  z-index: 2;
   background: linear-gradient(135deg, rgba(7, 13, 25, 0.85), rgba(3, 7, 14, 0.95));
   border: 1px solid var(--border);
   border-radius: 6px;
@@ -609,7 +601,7 @@ section {
 .stage-body { padding: 24px; }
 
 .stage-body ul { 
-  list-style: none; 
+  list-style: none !important; /* Force la suppression de puces par défaut du navigateur */
   display: flex; 
   flex-direction: column; 
   gap: 10px; 
@@ -618,16 +610,17 @@ section {
 .stage-body ul li {
   font-size: 14px;
   color: var(--text);
-  padding-left: 24px; /* Espace suffisant pour accueillir la flèche absolue */
-  position: relative; /* CRUCIAL : Définit l'ancrage parent pour le positionnement de la flèche */
+  padding-left: 24px !important; /* Recule obligatoirement le texte pour laisser la place à la flèche */
+  position: relative !important; /* Force ABSOLUMENT le Li à servir de pivot */
   line-height: 1.5;
 }
 
+/* On reconstruit la flèche proprement sans passer par les polices systèmes instables */
 .stage-body ul li::before {
-  content: '➔';
-  position: absolute; 
-  left: 0;
-  top: 2px; /* Aligne l'icône sur le haut de la première ligne de texte */
+  content: '➔' !important;
+  position: absolute !important; 
+  left: 0 !important;
+  top: 1px !important; 
   color: var(--kc-blue);
   text-shadow: 0 0 5px var(--kc-blue);
   font-family: 'Rajdhani', sans-serif;
@@ -743,113 +736,3 @@ section {
   background: rgba(7, 13, 25, 0.8);
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 26px 30px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(4px);
-}
-
-.formation-item:hover { 
-  border-color: rgba(130, 38, 239, 0.5); 
-  background: rgba(11, 20, 38, 0.4);
-  transform: translateX(6px);
-}
-
-.formation-dot { 
-  width: 12px; height: 12px; 
-  border-radius: 50%; 
-  background: var(--kc-purple); 
-  box-shadow: 0 0 12px var(--kc-purple); 
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-}
-
-.formation-item:hover .formation-dot {
-  background: var(--kc-pink);
-  box-shadow: 0 0 15px var(--kc-pink), 0 0 5px #fff;
-  transform: scale(1.3);
-}
-
-.formation-name { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 800; color: #fff; }
-.formation-detail { font-family: 'Rajdhani', sans-serif; font-weight: 500; font-size: 13px; color: var(--muted); margin-top: 4px; letter-spacing: 1px; }
-
-/* ── LANGUES (CORRIGÉ : PROTECTION SECURE CONTRE L'ARRIÈRE-PLAN) ── */
-.lang-grid { display: flex; gap: 20px; flex-wrap: wrap; }
-
-.lang-card {
-  position: relative;
-  z-index: 2; /* Force la carte complète au premier plan devant la grille */
-  background: rgba(7, 13, 25, 0.8);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 22px 32px;
-  text-align: center;
-  min-width: 150px;
-  transition: border-color 0.3s;
-  backdrop-filter: blur(4px);
-}
-
-.lang-card:hover { border-color: var(--kc-blue); }
-.lang-flag { font-size: 30px; margin-bottom: 8px; }
-.lang-name { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 18px; color: #fff; }
-.lang-level { font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 12px; color: var(--kc-blue); letter-spacing: 1px; margin-top: 4px; text-transform: uppercase; }
-
-/* ── CERTIFICATIONS ── */
-.certif-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  background: linear-gradient(135deg, rgba(7, 13, 25, 0.9), rgba(4, 9, 20, 0.95));
-  border: 1px solid var(--kc-blue);
-  border-radius: 6px;
-  padding: 20px 32px;
-  box-shadow: 0 0 25px rgba(0, 132, 255, 0.15), inset 0 0 15px rgba(0, 132, 255, 0.05);
-  animation: masterGlow 3s infinite alternate ease-in-out;
-  transition: transform 0.3s ease;
-  backdrop-filter: blur(4px);
-}
-
-.certif-badge:hover {
-  transform: scale(1.02) rotate(-0.5deg);
-}
-
-@keyframes masterGlow {
-  0% { border-color: var(--kc-blue); box-shadow: 0 0 20px rgba(0, 132, 255, 0.2); }
-  100% { border-color: var(--kc-purple); box-shadow: 0 0 30px rgba(130, 38, 239, 0.3); }
-}
-
-.certif-icon { font-size: 28px; }
-.certif-name { font-family: 'Rajdhani', sans-serif; font-size: 24px; font-weight: 800; color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.1); }
-.certif-sub { font-family: 'Rajdhani', sans-serif; font-weight: 500; font-size: 12px; color: var(--muted); margin-top: 2px; }
-
-/* ── ELEMENTS GRAPHIQUES DE STRUCTURE ── */
-.divider {
-  position: relative;
-  z-index: 1;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(83, 108, 150, 0.4), transparent);
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-footer {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  padding: 50px 20px 70px;
-  border-top: 1px solid var(--border);
-  background: rgba(2, 5, 10, 0.8);
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 500;
-  font-size: 13px;
-  color: var(--muted);
-  letter-spacing: 1px;
-}
-
-footer span { 
-  color: var(--kc-pink); 
-  text-shadow: 0 0 8px rgba(255, 82, 185, 0.4);
-  font-weight: 600; 
-}
