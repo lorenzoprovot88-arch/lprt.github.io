@@ -1,11 +1,12 @@
 
 
 :root {
-  /* PALETTE INSPIRÉE DU MAILLOT KC */
-  --kc-blue: #0077ff;       /* Bleu électrique principal */
-  --kc-purple: #8a2be2;     /* Violet iridescent */
+  /* PALETTE OFFICIELLE KARMINE CORP */
+  --kc-blue: #0084ff;       /* Bleu électrique maillot */
+  --kc-purple: #8226ef;     /* Violet iridescent */
+  --kc-pink: #ff52b9;       /* Rose nacre des vagues */
   --kc-orange: #ff7900;     /* Orange vibrant (Accents) */
-  --black: #030508;         /* Fond noir profond bleuté */
+  --black: #000000;         /* Fond noir absolu demandé */
   --card-bg: #070d19;       /* Fond des cartes sombre et froid */
   --border: #13223f;        /* Bordures bleutées subtiles */
   --text: #d1dbed;          /* Blanc froid pour la lisibilité */
@@ -31,48 +32,55 @@ body {
   min-height: 100vh;
 }
 
-/* ── ARRIÈRE-PLAN ANIMÉ : EFFET VAGUES LIQUIDES DU MAILLOT ── */
+/* ── LE FOND : VAGUES KC LIQUIDES EN MOUVEMENT ── */
 body::after {
   content: '';
   position: fixed;
-  /* On élargit la zone pour éviter que le flou ne crée des bords transparents */
-  top: -100px;
-  left: -100px;
-  right: -100px;
-  bottom: -100px;
+  /* On élargit largement pour laisser l'animation tourner sans vider les bords */
+  top: -15%;
+  left: -15%;
+  width: 130%;
+  height: 130%;
   z-index: -1; 
   pointer-events: none;
   
+  /* Fond noir pur */
   background-color: var(--black);
   
-  /* Superposition de gradients coniques et radiaux contrastés pour former les volutes */
+  /* Génération des vagues de nacre croisées (Bleu, Violet, Rose) */
   background-image: 
-    radial-gradient(circle at 20% 30%, #0077ff 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, #8a2be2 0%, transparent 50%),
-    radial-gradient(circle at 50% 40%, #ff007f 0%, transparent 40%),
-    conic-gradient(from 180deg at 50% 50%, transparent 0deg, rgba(0, 119, 255, 0.3) 120deg, transparent 240deg);
+    radial-gradient(ellipse at 40% 30%, var(--kc-blue) 0%, rgba(0, 132, 255, 0.4) 20%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, var(--kc-purple) 0%, rgba(130, 38, 239, 0.3) 25%, transparent 60%),
+    radial-gradient(ellipse at 30% 80%, var(--kc-pink) 0%, rgba(255, 82, 185, 0.25) 15%, transparent 45%),
+    radial-gradient(ellipse at 80% 20%, var(--kc-blue) 0%, transparent 40%);
   
-  background-size: 200% 200%;
+  background-size: 160% 160%;
   
-  /* Filtre intensifié pour fusionner les dégradés comme du métal liquide */
-  filter: blur(50px) contrast(1.5);
+  /* Filtre combiné magique : le blur fusionne, le contrast sépare les couleurs pour créer l'effet "vague/nappe d'huile" */
+  filter: blur(60px) contrast(1.6) saturate(1.4);
+  opacity: 0.75; /* Permet de garder le fond bien noir et sombre en dessous */
   
-  /* Animation en boucle continue */
-  animation: liquidWaves 8s ease-in-out infinite alternate;
+  /* Animation fluide de déformation de vagues */
+  animation: kcWaves 14s ease-in-out infinite alternate;
 }
 
-@keyframes liquidWaves {
+/* ANIMATION FLUIDE TYPE MAILLOT MÉTAL LIQUIDE */
+@keyframes kcWaves {
   0% {
-    background-position: 0% 0%;
-    transform: scale(1);
+    background-position: 10% 20%;
+    transform: scale(1) rotate(0deg);
   }
-  50% {
-    background-position: 100% 100%;
-    transform: scale(1.08) rotate(3deg);
+  33% {
+    background-position: 90% 40%;
+    transform: scale(1.06) rotate(3deg);
+  }
+  66% {
+    background-position: 40% 80%;
+    transform: scale(0.95) rotate(-2deg);
   }
   100% {
-    background-position: 50% 0%;
-    transform: scale(1) rotate(-2deg);
+    background-position: 20% 10%;
+    transform: scale(1.03) rotate(1deg);
   }
 }
 
@@ -85,7 +93,7 @@ nav {
   justify-content: center;
   gap: 32px;
   padding: 16px 20px;
-  background: rgba(3, 5, 8, 0.85);
+  background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
@@ -120,9 +128,9 @@ nav a:hover {
 
 .hero-glow {
   position: absolute;
-  width: 600px; height: 600px;
+  width: 500px; height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 119, 255, 0.18) 0%, rgba(138, 43, 226, 0.05) 60%, transparent 100%);
+  background: radial-gradient(circle, rgba(0, 132, 255, 0.1) 0%, transparent 70%);
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
@@ -141,7 +149,7 @@ nav a:hover {
   border-radius: 50%;
   border: 2px solid var(--kc-blue);
   animation: spin 8s linear infinite;
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .avatar-ring::before {
@@ -149,21 +157,13 @@ nav a:hover {
   position: absolute;
   top: -4px; left: 50%;
   width: 8px; height: 8px;
-  background: var(--kc-purple);
+  background: var(--kc-pink);
   border-radius: 50%;
   transform: translateX(-50%);
-  box-shadow: 0 0 10px var(--kc-purple);
+  box-shadow: 0 0 10px var(--kc-pink);
 }
 
 @keyframes spin { to { transform: rotate(360deg); } }
-
-.avatar-img {
-  width: 140px; height: 140px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--border);
-  display: block;
-}
 
 .avatar-placeholder {
   width: 140px; height: 140px;
@@ -200,7 +200,7 @@ h1 {
 
 h1 span { 
   color: var(--kc-orange); 
-  text-shadow: 0 0 30px rgba(255, 121, 0, 0.4); 
+  text-shadow: 0 0 30px rgba(255, 121, 0, 0.3); 
 }
 
 .hero-title {
@@ -224,15 +224,15 @@ h1 span {
   font-weight: 600;
   font-size: 13px;
   color: #fff;
-  background: linear-gradient(135deg, rgba(0, 119, 255, 0.15), rgba(138, 43, 226, 0.15));
+  background: linear-gradient(135deg, rgba(0, 132, 255, 0.15), rgba(130, 38, 239, 0.15));
   text-transform: uppercase;
   letter-spacing: 1px;
   animation: pulse-border 2s infinite, fadeDown 0.8s 0.4s ease both;
 }
 
 @keyframes pulse-border {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 119, 255, 0.3); }
-  50% { box-shadow: 0 0 0 6px rgba(0, 119, 255, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.2); }
+  50% { box-shadow: 0 0 0 6px rgba(0, 132, 255, 0); }
 }
 
 .hero-contacts {
@@ -336,35 +336,42 @@ section {
   opacity: 0.4;
 }
 
-/* ── ABOUT SECTION ── */
+/* ── TEXT CONTENT / CARNET DE SUIVI ── */
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 24px;
 }
-@media(max-width:600px){ .about-grid{ grid-template-columns:1fr; } }
 
 .about-text {
   font-size: 15px;
   line-height: 1.8;
   color: var(--text);
-  grid-column: 1 / -1;
   padding: 24px;
-  background: var(--card-bg);
+  background: rgba(7, 13, 25, 0.8);
   border: 1px solid var(--border);
   border-left: 3px solid var(--kc-blue);
   border-radius: 4px;
+  backdrop-filter: blur(4px);
 }
 
-/* ── CARDS CONFIGURATION ── */
+.day-highlight {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  color: var(--kc-orange);
+  letter-spacing: 1px;
+}
+
+/* ── CARDS (PROJETS & EXPÉRIENCES) ── */
 .card {
-  background: var(--card-bg);
+  background: rgba(7, 13, 25, 0.8);
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 28px;
   position: relative;
   transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
   overflow: hidden;
+  backdrop-filter: blur(4px);
 }
 
 .card::before {
@@ -377,9 +384,9 @@ section {
 }
 
 .card:hover { 
-  border-color: rgba(0, 119, 255, 0.3); 
+  border-color: rgba(0, 132, 255, 0.3); 
   transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(0, 119, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 132, 255, 0.05);
 }
 
 .card:hover::before { height: 100%; }
@@ -432,7 +439,7 @@ section {
   font-size: 11px;
 }
 
-/* ── STAGES / EXPERIENCES ── */
+/* ── STAGES GRID ── */
 .stage-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -441,15 +448,16 @@ section {
 @media(max-width:640px){ .stage-grid{ grid-template-columns:1fr; } }
 
 .stage-card {
-  background: var(--card-bg);
+  background: rgba(7, 13, 25, 0.8);
   border: 1px solid var(--border);
   border-radius: 4px;
   overflow: hidden;
   transition: border-color 0.3s, transform 0.3s;
+  backdrop-filter: blur(4px);
 }
 
 .stage-card:hover { 
-  border-color: rgba(0, 119, 255, 0.4); 
+  border-color: rgba(0, 132, 255, 0.4); 
   transform: translateY(-4px); 
 }
 
@@ -492,16 +500,8 @@ section {
   font-weight: 600;
 }
 
-.stage-body {
-  padding: 22px 24px;
-}
-
-.stage-body ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+.stage-body { padding: 22px 24px; }
+.stage-body ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 
 .stage-body ul li {
   font-size: 14px;
@@ -520,7 +520,21 @@ section {
   font-size: 14px;
 }
 
-/* ── SKILLS SECTION ── */
+.status-badge {
+  display: inline-block;
+  background: rgba(0, 132, 255, 0.15);
+  border: 1px solid var(--kc-blue);
+  padding: 4px 12px;
+  border-radius: 3px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #fff !important;
+}
+.status-badge::before { display: none !important; }
+
+/* ── SKILLS ── */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -528,7 +542,7 @@ section {
 }
 
 .skill-chip {
-  background: var(--card-bg);
+  background: rgba(7, 13, 25, 0.8);
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 18px 22px;
@@ -537,85 +551,27 @@ section {
   gap: 14px;
   transition: border-color 0.3s, box-shadow 0.3s;
   cursor: default;
+  backdrop-filter: blur(4px);
 }
 
 .skill-chip:hover { 
   border-color: var(--kc-blue); 
-  box-shadow: 0 5px 15px rgba(0, 119, 255, 0.1);
+  box-shadow: 0 5px 15px rgba(0, 132, 255, 0.1);
 }
 
 .skill-icon {
   font-size: 20px;
   width: 36px; height: 36px;
   display: flex; align-items: center; justify-content: center;
-  background: rgba(0, 119, 255, 0.1);
+  background: rgba(0, 132, 255, 0.1);
   border-radius: 4px;
   color: var(--kc-blue);
   flex-shrink: 0;
 }
 
 .skill-info { flex: 1; }
-
-.skill-name {
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 700;
-  font-size: 17px;
-  color: #fff;
-}
-
-.skill-type {
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 500;
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-/* ── FORMATIONS ── */
-.formation-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.formation-item {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 24px 28px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  transition: border-color 0.3s;
-}
-
-.formation-item:hover { 
-  border-color: rgba(0, 119, 255, 0.3); 
-}
-
-.formation-dot {
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--kc-blue);
-  box-shadow: 0 0 10px var(--kc-blue);
-  flex-shrink: 0;
-}
-
-.formation-name {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 19px; font-weight: 700;
-  color: #fff;
-}
-
-.formation-detail {
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 500;
-  font-size: 13px;
-  color: var(--muted);
-  margin-top: 4px;
-  letter-spacing: 1px;
-}
+.skill-name { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 17px; color: #fff; }
+.skill-type { font-family: 'Rajdhani', sans-serif; font-weight: 500; font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
 
 /* ── SOFT SKILLS ── */
 .soft-grid {
@@ -625,7 +581,7 @@ section {
 }
 
 .soft-chip {
-  background: var(--card-bg);
+  background: rgba(7, 13, 25, 0.8);
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 14px 18px;
@@ -635,84 +591,72 @@ section {
   font-size: 16px;
   color: var(--text);
   transition: all 0.2s;
+  backdrop-filter: blur(4px);
 }
 
 .soft-chip:hover {
   border-color: var(--kc-blue);
   color: #fff;
-  background: linear-gradient(135deg, rgba(0, 119, 255, 0.1), rgba(138, 43, 226, 0.1));
+  background: linear-gradient(135deg, rgba(0, 132, 255, 0.1), rgba(130, 38, 239, 0.1));
 }
+
+/* ── FORMATIONS ── */
+.formation-list { display: flex; flex-direction: column; gap: 20px; }
+
+.formation-item {
+  background: rgba(7, 13, 25, 0.8);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: border-color 0.3s;
+  backdrop-filter: blur(4px);
+}
+
+.formation-item:hover { border-color: rgba(0, 132, 255, 0.3); }
+.formation-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--kc-blue); box-shadow: 0 0 10px var(--kc-blue); flex-shrink: 0; }
+.formation-name { font-family: 'Rajdhani', sans-serif; font-size: 19px; font-weight: 700; color: #fff; }
+.formation-detail { font-family: 'Rajdhani', sans-serif; font-weight: 500; font-size: 13px; color: var(--muted); margin-top: 4px; letter-spacing: 1px; }
 
 /* ── LANGUES ── */
-.lang-grid {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
+.lang-grid { display: flex; gap: 20px; flex-wrap: wrap; }
 
 .lang-card {
-  background: var(--card-bg);
+  background: rgba(7, 13, 25, 0.8);
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 22px 32px;
   text-align: center;
   min-width: 150px;
   transition: border-color 0.3s;
+  backdrop-filter: blur(4px);
 }
 
-.lang-card:hover { 
-  border-color: var(--kc-blue); 
-}
-
+.lang-card:hover { border-color: var(--kc-blue); }
 .lang-flag { font-size: 30px; margin-bottom: 8px; }
-
-.lang-name {
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  color: #fff;
-}
-
-.lang-level {
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 600;
-  font-size: 12px;
-  color: var(--kc-blue);
-  letter-spacing: 1px;
-  margin-top: 4px;
-  text-transform: uppercase;
-}
+.lang-name { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 18px; color: #fff; }
+.lang-level { font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 12px; color: var(--kc-blue); letter-spacing: 1px; margin-top: 4px; text-transform: uppercase; }
 
 /* ── CERTIFICATIONS ── */
 .certif-badge {
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  background: var(--card-bg);
+  background: rgba(7, 13, 25, 0.8);
   border: 1px solid var(--kc-blue);
   border-radius: 4px;
   padding: 18px 28px;
-  box-shadow: 0 0 20px rgba(0, 119, 255, 0.15);
+  box-shadow: 0 0 20px rgba(0, 132, 255, 0.1);
+  backdrop-filter: blur(4px);
 }
 
 .certif-icon { font-size: 28px; }
+.certif-name { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; color: #fff; }
+.certif-sub { font-family: 'Rajdhani', sans-serif; font-weight: 500; font-size: 12px; color: var(--muted); margin-top: 2px; }
 
-.certif-name {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 22px;
-  font-weight: 700;
-  color: #fff;
-}
-
-.certif-sub {
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 500;
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 2px;
-}
-
-/* ── SECTION SEPARATEUR ── */
+/* ── ELEMENTS GRAPHIOUES DE STRUCTURE ── */
 .divider {
   position: relative;
   z-index: 1;
@@ -722,7 +666,6 @@ section {
   margin: 0 auto;
 }
 
-/* ── FOOTER ── */
 footer {
   position: relative;
   z-index: 1;
@@ -736,7 +679,4 @@ footer {
   letter-spacing: 1px;
 }
 
-footer span { 
-  color: var(--kc-blue); 
-  font-weight: 600;
-}
+footer span { color: var(--kc-blue); font-weight: 600; }
