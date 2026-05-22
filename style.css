@@ -1,14 +1,14 @@
 :root {
   /* PALETTE OFFICIELLE KARMINE CORP */
-  --kc-blue: #0084ff;       
-  --kc-purple: #8226ef;     
-  --kc-pink: #ff52b9;       
-  --kc-orange: #ff7900;     
-  --black: #000000;         
-  --card-bg: rgba(6, 11, 22, 0.82); 
-  --border: #142447;        
-  --text: #d2def2;          
-  --muted: #5872a1;         
+  --kc-blue: #0084ff;       /* Bleu électrique maillot */
+  --kc-purple: #8226ef;     /* Violet iridescent */
+  --kc-pink: #ff52b9;       /* Rose nacre des vagues */
+  --kc-orange: #ff7900;     /* Orange vibrant (Accents) */
+  --black: #000000;         /* Fond noir absolu demandé */
+  --card-bg: #070d19;       /* Fond des cartes sombre et froid */
+  --border: #13223f;        /* Bordures bleutées subtiles */
+  --text: #d1dbed;          /* Blanc froid pour la lisibilité */
+  --muted: #536c96;         /* Bleu-gris secondaire */
 }
 
 *, *::before, *::after { 
@@ -30,51 +30,59 @@ body {
   min-height: 100vh;
 }
 
-/* ── LE FOND ANIME : MAILLOT KC PREMIUM ── */
+/* ── LE FOND : VAGUES KC LIQUIDES EN MOUVEMENT ── */
 body::after {
   content: '';
   position: fixed;
-  top: -30%;
-  left: -30%;
-  width: 160%;
-  height: 160%;
+  /* On élargit largement pour laisser l'animation tourner sans vider les bords */
+  top: -15%;
+  left: -15%;
+  width: 130%;
+  height: 130%;
   z-index: -1; 
   pointer-events: none;
+  
+  /* Fond noir pur */
   background-color: var(--black);
   
-  /* Superposition de 4 gradients radiaux pour simuler les motifs du maillot */
+  /* Génération des vagues de nacre croisées (Bleu, Violet, Rose) */
   background-image: 
-    radial-gradient(ellipse at 20% 30%, var(--kc-blue) 0%, rgba(0, 132, 255, 0.45) 20%, transparent 55%),
-    radial-gradient(ellipse at 80% 70%, var(--kc-purple) 0%, rgba(130, 38, 239, 0.4) 25%, transparent 60%),
-    radial-gradient(ellipse at 30% 80%, var(--kc-pink) 0%, rgba(255, 82, 185, 0.35) 15%, transparent 50%),
-    radial-gradient(circle at 75% 25%, rgba(0, 132, 255, 0.3) 0%, transparent 40%);
+    radial-gradient(ellipse at 40% 30%, var(--kc-blue) 0%, rgba(0, 132, 255, 0.4) 20%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, var(--kc-purple) 0%, rgba(130, 38, 239, 0.3) 25%, transparent 60%),
+    radial-gradient(ellipse at 30% 80%, var(--kc-pink) 0%, rgba(255, 82, 185, 0.25) 15%, transparent 45%),
+    radial-gradient(ellipse at 80% 20%, var(--kc-blue) 0%, transparent 40%);
   
-  background-size: 140% 140%;
+  background-size: 160% 160%;
   
-  /* Fusion et lissage des couleurs pour l'aspect organique/liquide */
-  filter: blur(45px) contrast(1.9) saturate(1.6);
-  opacity: 0.7;
+  /* Filtre combiné magique : le blur fusionne, le contrast sépare les couleurs pour créer l'effet "vague/nappe d'huile" */
+  filter: blur(60px) contrast(1.6) saturate(1.4);
+  opacity: 0.75; /* Permet de garder le fond bien noir et sombre en dessous */
   
-  /* Mouvement fluide et continu de la matière */
-  animation: KCLiquidVortex 20s ease-in-out infinite alternate;
+  /* Animation fluide de déformation de vagues */
+  animation: kcWaves 14s ease-in-out infinite alternate;
 }
 
-@keyframes KCLiquidVortex {
+/* ANIMATION FLUIDE TYPE MAILLOT MÉTAL LIQUIDE */
+@keyframes kcWaves {
   0% {
-    background-position: 0% 0%;
+    background-position: 10% 20%;
     transform: scale(1) rotate(0deg);
   }
-  50% {
-    background-position: 100% 50%;
-    transform: scale(1.05) rotate(3deg);
+  33% {
+    background-position: 90% 40%;
+    transform: scale(1.06) rotate(3deg);
+  }
+  66% {
+    background-position: 40% 80%;
+    transform: scale(0.95) rotate(-2deg);
   }
   100% {
-    background-position: 50% 100%;
-    transform: scale(0.95) rotate(-2deg);
+    background-position: 20% 10%;
+    transform: scale(1.03) rotate(1deg);
   }
 }
 
-/* ── NAVIGATION STYLE ESPORT ── */
+/* ── NAVIGATION ── */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -82,45 +90,28 @@ nav {
   display: flex;
   justify-content: center;
   gap: 32px;
-  padding: 18px 20px;
-  background: rgba(0, 0, 0, 0.88);
-  backdrop-filter: blur(16px);
+  padding: 16px 20px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
 
 nav a {
   font-family: 'Rajdhani', sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 13px;
   color: var(--muted);
   text-decoration: none;
   letter-spacing: 2px;
   text-transform: uppercase;
-  position: relative;
-  padding: 4px 0;
-  transition: color 0.3s;
-}
-
-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 50%;
-  width: 0; height: 2px;
-  background: var(--kc-blue);
-  transition: width 0.3s ease, left 0.3s ease;
-  box-shadow: 0 0 8px var(--kc-blue);
+  transition: color 0.2s;
 }
 
 nav a:hover { 
-  color: #fff; 
+  color: var(--kc-blue); 
 }
 
-nav a:hover::after {
-  width: 100%;
-  left: 0;
-}
-
-/* ── HERO SECTION ENTRÉE SUBSTANTIELLE ── */
+/* ── HERO SECTION ── */
 #hero {
   position: relative;
   z-index: 1;
@@ -130,130 +121,122 @@ nav a:hover::after {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 80px 20px;
+  padding: 60px 20px;
 }
 
 .hero-glow {
   position: absolute;
-  width: 650px; height: 650px;
+  width: 500px; height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 132, 255, 0.15) 0%, transparent 75%);
+  background: radial-gradient(circle, rgba(0, 132, 255, 0.1) 0%, transparent 70%);
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
 }
 
-/* AVATAR AVEC ANNEAU CHROMATIQUE */
 .avatar-wrap {
   position: relative;
-  width: 145px; height: 145px;
-  margin: 0 auto 35px;
-  animation: glitchIntro 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  width: 140px; height: 140px;
+  margin: 0 auto 30px;
+  animation: fadeDown 0.8s ease both;
 }
 
 .avatar-ring {
   position: absolute;
-  inset: -10px;
+  inset: -6px;
   border-radius: 50%;
-  border: 2px dashed var(--kc-blue);
-  animation: spinRing 15s linear infinite;
-  opacity: 0.8;
+  border: 2px solid var(--kc-blue);
+  animation: spin 8s linear infinite;
+  opacity: 0.6;
 }
 
 .avatar-ring::before {
   content: '';
   position: absolute;
-  top: -5px; left: 50%;
-  width: 10px; height: 10px;
+  top: -4px; left: 50%;
+  width: 8px; height: 8px;
   background: var(--kc-pink);
   border-radius: 50%;
   transform: translateX(-50%);
-  box-shadow: 0 0 15px var(--kc-pink), 0 0 5px #fff;
+  box-shadow: 0 0 10px var(--kc-pink);
 }
 
-@keyframes spinRing { to { transform: rotate(360deg); } }
+@keyframes spin { to { transform: rotate(360deg); } }
 
 .avatar-placeholder {
-  width: 145px; height: 145px;
+  width: 140px; height: 140px;
   border-radius: 50%;
-  background: #030710;
-  border: 2px solid rgba(0, 132, 255, 0.5);
+  background: var(--card-bg);
+  border: 2px solid var(--border);
   display: flex; align-items: center; justify-content: center;
-  font-size: 46px;
-  color: #fff;
+  font-size: 44px;
+  color: var(--kc-blue);
   font-family: 'Rajdhani', sans-serif;
-  font-weight: 800;
-  box-shadow: inset 0 0 25px rgba(0, 132, 255, 0.35);
+  font-weight: 700;
 }
 
 .hero-label {
   font-family: 'Rajdhani', sans-serif;
-  font-weight: 700;
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 13px;
   color: var(--kc-blue);
-  letter-spacing: 5px;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  margin-bottom: 16px;
-  text-shadow: 0 0 10px rgba(0, 132, 255, 0.3);
-  animation: glitchIntro 0.8s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  margin-bottom: 14px;
+  animation: fadeDown 0.8s 0.1s ease both;
 }
 
 h1 {
   font-family: 'Rajdhani', sans-serif;
-  font-size: clamp(52px, 8.5vw, 96px);
-  font-weight: 800;
+  font-size: clamp(48px, 8vw, 90px);
+  font-weight: 700;
   color: #fff;
   letter-spacing: -1px;
-  line-height: 0.95;
-  text-transform: uppercase;
-  animation: glitchIntro 0.8s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  line-height: 1;
+  animation: fadeDown 0.8s 0.2s ease both;
 }
 
 h1 span { 
   color: var(--kc-orange); 
-  text-shadow: 0 0 40px rgba(255, 121, 0, 0.45), 0 0 10px rgba(255, 121, 0, 0.2); 
+  text-shadow: 0 0 30px rgba(255, 121, 0, 0.3); 
 }
 
 .hero-title {
   font-family: 'Rajdhani', sans-serif;
-  font-weight: 600;
-  font-size: clamp(14px, 2vw, 19px);
-  color: #fff;
-  margin-top: 16px;
-  letter-spacing: 3px;
+  font-weight: 500;
+  font-size: clamp(14px, 2vw, 18px);
+  color: var(--muted);
+  margin-top: 12px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  opacity: 0.85;
-  animation: glitchIntro 0.8s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: fadeDown 0.8s 0.3s ease both;
 }
 
-/* BADGE AVEC PULSATION CYBER */
 .hero-badge {
   display: inline-block;
-  margin-top: 28px;
-  padding: 12px 26px;
+  margin-top: 24px;
+  padding: 8px 22px;
   border: 1px solid var(--kc-blue);
   border-radius: 4px;
   font-family: 'Rajdhani', sans-serif;
-  font-weight: 800;
+  font-weight: 600;
   font-size: 13px;
   color: #fff;
-  background: linear-gradient(135deg, rgba(0, 132, 255, 0.25), rgba(130, 38, 239, 0.25));
+  background: linear-gradient(135deg, rgba(0, 132, 255, 0.15), rgba(130, 38, 239, 0.15));
   text-transform: uppercase;
-  letter-spacing: 1.5px;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  animation: cyberPulse 2s infinite, glitchIntro 0.8s 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  letter-spacing: 1px;
+  animation: pulse-border 2s infinite, fadeDown 0.8s 0.4s ease both;
 }
 
-@keyframes cyberPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.4), 0 4px 20px rgba(0, 0, 0, 0.4); border-color: var(--kc-blue); }
-  50% { box-shadow: 0 0 0 10px rgba(0, 132, 255, 0), 0 4px 20px rgba(0, 0, 0, 0.4); border-color: var(--kc-pink); }
+@keyframes pulse-border {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.2); }
+  50% { box-shadow: 0 0 0 6px rgba(0, 132, 255, 0); }
 }
 
 .hero-contacts {
-  display: flex; gap: 28px; flex-wrap: wrap; justify-content: center;
-  margin-top: 36px;
-  animation: glitchIntro 0.8s 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  display: flex; gap: 24px; flex-wrap: wrap; justify-content: center;
+  margin-top: 32px;
+  animation: fadeDown 0.8s 0.5s ease both;
 }
 
 .hero-contacts a {
@@ -262,362 +245,436 @@ h1 span {
   text-decoration: none;
   font-size: 14px;
   font-family: 'Rajdhani', sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 1px;
-  transition: color 0.3s, transform 0.3s;
+  transition: color 0.2s;
 }
 
 .hero-contacts a:hover { 
   color: var(--kc-blue); 
-  transform: translateY(-3px);
 }
 
 .scroll-hint {
   position: absolute;
-  bottom: 35px; left: 50%;
+  bottom: 30px;
+  left: 50%;
   transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-  animation: glitchIntro 0.8s 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-  opacity: 0.8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  animation: fadeDown 0.8s 0.8s ease both;
+  opacity: 0.6;
 }
 
 .scroll-hint span { 
   font-family: 'Rajdhani', sans-serif; 
-  font-weight: 800; font-size: 11px; 
-  letter-spacing: 4px; color: var(--kc-blue); 
+  font-weight: 600;
+  font-size: 11px; 
+  letter-spacing: 3px; 
+  color: var(--kc-blue); 
+  text-transform: uppercase;
 }
 
 .scroll-arrow { 
-  width: 9px; height: 9px; 
+  width: 10px; height: 10px; 
   border-right: 2px solid var(--kc-blue); 
   border-bottom: 2px solid var(--kc-blue); 
   transform: rotate(45deg); 
-  animation: arrowBounce 1.5s infinite; 
+  animation: bounce 1.5s infinite; 
 }
 
-@keyframes arrowBounce { 
-  0%,100% { transform: rotate(45deg) translate(0, 0); } 
-  50% { transform: rotate(45deg) translate(6px, 6px); } 
+@keyframes bounce { 
+  0%,100%{transform:rotate(45deg) translateY(0)} 
+  50%{transform:rotate(45deg) translateY(5px)} 
 }
 
-@keyframes glitchIntro {
-  from { opacity: 0; transform: translateY(25px); }
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ── SECTIONS ET TITRES ILLUMINÉS ── */
+/* ── SECTIONS STRUCTURAL ── */
 section {
   position: relative;
   z-index: 1;
   max-width: 960px;
   margin: 0 auto;
-  padding: 90px 24px;
+  padding: 70px 24px;
 }
 
 .section-header {
   display: flex;
   align-items: center;
-  gap: 18px;
-  margin-bottom: 50px;
+  gap: 16px;
+  margin-bottom: 44px;
 }
 
 .section-num {
   font-family: 'Rajdhani', sans-serif;
-  font-weight: 800; font-size: 16px;
-  color: var(--kc-orange); letter-spacing: 2px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--kc-orange);
+  letter-spacing: 2px;
 }
 
 .section-title {
   font-family: 'Rajdhani', sans-serif;
-  font-size: 34px; font-weight: 800;
-  color: #fff; letter-spacing: 1.5px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
 
 .section-line {
-  flex: 1; height: 1px;
+  flex: 1;
+  height: 1px;
   background: linear-gradient(to right, var(--kc-blue), var(--kc-purple), transparent);
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
-/* ── CARNET DE SUIVI & PROFIL BLEU/ROSE ── */
-.about-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+/* ── TEXT CONTENT / CARNET DE SUIVI ── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
 
 .about-text {
-  font-size: 15px; line-height: 1.85;
-  color: var(--text); padding: 32px;
-  background: var(--card-bg);
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text);
+  padding: 24px;
+  background: rgba(7, 13, 25, 0.8);
   border: 1px solid var(--border);
-  border-left: 4px solid var(--kc-blue);
+  border-left: 3px solid var(--kc-blue);
   border-radius: 4px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-  transition: border-color 0.4s;
-}
-.about-text:hover {
-  border-color: var(--kc-purple);
+  backdrop-filter: blur(4px);
 }
 
 .day-highlight {
   font-family: 'Rajdhani', sans-serif;
-  font-weight: 800; color: var(--kc-orange);
-  letter-spacing: 1px; display: inline-block;
-  margin-top: 8px;
+  font-weight: 700;
+  color: var(--kc-orange);
+  letter-spacing: 1px;
 }
 
-/* ── CARTES INTERACTIVES AVEC GLOW ESPORT ── */
+/* ── CARDS (PROJETS & EXPÉRIENCES) ── */
 .card {
-  background: var(--card-bg);
+  background: rgba(7, 13, 25, 0.8);
   border: 1px solid var(--border);
-  border-radius: 4px; padding: 30px;
+  border-radius: 4px;
+  padding: 28px;
   position: relative;
-  transition: border-color 0.4s, transform 0.4s, box-shadow 0.4s;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
   overflow: hidden;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(4px);
 }
 
 .card::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; width: 4px; height: 0;
-  background: linear-gradient(to bottom, var(--kc-blue), var(--kc-pink));
-  transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  top: 0; left: 0;
+  width: 3px; height: 0;
+  background: linear-gradient(to bottom, var(--kc-blue), var(--kc-purple));
+  transition: height 0.4s ease;
 }
 
 .card:hover { 
-  border-color: rgba(0, 132, 255, 0.6); 
-  transform: translateY(-5px) scale(1.01);
-  box-shadow: 0 15px 30px rgba(0, 132, 255, 0.18), 0 0 15px rgba(130, 38, 239, 0.1);
+  border-color: rgba(0, 132, 255, 0.3); 
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 132, 255, 0.05);
 }
 
 .card:hover::before { height: 100%; }
 
 .card-label {
   font-family: 'Rajdhani', sans-serif;
-  font-weight: 700; font-size: 11px;
-  color: var(--kc-blue); letter-spacing: 2px;
-  text-transform: uppercase; margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 11px;
+  color: var(--kc-blue);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
 .card-title {
   font-family: 'Rajdhani', sans-serif;
-  font-size: 24px; font-weight: 800;
-  color: #fff; margin-bottom: 6px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
 }
 
 .card-sub {
   font-family: 'Rajdhani', sans-serif;
-  font-weight: 600; font-size: 14px;
-  color: var(--muted); margin-bottom: 18px;
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 16px;
 }
 
-.card ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .card ul li {
-  font-size: 14px; color: var(--text);
-  padding-left: 20px; position: relative; line-height: 1.5;
-}
-.card ul li::before {
-  content: '✦'; position: absolute; left: 0;
-  color: var(--kc-pink); font-size: 12px;
-  text-shadow: 0 0 6px var(--kc-pink);
+  font-size: 14px;
+  color: var(--text);
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.5;
 }
 
-/* ── STAGES INTERACTIFS ── */
-.stage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+.card ul li::before {
+  content: '✦';
+  position: absolute; left: 0;
+  color: var(--kc-blue);
+  font-size: 11px;
+}
+
+/* ── STAGES GRID ── */
+.stage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
 @media(max-width:640px){ .stage-grid{ grid-template-columns:1fr; } }
 
 .stage-card {
-  background: var(--card-bg);
+  background: rgba(7, 13, 25, 0.8);
   border: 1px solid var(--border);
-  border-radius: 4px; overflow: hidden;
-  transition: border-color 0.4s, transform 0.4s, box-shadow 0.4s;
-  backdrop-filter: blur(10px);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+  backdrop-filter: blur(4px);
 }
 
 .stage-card:hover { 
-  border-color: rgba(130, 38, 239, 0.6); 
-  transform: translateY(-6px); 
-  box-shadow: 0 15px 30px rgba(130, 38, 239, 0.2);
+  border-color: rgba(0, 132, 255, 0.4); 
+  transform: translateY(-4px); 
 }
 
 .stage-header {
-  background: linear-gradient(135deg, #071021, #030712);
-  padding: 24px; border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, #091326, #040914);
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--border);
   position: relative;
 }
 
 .stage-header::after {
-  content: ''; position: absolute;
-  bottom: -1px; left: 0; right: 0; height: 1px;
-  background: linear-gradient(to right, var(--kc-blue), var(--kc-pink), transparent);
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, var(--kc-blue), var(--kc-purple), transparent);
 }
 
 .stage-year {
   font-family: 'Rajdhani', sans-serif;
-  font-weight: 700; font-size: 11px;
-  color: var(--kc-orange); letter-spacing: 3px;
-  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 11px;
+  color: var(--kc-orange);
+  letter-spacing: 3px;
+  margin-bottom: 6px;
 }
 
 .stage-name {
   font-family: 'Rajdhani', sans-serif;
-  font-size: 24px; font-weight: 800; color: #fff;
-  margin-bottom: 6px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
 }
 
 .stage-company {
-  font-size: 14px; color: var(--kc-blue);
-  font-family: 'Rajdhani', sans-serif; font-weight: 700;
+  font-size: 14px;
+  color: var(--kc-blue);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
 }
 
-.stage-body { padding: 24px; }
-.stage-body ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.stage-body { padding: 22px 24px; }
+.stage-body ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
 .stage-body ul li {
-  font-size: 14px; color: var(--text);
-  padding-left: 22px; position: relative; line-height: 1.5;
+  font-size: 14px;
+  color: var(--text);
+  padding-left: 20px;
+  position: relative;
+  line-height: 1.5;
 }
+
 .stage-body ul li::before {
-  content: '→'; position: absolute; left: 0;
-  color: var(--kc-blue); font-family: 'Rajdhani', sans-serif;
-  font-weight: 800; font-size: 15px;
+  content: '→';
+  position: absolute; left: 0;
+  color: var(--kc-blue);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
 }
 
 .status-badge {
   display: inline-block;
-  background: rgba(0, 132, 255, 0.22);
+  background: rgba(0, 132, 255, 0.15);
   border: 1px solid var(--kc-blue);
-  padding: 5px 14px; border-radius: 3px;
+  padding: 4px 12px;
+  border-radius: 3px;
   font-family: 'Rajdhani', sans-serif;
-  font-weight: 800; font-size: 12px;
-  letter-spacing: 1.5px; color: #fff !important;
-  box-shadow: 0 0 12px rgba(0, 132, 255, 0.4);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #fff !important;
 }
 .status-badge::before { display: none !important; }
 
-/* ── BLOCS DE COMPÉTENCES CHROME ── */
+/* ── SKILLS ── */
 .skills-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 20px;
 }
 
 .skill-chip {
-  background: var(--card-bg);
+  background: rgba(7, 13, 25, 0.8);
   border: 1px solid var(--border);
-  border-radius: 4px; padding: 20px 24px;
-  display: flex; align-items: center; gap: 16px;
-  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
-  cursor: default; backdrop-filter: blur(10px);
+  border-radius: 4px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  cursor: default;
+  backdrop-filter: blur(4px);
 }
 
 .skill-chip:hover { 
-  border-color: #fff; 
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 8px 20px rgba(0, 132, 255, 0.2);
+  border-color: var(--kc-blue); 
+  box-shadow: 0 5px 15px rgba(0, 132, 255, 0.1);
 }
 
 .skill-icon {
-  font-size: 20px; width: 40px; height: 40px;
+  font-size: 20px;
+  width: 36px; height: 36px;
   display: flex; align-items: center; justify-content: center;
-  background: rgba(0, 132, 255, 0.18);
-  border-radius: 4px; color: #fff; flex-shrink: 0;
-  box-shadow: 0 0 10px rgba(0, 132, 255, 0.2);
+  background: rgba(0, 132, 255, 0.1);
+  border-radius: 4px;
+  color: var(--kc-blue);
+  flex-shrink: 0;
 }
 
 .skill-info { flex: 1; }
-.skill-name { font-family: 'Rajdhani', sans-serif; font-weight: 800; font-size: 18px; color: #fff; }
-.skill-type { font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+.skill-name { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 17px; color: #fff; }
+.skill-type { font-family: 'Rajdhani', sans-serif; font-weight: 500; font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
 
-/* CHIPS COMPÉTENCES COMPORTEMENTALES */
-.soft-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+/* ── SOFT SKILLS ── */
+.soft-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+}
+
 .soft-chip {
-  background: var(--card-bg); border: 1px solid var(--border);
-  border-radius: 4px; padding: 16px; text-align: center;
-  font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 16px;
-  color: var(--text); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  backdrop-filter: blur(10px);
+  background: rgba(7, 13, 25, 0.8);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 14px 18px;
+  text-align: center;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text);
+  transition: all 0.2s;
+  backdrop-filter: blur(4px);
 }
+
 .soft-chip:hover {
-  border-color: var(--kc-pink); color: #fff;
-  transform: scale(1.05);
-  background: linear-gradient(135deg, rgba(0, 132, 255, 0.18), rgba(255, 82, 185, 0.18));
-  box-shadow: 0 5px 15px rgba(255, 82, 185, 0.15);
+  border-color: var(--kc-blue);
+  color: #fff;
+  background: linear-gradient(135deg, rgba(0, 132, 255, 0.1), rgba(130, 38, 239, 0.1));
 }
 
-/* ── TIMELINE DES FORMATIONS ── */
+/* ── FORMATIONS ── */
 .formation-list { display: flex; flex-direction: column; gap: 20px; }
+
 .formation-item {
-  background: var(--card-bg); border: 1px solid var(--border);
-  border-radius: 4px; padding: 26px 30px;
-  display: flex; align-items: center; gap: 22px;
-  transition: border-color 0.3s, box-shadow 0.3s;
-  backdrop-filter: blur(10px);
+  background: rgba(7, 13, 25, 0.8);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: border-color 0.3s;
+  backdrop-filter: blur(4px);
 }
-.formation-item:hover { 
-  border-color: rgba(0, 132, 255, 0.5); 
-  box-shadow: 0 10px 25px rgba(0, 132, 255, 0.15);
-}
-.formation-dot { 
-  width: 12px; height: 12px; border-radius: 50%; 
-  background: var(--kc-blue); box-shadow: 0 0 12px var(--kc-blue), 0 0 4px #fff; 
-  flex-shrink: 0; 
-}
-.formation-name { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 800; color: #fff; }
-.formation-detail { font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 13px; color: var(--muted); margin-top: 5px; letter-spacing: 1px; }
 
-/* ── INTERFACE DES LANGUES & DRAPEAUX ── */
+.formation-item:hover { border-color: rgba(0, 132, 255, 0.3); }
+.formation-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--kc-blue); box-shadow: 0 0 10px var(--kc-blue); flex-shrink: 0; }
+.formation-name { font-family: 'Rajdhani', sans-serif; font-size: 19px; font-weight: 700; color: #fff; }
+.formation-detail { font-family: 'Rajdhani', sans-serif; font-weight: 500; font-size: 13px; color: var(--muted); margin-top: 4px; letter-spacing: 1px; }
+
+/* ── LANGUES ── */
 .lang-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+
 .lang-card {
-  background: var(--card-bg); border: 1px solid var(--border);
-  border-radius: 4px; padding: 24px 34px; text-align: center;
-  min-width: 165px; transition: border-color 0.3s, transform 0.3s;
-  backdrop-filter: blur(10px);
-}
-.lang-card:hover { 
-  border-color: var(--kc-blue); 
-  transform: translateY(-3px);
-}
-
-/* Mouvement flottant haut de gamme sur les drapeaux */
-.lang-flag { 
-  font-size: 40px; line-height: 1;
-  margin-bottom: 12px; display: inline-block;
-  filter: drop-shadow(0 6px 8px rgba(0,0,0,0.5));
-  animation: flagFloat 3s ease-in-out infinite;
+  background: rgba(7, 13, 25, 0.8);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 22px 32px;
+  text-align: center;
+  min-width: 150px;
+  transition: border-color 0.3s;
+  backdrop-filter: blur(4px);
 }
 
-@keyframes flagFloat {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-4px) rotate(2deg); }
-}
+.lang-card:hover { border-color: var(--kc-blue); }
+.lang-flag { font-size: 30px; margin-bottom: 8px; }
+.lang-name { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 18px; color: #fff; }
+.lang-level { font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 12px; color: var(--kc-blue); letter-spacing: 1px; margin-top: 4px; text-transform: uppercase; }
 
-.lang-name { font-family: 'Rajdhani', sans-serif; font-weight: 800; font-size: 19px; color: #fff; }
-.lang-level { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 12px; color: var(--kc-blue); letter-spacing: 1px; margin-top: 5px; text-transform: uppercase; }
-
-/* ── CERTIFICATIONS CERTIFIÉES ── */
+/* ── CERTIFICATIONS ── */
 .certif-badge {
-  display: inline-flex; align-items: center; gap: 18px;
-  background: var(--card-bg); border: 1px solid var(--kc-blue);
-  border-radius: 4px; padding: 20px 30px;
-  box-shadow: 0 0 30px rgba(0, 132, 255, 0.2);
-  backdrop-filter: blur(10px);
-  transition: transform 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(7, 13, 25, 0.8);
+  border: 1px solid var(--kc-blue);
+  border-radius: 4px;
+  padding: 18px 28px;
+  box-shadow: 0 0 20px rgba(0, 132, 255, 0.1);
+  backdrop-filter: blur(4px);
 }
-.certif-badge:hover { transform: scale(1.02); }
-.certif-icon { font-size: 32px; filter: drop-shadow(0 0 10px rgba(255,215,0,0.5)); }
-.certif-name { font-family: 'Rajdhani', sans-serif; font-size: 24px; font-weight: 800; color: #fff; }
-.certif-sub { font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 13px; color: var(--muted); margin-top: 3px; }
 
-/* ── STRUCTURAL LINES & FOOTER ── */
+.certif-icon { font-size: 28px; }
+.certif-name { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; color: #fff; }
+.certif-sub { font-family: 'Rajdhani', sans-serif; font-weight: 500; font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+/* ── ELEMENTS GRAPHIOUES DE STRUCTURE ── */
 .divider {
-  position: relative; z-index: 1; height: 1px;
+  position: relative;
+  z-index: 1;
+  height: 1px;
   background: linear-gradient(to right, transparent, var(--border), transparent);
-  max-width: 960px; margin: 0 auto;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 footer {
-  position: relative; z-index: 1; text-align: center;
-  padding: 60px 20px 60px; border-top: 1px solid var(--border);
-  font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 13px;
-  color: var(--muted); letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 40px 20px 60px;
+  border-top: 1px solid var(--border);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--muted);
+  letter-spacing: 1px;
 }
-footer span { color: var(--kc-blue); font-weight: 700; }
+
+footer span { color: var(--kc-blue); font-weight: 600; }
