@@ -6,8 +6,8 @@
   --kc-purple: #8226ef;     /* Violet iridescent */
   --kc-pink: #ff52b9;       /* Rose nacre des vagues */
   --kc-orange: #ff7900;     /* Orange vibrant (Accents) */
-  --black: #000000;         /* Fond noir absolu demandé */
-  --card-bg: #070d19;       /* Fond des cartes sombre et froid */
+  --black: #000000;         /* Fond noir absolu */
+  --card-bg: rgba(7, 13, 25, 0.75); /* Fond des cartes sombre et translucide */
   --border: #13223f;        /* Bordures bleutées subtiles */
   --text: #d1dbed;          /* Blanc froid pour la lisibilité */
   --muted: #536c96;         /* Bleu-gris secondaire */
@@ -36,51 +36,43 @@ body {
 body::after {
   content: '';
   position: fixed;
-  /* On élargit largement pour laisser l'animation tourner sans vider les bords */
-  top: -15%;
-  left: -15%;
-  width: 130%;
-  height: 130%;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
   z-index: -1; 
   pointer-events: none;
-  
-  /* Fond noir pur */
   background-color: var(--black);
   
   /* Génération des vagues de nacre croisées (Bleu, Violet, Rose) */
   background-image: 
-    radial-gradient(ellipse at 40% 30%, var(--kc-blue) 0%, rgba(0, 132, 255, 0.4) 20%, transparent 50%),
-    radial-gradient(ellipse at 70% 60%, var(--kc-purple) 0%, rgba(130, 38, 239, 0.3) 25%, transparent 60%),
-    radial-gradient(ellipse at 30% 80%, var(--kc-pink) 0%, rgba(255, 82, 185, 0.25) 15%, transparent 45%),
-    radial-gradient(ellipse at 80% 20%, var(--kc-blue) 0%, transparent 40%);
+    radial-gradient(ellipse at 30% 35%, var(--kc-blue) 0%, rgba(0, 132, 255, 0.4) 25%, transparent 60%),
+    radial-gradient(ellipse at 75% 65%, var(--kc-purple) 0%, rgba(130, 38, 239, 0.35) 30%, transparent 65%),
+    radial-gradient(ellipse at 25% 75%, var(--kc-pink) 0%, rgba(255, 82, 185, 0.3) 20%, transparent 50%),
+    radial-gradient(ellipse at 80% 25%, var(--kc-blue) 0%, transparent 45%);
   
-  background-size: 160% 160%;
+  background-size: 150% 150%;
   
-  /* Filtre combiné magique : le blur fusionne, le contrast sépare les couleurs pour créer l'effet "vague/nappe d'huile" */
-  filter: blur(60px) contrast(1.6) saturate(1.4);
-  opacity: 0.75; /* Permet de garder le fond bien noir et sombre en dessous */
+  /* Effet liquide haut de gamme : le flou fusionne les couleurs, le contraste crée les vagues nettes */
+  filter: blur(50px) contrast(1.8) saturate(1.5);
+  opacity: 0.65;
   
-  /* Animation fluide de déformation de vagues */
-  animation: kcWaves 14s ease-in-out infinite alternate;
+  /* Animation de déformation fluide */
+  animation: kcLiquidWaves 18s ease-in-out infinite alternate;
 }
 
-/* ANIMATION FLUIDE TYPE MAILLOT MÉTAL LIQUIDE */
-@keyframes kcWaves {
+@keyframes kcLiquidWaves {
   0% {
-    background-position: 10% 20%;
+    background-position: 10% 30%;
     transform: scale(1) rotate(0deg);
   }
-  33% {
-    background-position: 90% 40%;
-    transform: scale(1.06) rotate(3deg);
-  }
-  66% {
-    background-position: 40% 80%;
-    transform: scale(0.95) rotate(-2deg);
+  50% {
+    background-position: 85% 70%;
+    transform: scale(1.08) rotate(4deg);
   }
   100% {
-    background-position: 20% 10%;
-    transform: scale(1.03) rotate(1deg);
+    background-position: 30% 10%;
+    transform: scale(0.95) rotate(-2deg);
   }
 }
 
@@ -93,7 +85,7 @@ nav {
   justify-content: center;
   gap: 32px;
   padding: 16px 20px;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
@@ -106,11 +98,12 @@ nav a {
   text-decoration: none;
   letter-spacing: 2px;
   text-transform: uppercase;
-  transition: color 0.2s;
+  transition: color 0.3s, text-shadow 0.3s;
 }
 
 nav a:hover { 
   color: var(--kc-blue); 
+  text-shadow: 0 0 8px rgba(0, 132, 255, 0.6);
 }
 
 /* ── HERO SECTION ── */
@@ -128,9 +121,9 @@ nav a:hover {
 
 .hero-glow {
   position: absolute;
-  width: 500px; height: 500px;
+  width: 600px; height: 600px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 132, 255, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 132, 255, 0.12) 0%, transparent 70%);
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
@@ -145,22 +138,22 @@ nav a:hover {
 
 .avatar-ring {
   position: absolute;
-  inset: -6px;
+  inset: -8px;
   border-radius: 50%;
-  border: 2px solid var(--kc-blue);
-  animation: spin 8s linear infinite;
-  opacity: 0.6;
+  border: 2px dashed var(--kc-blue);
+  animation: spin 12s linear infinite;
+  opacity: 0.7;
 }
 
 .avatar-ring::before {
   content: '';
   position: absolute;
   top: -4px; left: 50%;
-  width: 8px; height: 8px;
+  width: 10px; height: 10px;
   background: var(--kc-pink);
   border-radius: 50%;
   transform: translateX(-50%);
-  box-shadow: 0 0 10px var(--kc-pink);
+  box-shadow: 0 0 12px var(--kc-pink);
 }
 
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -168,13 +161,14 @@ nav a:hover {
 .avatar-placeholder {
   width: 140px; height: 140px;
   border-radius: 50%;
-  background: var(--card-bg);
-  border: 2px solid var(--border);
+  background: #040914;
+  border: 2px solid var(--kc-blue);
   display: flex; align-items: center; justify-content: center;
   font-size: 44px;
-  color: var(--kc-blue);
+  color: #fff;
   font-family: 'Rajdhani', sans-serif;
-  font-weight: 700;
+  font-weight: 800;
+  box-shadow: inset 0 0 20px rgba(0, 132, 255, 0.3);
 }
 
 .hero-label {
@@ -191,7 +185,7 @@ nav a:hover {
 h1 {
   font-family: 'Rajdhani', sans-serif;
   font-size: clamp(48px, 8vw, 90px);
-  font-weight: 700;
+  font-weight: 800;
   color: #fff;
   letter-spacing: -1px;
   line-height: 1;
@@ -200,39 +194,41 @@ h1 {
 
 h1 span { 
   color: var(--kc-orange); 
-  text-shadow: 0 0 30px rgba(255, 121, 0, 0.3); 
+  text-shadow: 0 0 35px rgba(255, 121, 0, 0.4); 
 }
 
 .hero-title {
   font-family: 'Rajdhani', sans-serif;
   font-weight: 500;
   font-size: clamp(14px, 2vw, 18px);
-  color: var(--muted);
+  color: var(--text);
   margin-top: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
+  opacity: 0.8;
   animation: fadeDown 0.8s 0.3s ease both;
 }
 
 .hero-badge {
   display: inline-block;
   margin-top: 24px;
-  padding: 8px 22px;
+  padding: 10px 24px;
   border: 1px solid var(--kc-blue);
   border-radius: 4px;
   font-family: 'Rajdhani', sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 13px;
   color: #fff;
-  background: linear-gradient(135deg, rgba(0, 132, 255, 0.15), rgba(130, 38, 239, 0.15));
+  background: linear-gradient(135deg, rgba(0, 132, 255, 0.2), rgba(130, 38, 239, 0.2));
   text-transform: uppercase;
   letter-spacing: 1px;
+  backdrop-filter: blur(4px);
   animation: pulse-border 2s infinite, fadeDown 0.8s 0.4s ease both;
 }
 
 @keyframes pulse-border {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.2); }
-  50% { box-shadow: 0 0 0 6px rgba(0, 132, 255, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(0, 132, 255, 0); }
 }
 
 .hero-contacts {
@@ -249,11 +245,12 @@ h1 span {
   font-family: 'Rajdhani', sans-serif;
   font-weight: 600;
   letter-spacing: 1px;
-  transition: color 0.2s;
+  transition: color 0.2s, transform 0.2s;
 }
 
 .hero-contacts a:hover { 
   color: var(--kc-blue); 
+  transform: translateY(-2px);
 }
 
 .scroll-hint {
@@ -266,12 +263,12 @@ h1 span {
   align-items: center;
   gap: 6px;
   animation: fadeDown 0.8s 0.8s ease both;
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 .scroll-hint span { 
   font-family: 'Rajdhani', sans-serif; 
-  font-weight: 600;
+  font-weight: 700;
   font-size: 11px; 
   letter-spacing: 3px; 
   color: var(--kc-blue); 
@@ -288,7 +285,7 @@ h1 span {
 
 @keyframes bounce { 
   0%,100%{transform:rotate(45deg) translateY(0)} 
-  50%{transform:rotate(45deg) translateY(5px)} 
+  50%{transform:rotate(45deg) translateY(6px)} 
 }
 
 @keyframes fadeDown {
@@ -296,13 +293,13 @@ h1 span {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ── SECTIONS STRUCTURAL ── */
+/* ── CONFIGURATION DES SECTIONS ── */
 section {
   position: relative;
   z-index: 1;
   max-width: 960px;
   margin: 0 auto;
-  padding: 70px 24px;
+  padding: 80px 24px;
 }
 
 .section-header {
@@ -315,7 +312,7 @@ section {
 .section-num {
   font-family: 'Rajdhani', sans-serif;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--kc-orange);
   letter-spacing: 2px;
 }
@@ -333,10 +330,10 @@ section {
   flex: 1;
   height: 1px;
   background: linear-gradient(to right, var(--kc-blue), var(--kc-purple), transparent);
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
-/* ── TEXT CONTENT / CARNET DE SUIVI ── */
+/* ── BLOCS DE TEXTE & CARNET DE SUIVI ── */
 .about-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -347,12 +344,13 @@ section {
   font-size: 15px;
   line-height: 1.8;
   color: var(--text);
-  padding: 24px;
-  background: rgba(7, 13, 25, 0.8);
+  padding: 28px;
+  background: var(--card-bg);
   border: 1px solid var(--border);
-  border-left: 3px solid var(--kc-blue);
+  border-left: 4px solid var(--kc-blue);
   border-radius: 4px;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .day-highlight {
@@ -360,18 +358,20 @@ section {
   font-weight: 700;
   color: var(--kc-orange);
   letter-spacing: 1px;
+  display: inline-block;
+  margin-top: 6px;
 }
 
-/* ── CARDS (PROJETS & EXPÉRIENCES) ── */
+/* ── EFFET DE GLOW ET STYLE SUR LES CARTES GÉNÉRIQUES ── */
 .card {
-  background: rgba(7, 13, 25, 0.8);
+  background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 28px;
   position: relative;
   transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
   overflow: hidden;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
 }
 
 .card::before {
@@ -384,9 +384,9 @@ section {
 }
 
 .card:hover { 
-  border-color: rgba(0, 132, 255, 0.3); 
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(0, 132, 255, 0.05);
+  border-color: rgba(0, 132, 255, 0.5); 
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 132, 255, 0.15);
 }
 
 .card:hover::before { height: 100%; }
@@ -448,17 +448,18 @@ section {
 @media(max-width:640px){ .stage-grid{ grid-template-columns:1fr; } }
 
 .stage-card {
-  background: rgba(7, 13, 25, 0.8);
+  background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 4px;
   overflow: hidden;
-  transition: border-color 0.3s, transform 0.3s;
-  backdrop-filter: blur(4px);
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  backdrop-filter: blur(8px);
 }
 
 .stage-card:hover { 
-  border-color: rgba(0, 132, 255, 0.4); 
-  transform: translateY(-4px); 
+  border-color: rgba(0, 132, 255, 0.5); 
+  transform: translateY(-5px); 
+  box-shadow: 0 12px 24px rgba(130, 38, 239, 0.15);
 }
 
 .stage-header {
@@ -522,7 +523,7 @@ section {
 
 .status-badge {
   display: inline-block;
-  background: rgba(0, 132, 255, 0.15);
+  background: rgba(0, 132, 255, 0.2);
   border: 1px solid var(--kc-blue);
   padding: 4px 12px;
   border-radius: 3px;
@@ -531,6 +532,7 @@ section {
   font-size: 12px;
   letter-spacing: 1px;
   color: #fff !important;
+  box-shadow: 0 0 10px rgba(0, 132, 255, 0.4);
 }
 .status-badge::before { display: none !important; }
 
@@ -542,28 +544,29 @@ section {
 }
 
 .skill-chip {
-  background: rgba(7, 13, 25, 0.8);
+  background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 18px 22px;
   display: flex;
   align-items: center;
   gap: 14px;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
   cursor: default;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
 }
 
 .skill-chip:hover { 
   border-color: var(--kc-blue); 
-  box-shadow: 0 5px 15px rgba(0, 132, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 132, 255, 0.15);
 }
 
 .skill-icon {
   font-size: 20px;
   width: 36px; height: 36px;
   display: flex; align-items: center; justify-content: center;
-  background: rgba(0, 132, 255, 0.1);
+  background: rgba(0, 132, 255, 0.15);
   border-radius: 4px;
   color: var(--kc-blue);
   flex-shrink: 0;
@@ -581,7 +584,7 @@ section {
 }
 
 .soft-chip {
-  background: rgba(7, 13, 25, 0.8);
+  background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 14px 18px;
@@ -590,52 +593,68 @@ section {
   font-weight: 600;
   font-size: 16px;
   color: var(--text);
-  transition: all 0.2s;
-  backdrop-filter: blur(4px);
+  transition: all 0.3s;
+  backdrop-filter: blur(8px);
 }
 
 .soft-chip:hover {
   border-color: var(--kc-blue);
   color: #fff;
-  background: linear-gradient(135deg, rgba(0, 132, 255, 0.1), rgba(130, 38, 239, 0.1));
+  transform: scale(1.03);
+  background: linear-gradient(135deg, rgba(0, 132, 255, 0.15), rgba(130, 38, 239, 0.15));
 }
 
 /* ── FORMATIONS ── */
 .formation-list { display: flex; flex-direction: column; gap: 20px; }
 
 .formation-item {
-  background: rgba(7, 13, 25, 0.8);
+  background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 24px 28px;
   display: flex;
   align-items: center;
   gap: 20px;
-  transition: border-color 0.3s;
-  backdrop-filter: blur(4px);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  backdrop-filter: blur(8px);
 }
 
-.formation-item:hover { border-color: rgba(0, 132, 255, 0.3); }
+.formation-item:hover { 
+  border-color: rgba(0, 132, 255, 0.4); 
+  box-shadow: 0 8px 20px rgba(0, 132, 255, 0.1);
+}
 .formation-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--kc-blue); box-shadow: 0 0 10px var(--kc-blue); flex-shrink: 0; }
 .formation-name { font-family: 'Rajdhani', sans-serif; font-size: 19px; font-weight: 700; color: #fff; }
 .formation-detail { font-family: 'Rajdhani', sans-serif; font-weight: 500; font-size: 13px; color: var(--muted); margin-top: 4px; letter-spacing: 1px; }
 
-/* ── LANGUES ── */
+/* ── LANGUES AVEC DRAPEAUX ÉMOJIS ── */
 .lang-grid { display: flex; gap: 20px; flex-wrap: wrap; }
 
 .lang-card {
-  background: rgba(7, 13, 25, 0.8);
+  background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 22px 32px;
   text-align: center;
-  min-width: 150px;
-  transition: border-color 0.3s;
-  backdrop-filter: blur(4px);
+  min-width: 160px;
+  transition: border-color 0.3s, transform 0.3s;
+  backdrop-filter: blur(8px);
 }
 
-.lang-card:hover { border-color: var(--kc-blue); }
-.lang-flag { font-size: 30px; margin-bottom: 8px; }
+.lang-card:hover { 
+  border-color: var(--kc-blue); 
+  transform: translateY(-2px);
+}
+
+/* Gestion de la taille et du rendu de l'émoji drapeau */
+.lang-flag { 
+  font-size: 36px; 
+  line-height: 1;
+  margin-bottom: 10px; 
+  display: inline-block;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+
 .lang-name { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 18px; color: #fff; }
 .lang-level { font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 12px; color: var(--kc-blue); letter-spacing: 1px; margin-top: 4px; text-transform: uppercase; }
 
@@ -643,20 +662,20 @@ section {
 .certif-badge {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  background: rgba(7, 13, 25, 0.8);
+  gap: 16px;
+  background: var(--card-bg);
   border: 1px solid var(--kc-blue);
   border-radius: 4px;
   padding: 18px 28px;
-  box-shadow: 0 0 20px rgba(0, 132, 255, 0.1);
-  backdrop-filter: blur(4px);
+  box-shadow: 0 0 25px rgba(0, 132, 255, 0.15);
+  backdrop-filter: blur(8px);
 }
 
-.certif-icon { font-size: 28px; }
+.certif-icon { font-size: 28px; filter: drop-shadow(0 0 8px rgba(255,215,0,0.4)); }
 .certif-name { font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700; color: #fff; }
 .certif-sub { font-family: 'Rajdhani', sans-serif; font-weight: 500; font-size: 12px; color: var(--muted); margin-top: 2px; }
 
-/* ── ELEMENTS GRAPHIOUES DE STRUCTURE ── */
+/* ── SÉPARATEURS ET FOOTER ── */
 .divider {
   position: relative;
   z-index: 1;
@@ -670,7 +689,7 @@ footer {
   position: relative;
   z-index: 1;
   text-align: center;
-  padding: 40px 20px 60px;
+  padding: 50px 20px 60px;
   border-top: 1px solid var(--border);
   font-family: 'Rajdhani', sans-serif;
   font-weight: 500;
