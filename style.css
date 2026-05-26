@@ -34,7 +34,6 @@ body {
 body::after {
   content: '';
   position: fixed;
-  /* On élargit largement pour laisser l'animation tourner sans vider les bords */
   top: -15%;
   left: -15%;
   width: 130%;
@@ -42,10 +41,8 @@ body::after {
   z-index: -1; 
   pointer-events: none;
   
-  /* Fond noir pur */
   background-color: var(--black);
   
-  /* Génération des vagues de nacre croisées (Bleu, Violet, Rose) */
   background-image: 
     radial-gradient(ellipse at 40% 30%, var(--kc-blue) 0%, rgba(0, 132, 255, 0.4) 20%, transparent 50%),
     radial-gradient(ellipse at 70% 60%, var(--kc-purple) 0%, rgba(130, 38, 239, 0.3) 25%, transparent 60%),
@@ -54,32 +51,17 @@ body::after {
   
   background-size: 160% 160%;
   
-  /* Filtre combiné magique : le blur fusionne, le contrast sépare les couleurs pour créer l'effet "vague/nappe d'huile" */
   filter: blur(60px) contrast(1.6) saturate(1.4);
-  opacity: 0.75; /* Permet de garder le fond bien noir et sombre en dessous */
+  opacity: 0.75; 
   
-  /* Animation fluide de déformation de vagues */
   animation: kcWaves 14s ease-in-out infinite alternate;
 }
 
-/* ANIMATION FLUIDE TYPE MAILLOT MÉTAL LIQUIDE */
 @keyframes kcWaves {
-  0% {
-    background-position: 10% 20%;
-    transform: scale(1) rotate(0deg);
-  }
-  33% {
-    background-position: 90% 40%;
-    transform: scale(1.06) rotate(3deg);
-  }
-  66% {
-    background-position: 40% 80%;
-    transform: scale(0.95) rotate(-2deg);
-  }
-  100% {
-    background-position: 20% 10%;
-    transform: scale(1.03) rotate(1deg);
-  }
+  0% { background-position: 10% 20%; transform: scale(1) rotate(0deg); }
+  33% { background-position: 90% 40%; transform: scale(1.06) rotate(3deg); }
+  66% { background-position: 40% 80%; transform: scale(0.95) rotate(-2deg); }
+  100% { background-position: 20% 10%; transform: scale(1.03) rotate(1deg); }
 }
 
 /* ── NAVIGATION ── */
@@ -97,6 +79,7 @@ nav {
 }
 
 nav a {
+  position: relative;
   font-family: 'Rajdhani', sans-serif;
   font-weight: 600;
   font-size: 13px;
@@ -104,11 +87,26 @@ nav a {
   text-decoration: none;
   letter-spacing: 2px;
   text-transform: uppercase;
-  transition: color 0.2s;
+  transition: color 0.3s ease;
+}
+
+/* Nouvelle animation : Ligne qui s'ouvre sous les liens au survol */
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 50%;
+  width: 0; height: 2px;
+  background: linear-gradient(90deg, var(--kc-blue), var(--kc-pink));
+  transition: width 0.3s ease, left 0.3s ease;
 }
 
 nav a:hover { 
-  color: var(--kc-blue); 
+  color: #fff; 
+}
+
+nav a:hover::after {
+  width: 100%;
+  left: 0;
 }
 
 /* ── HERO SECTION ── */
@@ -124,41 +122,48 @@ nav a:hover {
   padding: 60px 20px;
 }
 
+/* Nouvelle animation : Pulsation lente de la lueur arrière-plan */
 .hero-glow {
   position: absolute;
-  width: 500px; height: 500px;
+  width: 600px; height: 600px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 132, 255, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 132, 255, 0.15) 0%, rgba(130, 38, 239, 0.05) 40%, transparent 70%);
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
+  animation: pulseGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
 }
 
 .avatar-wrap {
   position: relative;
   width: 140px; height: 140px;
   margin: 0 auto 30px;
-  animation: fadeDown 0.8s ease both;
+  animation: fadeDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .avatar-ring {
   position: absolute;
   inset: -6px;
   border-radius: 50%;
-  border: 2px solid var(--kc-blue);
-  animation: spin 8s linear infinite;
-  opacity: 0.6;
+  border: 2px dashed var(--kc-blue); /* Rendu en tirets pour un effet plus "tech" en rotation */
+  animation: spin 12s linear infinite;
+  opacity: 0.8;
 }
 
 .avatar-ring::before {
   content: '';
   position: absolute;
   top: -4px; left: 50%;
-  width: 8px; height: 8px;
+  width: 10px; height: 10px;
   background: var(--kc-pink);
   border-radius: 50%;
   transform: translateX(-50%);
-  box-shadow: 0 0 10px var(--kc-pink);
+  box-shadow: 0 0 15px var(--kc-pink), 0 0 30px var(--kc-pink);
 }
 
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -173,6 +178,15 @@ nav a:hover {
   color: var(--kc-blue);
   font-family: 'Rajdhani', sans-serif;
   font-weight: 700;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s;
+}
+
+/* Effet au survol de l'avatar */
+.avatar-wrap:hover .avatar-placeholder {
+  transform: scale(1.05);
+  border-color: var(--kc-pink);
+  color: #fff;
+  text-shadow: 0 0 10px var(--kc-blue);
 }
 
 .hero-label {
@@ -183,7 +197,7 @@ nav a:hover {
   letter-spacing: 4px;
   text-transform: uppercase;
   margin-bottom: 14px;
-  animation: fadeDown 0.8s 0.1s ease both;
+  animation: fadeDown 0.8s 0.1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 h1 {
@@ -193,12 +207,12 @@ h1 {
   color: #fff;
   letter-spacing: -1px;
   line-height: 1;
-  animation: fadeDown 0.8s 0.2s ease both;
+  animation: fadeDown 0.8s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 h1 span { 
   color: var(--kc-orange); 
-  text-shadow: 0 0 30px rgba(255, 121, 0, 0.3); 
+  text-shadow: 0 0 30px rgba(255, 121, 0, 0.4); 
 }
 
 .hero-title {
@@ -209,7 +223,7 @@ h1 span {
   margin-top: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  animation: fadeDown 0.8s 0.3s ease both;
+  animation: fadeDown 0.8s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .hero-badge {
@@ -225,18 +239,23 @@ h1 span {
   background: linear-gradient(135deg, rgba(0, 132, 255, 0.15), rgba(130, 38, 239, 0.15));
   text-transform: uppercase;
   letter-spacing: 1px;
-  animation: pulse-border 2s infinite, fadeDown 0.8s 0.4s ease both;
+  animation: pulse-border 2s infinite, fadeDown 0.8s 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: background 0.3s;
+}
+
+.hero-badge:hover {
+  background: linear-gradient(135deg, rgba(0, 132, 255, 0.3), rgba(255, 82, 185, 0.3));
 }
 
 @keyframes pulse-border {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.2); }
-  50% { box-shadow: 0 0 0 6px rgba(0, 132, 255, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 132, 255, 0.4), inset 0 0 0 0 rgba(0, 132, 255, 0.2); }
+  50% { box-shadow: 0 0 0 10px rgba(0, 132, 255, 0), inset 0 0 10px rgba(0, 132, 255, 0.1); }
 }
 
 .hero-contacts {
   display: flex; gap: 24px; flex-wrap: wrap; justify-content: center;
   margin-top: 32px;
-  animation: fadeDown 0.8s 0.5s ease both;
+  animation: fadeDown 0.8s 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .hero-contacts a {
@@ -247,11 +266,12 @@ h1 span {
   font-family: 'Rajdhani', sans-serif;
   font-weight: 600;
   letter-spacing: 1px;
-  transition: color 0.2s;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .hero-contacts a:hover { 
   color: var(--kc-blue); 
+  transform: translateY(-2px);
 }
 
 .scroll-hint {
@@ -286,11 +306,11 @@ h1 span {
 
 @keyframes bounce { 
   0%,100%{transform:rotate(45deg) translateY(0)} 
-  50%{transform:rotate(45deg) translateY(5px)} 
+  50%{transform:rotate(45deg) translateY(6px); border-color: var(--kc-pink);} 
 }
 
 @keyframes fadeDown {
-  from { opacity: 0; transform: translateY(-20px); }
+  from { opacity: 0; transform: translateY(-30px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -351,6 +371,12 @@ section {
   border-left: 3px solid var(--kc-blue);
   border-radius: 4px;
   backdrop-filter: blur(4px);
+  transition: border-left-color 0.4s, transform 0.3s ease;
+}
+
+.about-text:hover {
+  border-left-color: var(--kc-pink);
+  transform: translateX(4px); /* Léger décalage élégant au survol */
 }
 
 .day-highlight {
@@ -367,7 +393,7 @@ section {
   border-radius: 4px;
   padding: 28px;
   position: relative;
-  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  transition: border-color 0.3s, transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s;
   overflow: hidden;
   backdrop-filter: blur(4px);
 }
@@ -377,17 +403,33 @@ section {
   position: absolute;
   top: 0; left: 0;
   width: 3px; height: 0;
-  background: linear-gradient(to bottom, var(--kc-blue), var(--kc-purple));
-  transition: height 0.4s ease;
+  background: linear-gradient(to bottom, var(--kc-blue), var(--kc-pink));
+  transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Effet "scanner de nacre" qui traverse la carte au survol */
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 134, 255, 0.05), transparent);
+  transform: skewX(-25deg);
+  pointer-events: none;
 }
 
 .card:hover { 
-  border-color: rgba(0, 132, 255, 0.3); 
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(0, 132, 255, 0.05);
+  border-color: rgba(0, 132, 255, 0.4); 
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 132, 255, 0.1);
 }
 
 .card:hover::before { height: 100%; }
+.card:hover::after { animation: shine 0.75s ease-out; }
+
+@keyframes shine {
+  100% { left: 200%; }
+}
 
 .card-label {
   font-family: 'Rajdhani', sans-serif;
@@ -405,7 +447,10 @@ section {
   font-weight: 700;
   color: #fff;
   margin-bottom: 6px;
+  transition: color 0.3s;
 }
+
+.card:hover .card-title { color: var(--kc-blue); }
 
 .card-sub {
   font-family: 'Rajdhani', sans-serif;
@@ -428,6 +473,11 @@ section {
   padding-left: 18px;
   position: relative;
   line-height: 1.5;
+  transition: transform 0.2s ease;
+}
+
+.card:hover ul li {
+  transform: translateX(2px);
 }
 
 .card ul li::before {
@@ -435,6 +485,12 @@ section {
   position: absolute; left: 0;
   color: var(--kc-blue);
   font-size: 11px;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.card:hover ul li::before {
+  color: var(--kc-pink);
+  transform: scale(1.2) rotate(45deg);
 }
 
 /* ── STAGES GRID ── */
@@ -450,13 +506,14 @@ section {
   border: 1px solid var(--border);
   border-radius: 4px;
   overflow: hidden;
-  transition: border-color 0.3s, transform 0.3s;
+  transition: border-color 0.3s, transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s;
   backdrop-filter: blur(4px);
 }
 
 .stage-card:hover { 
-  border-color: rgba(0, 132, 255, 0.4); 
-  transform: translateY(-4px); 
+  border-color: rgba(0, 132, 255, 0.5); 
+  transform: translateY(-6px); 
+  box-shadow: 0 12px 25px rgba(130, 38, 239, 0.08);
 }
 
 .stage-header {
@@ -472,6 +529,11 @@ section {
   bottom: -1px; left: 0; right: 0;
   height: 1px;
   background: linear-gradient(to right, var(--kc-blue), var(--kc-purple), transparent);
+  transition: opacity 0.3s;
+}
+
+.stage-card:hover .stage-header::after {
+  background: linear-gradient(to right, var(--kc-pink), var(--kc-blue), transparent);
 }
 
 .stage-year {
@@ -488,7 +550,6 @@ section {
   font-size: 22px;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 4px;
 }
 
 .stage-company {
@@ -496,6 +557,7 @@ section {
   color: var(--kc-blue);
   font-family: 'Rajdhani', sans-serif;
   font-weight: 600;
+  margin-top: 4px;
 }
 
 .stage-body { padding: 22px 24px; }
@@ -516,6 +578,12 @@ section {
   font-family: 'Rajdhani', sans-serif;
   font-weight: 700;
   font-size: 14px;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.stage-card:hover .stage-body ul li::before {
+  color: var(--kc-pink);
+  transform: translateX(3px);
 }
 
 .status-badge {
@@ -529,7 +597,14 @@ section {
   font-size: 12px;
   letter-spacing: 1px;
   color: #fff !important;
+  animation: badgeGlow 2s infinite alternate;
 }
+
+@keyframes badgeGlow {
+  from { box-shadow: 0 0 4px rgba(0, 132, 255, 0.2); }
+  to { box-shadow: 0 0 12px rgba(0, 132, 255, 0.5); border-color: var(--kc-pink); }
+}
+
 .status-badge::before { display: none !important; }
 
 /* ── SKILLS ── */
@@ -547,14 +622,15 @@ section {
   display: flex;
   align-items: center;
   gap: 14px;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s ease;
   cursor: default;
   backdrop-filter: blur(4px);
 }
 
 .skill-chip:hover { 
   border-color: var(--kc-blue); 
-  box-shadow: 0 5px 15px rgba(0, 132, 255, 0.1);
+  box-shadow: 0 5px 20px rgba(0, 132, 255, 0.15);
+  transform: scale(1.02);
 }
 
 .skill-icon {
@@ -565,6 +641,13 @@ section {
   border-radius: 4px;
   color: var(--kc-blue);
   flex-shrink: 0;
+  transition: background 0.3s, color 0.3s, transform 0.4s ease;
+}
+
+.skill-chip:hover .skill-icon {
+  background: var(--kc-blue);
+  color: #fff;
+  transform: rotate(360deg);
 }
 
 .skill-info { flex: 1; }
@@ -588,14 +671,16 @@ section {
   font-weight: 600;
   font-size: 16px;
   color: var(--text);
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   backdrop-filter: blur(4px);
 }
 
 .soft-chip:hover {
-  border-color: var(--kc-blue);
+  border-color: var(--kc-pink);
   color: #fff;
-  background: linear-gradient(135deg, rgba(0, 132, 255, 0.1), rgba(130, 38, 239, 0.1));
+  background: linear-gradient(135deg, rgba(0, 132, 255, 0.15), rgba(255, 82, 185, 0.15));
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 82, 185, 0.1);
 }
 
 /* ── FORMATIONS ── */
@@ -609,12 +694,29 @@ section {
   display: flex;
   align-items: center;
   gap: 20px;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, transform 0.3s;
   backdrop-filter: blur(4px);
 }
 
-.formation-item:hover { border-color: rgba(0, 132, 255, 0.3); }
-.formation-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--kc-blue); box-shadow: 0 0 10px var(--kc-blue); flex-shrink: 0; }
+.formation-item:hover { 
+  border-color: rgba(0, 132, 255, 0.4); 
+  transform: translateX(6px);
+}
+
+.formation-dot { 
+  width: 10px; height: 10px; 
+  border-radius: 50%; 
+  background: var(--kc-blue); 
+  box-shadow: 0 0 10px var(--kc-blue); 
+  flex-shrink: 0; 
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.formation-item:hover .formation-dot {
+  background: var(--kc-pink);
+  box-shadow: 0 0 15px var(--kc-pink);
+}
+
 .formation-name { font-family: 'Rajdhani', sans-serif; font-size: 19px; font-weight: 700; color: #fff; }
 .formation-detail { font-family: 'Rajdhani', sans-serif; font-weight: 500; font-size: 13px; color: var(--muted); margin-top: 4px; letter-spacing: 1px; }
 
@@ -628,12 +730,26 @@ section {
   padding: 22px 32px;
   text-align: center;
   min-width: 150px;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
   backdrop-filter: blur(4px);
 }
 
-.lang-card:hover { border-color: var(--kc-blue); }
-.lang-flag { font-size: 30px; margin-bottom: 8px; }
+.lang-card:hover { 
+  border-color: var(--kc-blue); 
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 132, 255, 0.1);
+}
+
+.lang-flag { 
+  font-size: 30px; 
+  margin-bottom: 8px; 
+  display: inline-block;
+  transition: transform 0.3s;
+}
+.lang-card:hover .lang-flag {
+  transform: scale(1.2);
+}
+
 .lang-name { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 18px; color: #fff; }
 .lang-level { font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 12px; color: var(--kc-blue); letter-spacing: 1px; margin-top: 4px; text-transform: uppercase; }
 
@@ -648,6 +764,15 @@ section {
   padding: 18px 28px;
   box-shadow: 0 0 20px rgba(0, 132, 255, 0.1);
   backdrop-filter: blur(4px);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.certif-badge:hover {
+  border-color: var(--kc-pink);
+  box-shadow: 0 0 25px rgba(255, 82, 185, 0.25);
+  transform: translateY(-2px);
 }
 
 .certif-icon { font-size: 28px; }
@@ -677,4 +802,14 @@ footer {
   letter-spacing: 1px;
 }
 
-footer span { color: var(--kc-blue); font-weight: 600; }
+footer span { 
+  color: var(--kc-blue); 
+  font-weight: 600; 
+  transition: color 0.3s;
+  display: inline-block;
+}
+
+footer:hover span {
+  color: var(--kc-pink);
+  text-shadow: 0 0 10px var(--kc-pink);
+}
