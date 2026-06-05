@@ -1,487 +1,487 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lorenzo Provot — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
- <link rel="stylesheet" href="style.css?v=2">
- <style>
-   /* Styles de secours spécifiques ajoutés pour garantir l'affichage propre des blocs de code du Jour 16 */
-   .process-flow {
-     background-color: rgba(23, 162, 184, 0.1);
-     border-left: 4px solid #17a2b8;
-     padding: 15px;
-     font-family: monospace;
-     white-space: pre-wrap;
-     margin: 15px 0;
-     color: #fff;
-   }
-   .log-output {
-     background-color: #1e1e1e;
-     color: #d4d4d4;
-     padding: 15px;
-     border-radius: 5px;
-     font-family: 'Courier New', Courier, monospace;
-     font-size: 0.9em;
-     overflow-x: auto;
-     white-space: pre;
-     margin: 15px 0;
-   }
-   .code-block {
-     background-color: rgba(255, 255, 255, 0.05);
-     border: 1px solid rgba(255, 255, 255, 0.1);
-     padding: 15px;
-     border-radius: 5px;
-     font-family: monospace;
-     white-space: pre;
-     overflow-x: auto;
-     color: #e0e0e0;
-     margin: 15px 0;
-   }
-   .status-success { color: #27ae60; font-weight: bold; }
-   .status-failure { color: #c0392b; font-weight: bold; }
-   .inner-list { margin-left: 20px; list-style-type: circle; }
- </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lorenzo Provot — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="style.css?v=2">
+ <style>
+   /* Styles de secours spécifiques ajoutés pour garantir l'affichage propre des blocs de code du Jour 16 */
+   .process-flow {
+     background-color: rgba(23, 162, 184, 0.1);
+     border-left: 4px solid #17a2b8;
+     padding: 15px;
+     font-family: monospace;
+     white-space: pre-wrap;
+     margin: 15px 0;
+     color: #fff;
+   }
+   .log-output {
+     background-color: #1e1e1e;
+     color: #d4d4d4;
+     padding: 15px;
+     border-radius: 5px;
+     font-family: 'Courier New', Courier, monospace;
+     font-size: 0.9em;
+     overflow-x: auto;
+     white-space: pre;
+     margin: 15px 0;
+   }
+   .code-block {
+     background-color: rgba(255, 255, 255, 0.05);
+     border: 1px solid rgba(255, 255, 255, 0.1);
+     padding: 15px;
+     border-radius: 5px;
+     font-family: monospace;
+     white-space: pre;
+     overflow-x: auto;
+     color: #e0e0e0;
+     margin: 15px 0;
+   }
+   .status-success { color: #27ae60; font-weight: bold; }
+   .status-failure { color: #c0392b; font-weight: bold; }
+   .inner-list { margin-left: 20px; list-style-type: circle; }
+ </style>
 </head>
 <body>
-    
-  <nav>
-    <a href="#hero">Home</a>
-    <a href="#about">Profil</a>
-    <a href="#stages">Stages</a>
-    <a href="#experiences">Expériences</a>
-    <a href="#skills">Skills</a>
-    <a href="#formation">Formation</a>
-    <a href="#stage-detail">Stage 1</a>
-    <a href="#carnet">Carnet de Stage</a>
-  </nav>
+    
+  <nav>
+    <a href="#hero">Home</a>
+    <a href="#about">Profil</a>
+    <a href="#stages">Stages</a>
+    <a href="#experiences">Expériences</a>
+    <a href="#skills">Skills</a>
+    <a href="#formation">Formation</a>
+    <a href="#stage-detail">Stage 1</a>
+    <a href="#carnet">Carnet de Stage</a>
+  </nav>
 
-  <section id="hero">
-    <div class="hero-glow"></div>
-    <div class="avatar-wrap">
-      <div class="avatar-ring"></div>
-      <div class="avatar-placeholder">LP</div>
-    </div>
+  <section id="hero">
+    <div class="hero-glow"></div>
+    <div class="avatar-wrap">
+      <div class="avatar-ring"></div>
+      <div class="avatar-placeholder">LP</div>
+    </div>
 
-    <p class="hero-label">// Portfolio — BTS SIO</p>
-    <h1>LORENZO <span>PROVOT</span></h1>
-    <p class="hero-title">Réseaux &amp; Systèmes · Création numérique · Jeux Vidéo</p>
-    
-    <div class="hero-badge">🔵 Recherche un stage · 11 Mai — 19 Juin</div>
+    <p class="hero-label">// Portfolio — BTS SIO</p>
+    <h1>LORENZO <span>PROVOT</span></h1>
+    <p class="hero-title">Réseaux &amp; Systèmes · Création numérique · Jeux Vidéo</p>
+    
+    <div class="hero-badge">🔵 Recherche un stage · 11 Mai — 19 Juin</div>
 
-    <div class="hero-contacts">
-      <a href="mailto:lorenzo.provot88@gmail.com">
-        <span class="icon">✉</span> lorenzo.provot88@gmail.com
-      </a>
-      <a href="tel:0628076734">
-        <span class="icon">📞</span> 06 28 07 67 34
-      </a>
-      <a href="#">
-        <span class="icon">📍</span> Mions, France
-      </a>
-    </div>
+    <div class="hero-contacts">
+      <a href="mailto:lorenzo.provot88@gmail.com">
+        <span class="icon">✉</span> lorenzo.provot88@gmail.com
+      </a>
+      <a href="tel:0628076734">
+        <span class="icon">📞</span> 06 28 07 67 34
+      </a>
+      <a href="#">
+        <span class="icon">📍</span> Mions, France
+      </a>
+    </div>
 
-    <div class="scroll-hint">
-      <span>SCROLL</span>
-      <div class="scroll-arrow"></div>
-    </div>
-  </section>
+    <div class="scroll-hint">
+      <span>SCROLL</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
 
-  <div class="divider"></div>
+  <div class="divider"></div>
 
-  <section id="about">
-    <div class="section-header">
-      <span class="section-num">01</span>
-      <h2 class="section-title">À PROPOS</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="about-grid">
-      <div class="about-text">
-        Passionné par la création numérique et le développement de jeux vidéo, j'ai naturellement élargi mes compétences vers l'informatique technique et les réseaux. Actuellement en BTS SIO première année à la Martinière Duchère, je souhaite approfondir mes connaissances théoriques et pratiques dans ce domaine pour enrichir mon expertise. Je suis à la recherche d'un stage du <strong>11 Mai au 19 Juin</strong>.
-      </div>
-    </div>
-  </section>
+  <section id="about">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">À PROPOS</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        Passionné par la création numérique et le développement de jeux vidéo, j'ai naturellement élargi mes compétences vers l'informatique technique et les réseaux. Actuellement en BTS SIO première année à la Martinière Duchère, je souhaite approfondir mes connaissances théoriques et pratiques dans ce domaine pour enrichir mon expertise. Je suis à la recherche d'un stage du <strong>11 Mai au 19 Juin</strong>.
+      </div>
+    </div>
+  </section>
 
-  <div class="divider"></div>
+  <div class="divider"></div>
 
-  <section id="stages">
-    <div class="section-header">
-      <span class="section-num">02</span>
-      <h2 class="section-title">STAGES</h2>
-      <div class="section-line"></div>
-    </div>
+  <section id="stages">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">STAGES</h2>
+      <div class="section-line"></div>
+    </div>
 
-    <div class="stage-grid">
-      <div class="stage-card">
-        <div class="stage-header">
-          <div class="stage-year">// STAGE · 1ÈRE ANNÉE BTS SIO</div>
-          <div class="stage-name">Kingspan Light + Air</div>
-          <div class="stage-company">Entreprise Néerlandaise dans la Production de désenfumage naturel</div>
-        </div>
-        <div class="stage-body">
-          <ul>
-             <li class="status-badge">EN COURS</li>
-          </ul>
-        </div>
-      </div>
+    <div class="stage-grid">
+      <div class="stage-card">
+        <div class="stage-header">
+          <div class="stage-year">// STAGE · 1ÈRE ANNÉE BTS SIO</div>
+          <div class="stage-name">Kingspan Light + Air</div>
+          <div class="stage-company">Entreprise Néerlandaise dans la Production de désenfumage naturel</div>
+        </div>
+        <div class="stage-body">
+          <ul>
+             <li class="status-badge">EN COURS</li>
+          </ul>
+        </div>
+      </div>
 
-      <div class="stage-card">
-        <div class="stage-header">
-          <div class="stage-year">// STAGE · 2ÈME ANNÉE BTS SIO</div>
-          <div class="stage-name">À Définir</div>
-          <div class="stage-company">Objectifs cibles d'infrastructure</div>
-        </div>
-        <div class="stage-body">
-          <ul>
-            <li>Administration réseau &amp; systèmes</li>
-            <li>Configuration de services DNS / DHCP</li>
-            <li>Gestion de VLAN &amp; architecture réseau</li>
-            <li>Virtualisation avec Proxmox / VmWare</li>
-            <li>Analyse réseau avec WireShark</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+      <div class="stage-card">
+        <div class="stage-header">
+          <div class="stage-year">// STAGE · 2ÈME ANNÉE BTS SIO</div>
+          <div class="stage-name">À Définir</div>
+          <div class="stage-company">Objectifs cibles d'infrastructure</div>
+        </div>
+        <div class="stage-body">
+          <ul>
+            <li>Administration réseau &amp; systèmes</li>
+            <li>Configuration de services DNS / DHCP</li>
+            <li>Gestion de VLAN &amp; architecture réseau</li>
+            <li>Virtualisation avec Proxmox / VmWare</li>
+            <li>Analyse réseau avec WireShark</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <div class="divider"></div>
+  <div class="divider"></div>
 
-  <section id="experiences">
-    <div class="section-header">
-      <span class="section-num">03</span>
-      <h2 class="section-title">EXPÉRIENCES</h2>
-      <div class="section-line"></div>
-    </div>
-   
-    <div class="skills-grid">
-      <div class="card">
-        <div class="card-label">// Stage 3ème</div>
-        <div class="card-title">SINETUDES</div>
-        <div class="card-sub">Architecture &amp; BIM</div>
-        <ul>
-          <li>Manipulation du logiciel Excel</li>
-          <li>Logiciels de modélisation de plan de bâtiments (AutoCAD…)</li>
-          <li>Création d'un plan de chalet</li>
-        </ul>
-      </div>
-      
-      <div class="card"> 
-        <div class="card-label">// Stage 2nd</div>
-        <div class="card-title">France 3 Rhône Alpes</div>
-        <div class="card-sub">Découverte de l'audiovisuel et des chaînes télé</div>
-        <ul>
-          <li>Réalisation d'un clip musical</li>
-          <li>Réalisation d'un documentaire</li>
-          <li>Montage vidéo d'un film</li>
-          <li>Manipulation du son en direct</li>
-        </ul>
-      </div>
-     
-      <div class="card">
-        <div class="card-label">// Observation Familiale</div>
-        <div class="card-title">RFI</div>
-        <div class="card-sub">Service &amp; Logistique</div>
-        <ul>
-          <li>Apprentissage de la relation service client</li>
-          <li>Aide aux entreprises</li>
-          <li>Livraison d'outils et de produits</li>
-        </ul>
-      </div> 
-    </div>
-  </section>
+  <section id="experiences">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">EXPÉRIENCES</h2>
+      <div class="section-line"></div>
+    </div>
+   
+    <div class="skills-grid">
+      <div class="card">
+        <div class="card-label">// Stage 3ème</div>
+        <div class="card-title">SINETUDES</div>
+        <div class="card-sub">Architecture &amp; BIM</div>
+        <ul>
+          <li>Manipulation du logiciel Excel</li>
+          <li>Logiciels de modélisation de plan de bâtiments (AutoCAD…)</li>
+          <li>Création d'un plan de chalet</li>
+        </ul>
+      </div>
+      
+      <div class="card"> 
+        <div class="card-label">// Stage 2nd</div>
+        <div class="card-title">France 3 Rhône Alpes</div>
+        <div class="card-sub">Découverte de l'audiovisuel et des chaînes télé</div>
+        <ul>
+          <li>Réalisation d'un clip musical</li>
+          <li>Réalisation d'un documentaire</li>
+          <li>Montage vidéo d'un film</li>
+          <li>Manipulation du son en direct</li>
+        </ul>
+      </div>
+     
+      <div class="card">
+        <div class="card-label">// Observation Familiale</div>
+        <div class="card-title">RFI</div>
+        <div class="card-sub">Service &amp; Logistique</div>
+        <ul>
+          <li>Apprentissage de la relation service client</li>
+          <li>Aide aux entreprises</li>
+          <li>Livraison d'outils et de produits</li>
+        </ul>
+      </div> 
+    </div>
+  </section>
 
-  <div class="divider"></div>
+  <div class="divider"></div>
 
-  <section id="skills">
-    <div class="section-header">
-      <span class="section-num">04</span>
-      <h2 class="section-title">COMPÉTENCES</h2>
-      <div class="section-line"></div>
-    </div>
+  <section id="skills">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">COMPÉTENCES</h2>
+      <div class="section-line"></div>
+    </div>
 
-    <div class="skills-grid">
-      <div class="skill-chip">
-        <div class="skill-icon">🔌</div>
-        <div class="skill-info">
-          <div class="skill-name">Cisco Packet-Tracer</div>
-          <div class="skill-type">Réseau · Simulation</div>
-        </div>
-      </div>
-      <div class="skill-chip">
-        <div class="skill-icon">🖥</div>
-        <div class="skill-info">
-          <div class="skill-name">VmWare</div>
-          <div class="skill-type">Virtualisation</div>
-        </div>
-      </div>
-      <div class="skill-chip">
-        <div class="skill-icon">🦈</div>
-        <div class="skill-info">
-          <div class="skill-name">WireShark</div>
-          <div class="skill-type">Analyse réseau</div>
-        </div>
-      </div>
-      <div class="skill-chip">
-        <div class="skill-icon">⚙️</div>
-        <div class="skill-info">
-          <div class="skill-name">Proxmox</div>
-          <div class="skill-type">Virtualisation · Serveur</div>
-        </div>
-      </div>
-      <div class="skill-chip">
-        <div class="skill-icon">🌐</div>
-        <div class="skill-info">
-          <div class="skill-name">DNS / DHCP</div>
-          <div class="skill-type">Services réseau</div>
-        </div>
-      </div>
-      <div class="skill-chip">
-        <div class="skill-icon">🔗</div>
-        <div class="skill-info">
-          <div class="skill-name">VLAN &amp; Routage</div>
-          <div class="skill-type">Architecture réseau</div>
-        </div>
-      </div>
-    </div>
+    <div class="skills-grid">
+      <div class="skill-chip">
+        <div class="skill-icon">🔌</div>
+        <div class="skill-info">
+          <div class="skill-name">Cisco Packet-Tracer</div>
+          <div class="skill-type">Réseau · Simulation</div>
+        </div>
+      </div>
+      <div class="skill-chip">
+        <div class="skill-icon">🖥</div>
+        <div class="skill-info">
+          <div class="skill-name">VmWare</div>
+          <div class="skill-type">Virtualisation</div>
+        </div>
+      </div>
+      <div class="skill-chip">
+        <div class="skill-icon">🦈</div>
+        <div class="skill-info">
+          <div class="skill-name">WireShark</div>
+          <div class="skill-type">Analyse réseau</div>
+        </div>
+      </div>
+      <div class="skill-chip">
+        <div class="skill-icon">⚙️</div>
+        <div class="skill-info">
+          <div class="skill-name">Proxmox</div>
+          <div class="skill-type">Virtualisation · Serveur</div>
+        </div>
+      </div>
+      <div class="skill-chip">
+        <div class="skill-icon">🌐</div>
+        <div class="skill-info">
+          <div class="skill-name">DNS / DHCP</div>
+          <div class="skill-type">Services réseau</div>
+        </div>
+      </div>
+      <div class="skill-chip">
+        <div class="skill-icon">🔗</div>
+        <div class="skill-info">
+          <div class="skill-name">VLAN &amp; Routage</div>
+          <div class="skill-type">Architecture réseau</div>
+        </div>
+      </div>
+    </div>
 
-    <p class="card-label" style="margin-top: 40px;">// COMPÉTENCES PERSONNELLES</p>
-    <div class="soft-grid">
-      <div class="soft-chip">Sérieux</div>
-      <div class="soft-chip">Adaptable</div>
-      <div class="soft-chip">Autonome</div>
-      <div class="soft-chip">Travail d'équipe</div>
-    </div>
-  </section>
+    <p class="card-label" style="margin-top: 40px;">// COMPÉTENCES PERSONNELLES</p>
+    <div class="soft-grid">
+      <div class="soft-chip">Sérieux</div>
+      <div class="soft-chip">Adaptable</div>
+      <div class="soft-chip">Autonome</div>
+      <div class="soft-chip">Travail d'équipe</div>
+    </div>
+  </section>
 
-  <div class="divider"></div>
+  <div class="divider"></div>
 
-  <section id="formation">
-    <div class="section-header">
-      <span class="section-num">05</span>
-      <h2 class="section-title">FORMATION</h2>
-      <div class="section-line"></div>
-    </div>
+  <section id="formation">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">FORMATION</h2>
+      <div class="section-line"></div>
+    </div>
 
-    <div class="formation-list">
-      <div class="formation-item">
-        <div class="formation-dot"></div>
-        <div>
-          <div class="formation-name">BTS SIO — Martinière Duchère</div>
-          <div class="formation-detail">1ère année · 2ème semestre en cours</div>
-        </div>
-      </div>
-      <div class="formation-item">
-        <div class="formation-dot"></div>
-        <div>
-          <div class="formation-name">Bac Général Technologique</div>
-          <div class="formation-detail">Mention Assez Bien</div>
-        </div>
-      </div>
-    </div>
+    <div class="formation-list">
+      <div class="formation-item">
+        <div class="formation-dot"></div>
+        <div>
+          <div class="formation-name">BTS SIO — Martinière Duchère</div>
+          <div class="formation-detail">1ère année · 2ème semestre en cours</div>
+        </div>
+      </div>
+      <div class="formation-item">
+        <div class="formation-dot"></div>
+        <div>
+          <div class="formation-name">Bac Général Technologique</div>
+          <div class="formation-detail">Mention Assez Bien</div>
+        </div>
+      </div>
+    </div>
 
-    <p class="card-label" style="margin-top: 40px;">// LANGUES</p>
-    <div class="lang-grid">
-      <div class="lang-card">
-          <div class="lang-flag">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="40" height="26" style="border-radius: 2px;">
-    <rect width="900" height="600" fill="#ED2939"/>
-    <rect width="600" height="600" fill="#FFF"/>
-    <rect width="300" height="600" fill="#002395"/>
-  </svg>
+    <p class="card-label" style="margin-top: 40px;">// LANGUES</p>
+    <div class="lang-grid">
+      <div class="lang-card">
+          <div class="lang-flag">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="40" height="26" style="border-radius: 2px;">
+    <rect width="900" height="600" fill="#ED2939"/>
+    <rect width="600" height="600" fill="#FFF"/>
+    <rect width="300" height="600" fill="#002395"/>
+  </svg>
 </div>
-        <div class="lang-name">Français</div>
-        <div class="lang-level">NATIF</div>
-      </div>
-      
-      <div class="lang-card">
-          <div class="lang-flag">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="40" height="20" style="border-radius: 2px;">
-    <clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
-    <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
-    <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6" clip-path="url(#s)"/>
-    <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4" clip-path="url(#s)"/>
-    <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
-    <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
-  </svg>
+        <div class="lang-name">Français</div>
+        <div class="lang-level">NATIF</div>
+      </div>
+      
+      <div class="lang-card">
+          <div class="lang-flag">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="40" height="20" style="border-radius: 2px;">
+    <clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
+    <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+    <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6" clip-path="url(#s)"/>
+    <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4" clip-path="url(#s)"/>
+    <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+    <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+  </svg>
 </div>
-        <div class="lang-name">Anglais</div>
-        <div class="lang-level">INTERMÉDIAIRE</div>
-      </div>
-    </div>
+        <div class="lang-name">Anglais</div>
+        <div class="lang-level">INTERMÉDIAIRE</div>
+      </div>
+    </div>
 
-    <p class="card-label" style="margin-top: 40px;">// CERTIFICATION</p>
-    <div class="certif-badge">
-      <span class="certif-icon">🏅</span>
-      <div>
-        <div class="certif-name">Certification PIX</div>
-        <div class="certif-sub">Compétences numériques · France Education</div>
-      </div>
-    </div>
-  </section>
+    <p class="card-label" style="margin-top: 40px;">// CERTIFICATION</p>
+    <div class="certif-badge">
+      <span class="certif-icon">🏅</span>
+      <div>
+        <div class="certif-name">Certification PIX</div>
+        <div class="certif-sub">Compétences numériques · France Education</div>
+      </div>
+    </div>
+  </section>
 
-  <div class="divider"></div>
+  <div class="divider"></div>
 
-  <section id="stage-detail">
-    <div class="section-header">
-      <span class="section-num">06</span>
-      <h2 class="section-title">STAGE 1ÈRE ANNÉE</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="about-grid">
-      <div class="about-text">
-        <p class="card-label">// PRÉSENTATION ET CONTEXTE</p>
-        <br>
-        <p class="card-label">// MISSIONS ET TÂCHES RÉALISÉES</p>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+  <section id="stage-detail">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">STAGE 1ÈRE ANNÉE</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="card-label">// PRÉSENTATION ET CONTEXTE</p>
+        <br>
+        <p class="card-label">// MISSIONS ET TÂCHES RÉALISÉES</p>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
 
-        <br>
-        <p class="card-label">// TECHNOLOGIES ET OUTILS UTILISÉS</p>
-        </div>
-    </div>
-  </section>
+        <br>
+        <p class="card-label">// TECHNOLOGIES ET OUTILS UTILISÉS</p>
+        </div>
+    </div>
+  </section>
 
-  <div class="divider"></div>
+  <div class="divider"></div>
 
-  <section id="carnet">
-    <div class="section-header">
-      <span class="section-num">07</span>
-      <h2 class="section-title">Carnet de Suivi</h2>
-      <div class="section-line"></div>
-    </div>
-    <div class="about-grid">
-      <div class="about-text">        
-       <span class="day-highlight">JOUR 1:</span><br>
-        Découvert de l'entreprise et ses outils comme (Citrix, TeamViewer, Tanium, KLAW it service). Observation infrastructure réseau, utilisation de switch cisco, firewall, Vlan et 2 routeurs pour connecter le réseau privée de l'entreprise avec les réseaux exterieurs
-        Découvert de L'AD leur système pour gére les groups utilisateurs et leurs droit, histoir de kingspan qui est une entrprise irlandaise qui a racheter plusieurs groupe appeler maintenant des antité comme (SkyDome, Ecodis, EMES).
-        Passage d'une certification a la cybersecurité obligatoire
-        Ticket 1: utilisateur qui n'arrivait pas a ouvrir sont exel ou il y avit sont planing, plusieur solution on été essayer et le probléme venait d'un double one drive un en local et lautre en public ce qui desincronissait tout et la solution était de faire sauter sont compte utilisateur pour en recrée un nouveau.
-        Ticket 2: fishing, mail suspet
-        Ticket 3: rajouter des utilisateur dans les bons groupes
+  <section id="carnet">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Carnet de Suivi</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">        
+       <span class="day-highlight">JOUR 1:</span><br>
+        Découvert de l'entreprise et ses outils comme (Citrix, TeamViewer, Tanium, KLAW it service). Observation infrastructure réseau, utilisation de switch cisco, firewall, Vlan et 2 routeurs pour connecter le réseau privée de l'entreprise avec les réseaux exterieurs
+        Découvert de L'AD leur système pour gére les groups utilisateurs et leurs droit, histoir de kingspan qui est une entrprise irlandaise qui a racheter plusieurs groupe appeler maintenant des antité comme (SkyDome, Ecodis, EMES).
+        Passage d'une certification a la cybersecurité obligatoire
+        Ticket 1: utilisateur qui n'arrivait pas a ouvrir sont exel ou il y avit sont planing, plusieur solution on été essayer et le probléme venait d'un double one drive un en local et lautre en public ce qui desincronissait tout et la solution était de faire sauter sont compte utilisateur pour en recrée un nouveau.
+        Ticket 2: fishing, mail suspet
+        Ticket 3: rajouter des utilisateur dans les bons groupes
 
-        <br><br><span class="day-highlight">JOUR 2:</span><br>
-        Apprentisage plus en profondeur de Tanium qui permet d'installé tout les logiciel sans qu'on est a le faire.
-        J'ai eu pas mal de fishing et je devais changer la batterie d'un pc portable
-        Ticket 1: Un utilisateur avait crée une application avec python et visual studio code. il a ensuite crée un raccourci dans le powershell que l'antivirus n'a pas aimer du tout car vue que ce n'etait pas un admin il ne pouvait pas faire n'importe quoi.
+        <br><br><span class="day-highlight">JOUR 2:</span><br>
+        Apprentisage plus en profondeur de Tanium qui permet d'installé tout les logiciel sans qu'on est a le faire.
+        J'ai eu pas mal de fishing et je devais changer la batterie d'un pc portable
+        Ticket 1: Un utilisateur avait crée une application avec python et visual studio code. il a ensuite crée un raccourci dans le powershell que l'antivirus n'a pas aimer du tout car vue que ce n'etait pas un admin il ne pouvait pas faire n'importe quoi.
 
-        <br><br><span class="day-highlight">JOUR 3:</span><br>
-        Mise a disposition de pc portable avec les bios et tanium.
-        un utilisateur a un problem de pc il se bloque écran bleu... il y avait des apply que le pc n'arrrivait plus a lirecar c'était des anciennes version du coup il a fallu désinstaler les mauvaise et réinstaler les bonnes puis aussi changer la carte mère qui était aussi ancienne, et aussi dans la bar des tache il y avait claude setup alors il réinstalait tout le temp claude, du coup j'ia enlever ça et j'ai my le vrai claud eapplication.
+        <br><br><span class="day-highlight">JOUR 3:</span><br>
+        Mise a disposition de pc portable avec les bios et tanium.
+        un utilisateur a un problem de pc il se bloque écran bleu... il y avait des apply que le pc n'arrrivait plus a lirecar c'était des anciennes version du coup il a fallu désinstaler les mauvaise et réinstaler les bonnes puis aussi changer la carte mère qui était aussi ancienne, et aussi dans la bar des tache il y avait claude setup alors il réinstalait tout le temp claude, du coup j'ia enlever ça et j'ai my le vrai claud eapplication.
 
-        <br><br><span class="day-highlight">JOUR 4:</span><br>
-        Un pc nous a signaler une alerte sur l'antivirus et un utilisateur avait une clé USB qui contenait un fichie test avec un fichier (Windows crack).
-        PB abscence de contribution des facture pour ressourdre ce pb il fallait utiliser L'AX qui est leur nouveua logiciel de BBD et je devais faire du SQL pour comprendre le problème et j'ai pu observer avec les ligne de commande que c'était un pb liée au code source de L'AX qui n'affichait pas les contribution pour certaines assurences
-        Mise en place d'un imprimante pour un utilisateur qui était a toulouse via la prise en main de sont pc avec assistance rapide et je lui ai mis un eazy setup un script qui permet de faire les paramètre de l'imprimante tout seul facilite la connexion et les paramètre internet.
+        <br><br><span class="day-highlight">JOUR 4:</span><br>
+        Un pc nous a signaler une alerte sur l'antivirus et un utilisateur avait une clé USB qui contenait un fichie test avec un fichier (Windows crack).
+        PB abscence de contribution des facture pour ressourdre ce pb il fallait utiliser L'AX qui est leur nouveua logiciel de BBD et je devais faire du SQL pour comprendre le problème et j'ai pu observer avec les ligne de commande que c'était un pb liée au code source de L'AX qui n'affichait pas les contribution pour certaines assurences
+        Mise en place d'un imprimante pour un utilisateur qui était a toulouse via la prise en main de sont pc avec assistance rapide et je lui ai mis un eazy setup un script qui permet de faire les paramètre de l'imprimante tout seul facilite la connexion et les paramètre internet.
 
-        <br><br><span class="day-highlight">JOUR 5:</span><br>
-        Migration d'un pc de windows 10 a windows 11, visite de l'entrepos et du dérulement de la farbication plus en détail. Mis a disposition d'un pc portable.
+        <br><br><span class="day-highlight">JOUR 5:</span><br>
+        Migration d'un pc de windows 10 a windows 11, visite de l'entrepos et du dérulement de la farbication plus en détail. Mis a disposition d'un pc portable.
 
-        <br><br><span class="day-highlight">JOUR 6:</span><br>
-        Probléme d'un site web qui ne charge pas les image mais pourtant on y a accées, le pb c'est que les droit sont sur le lien du site pour y accéeder mais pour les image il faut faire appel a un autre lien pour pouvoir voir si on peut les installer.
-        Je continu de mettre a disposition des pc portable avec le BIOS, Changement de batterie d'un pc portable pour un utilisateur. mise a disposition d'un pc portable pour un utilisatrice un pc qu'on dois changer car atteint une date de perenption.
-      
-        <br><br><span class="day-highlight">JOUR 7:</span><br>  
-        identification du pb du site web de l'autre jour et on a identifier que le pb était que la page en elle même est un domain mais que les image sont dans un sous domain. On a resolue le pb et effectivement en allant sur le site en allant dans les parametre du site il acceptait certain domain masi pas tout.
-        le pb du site de ce matin est deffinitivement corriger, j'ai gérer un ticket ou un mail ettait bloqué par lantispam  il fallait juste fair en sorte que lantispam accepte le mail et tout était bon.
-        il y avit un ticket ou j'ai du téléchareger un fichier plus en detail une vidéo pour un utilidateur.
+        <br><br><span class="day-highlight">JOUR 6:</span><br>
+        Probléme d'un site web qui ne charge pas les image mais pourtant on y a accées, le pb c'est que les droit sont sur le lien du site pour y accéeder mais pour les image il faut faire appel a un autre lien pour pouvoir voir si on peut les installer.
+        Je continu de mettre a disposition des pc portable avec le BIOS, Changement de batterie d'un pc portable pour un utilisateur. mise a disposition d'un pc portable pour un utilisatrice un pc qu'on dois changer car atteint une date de perenption.
+      
+        <br><br><span class="day-highlight">JOUR 7:</span><br>  
+        identification du pb du site web de l'autre jour et on a identifier que le pb était que la page en elle même est un domain mais que les image sont dans un sous domain. On a resolue le pb et effectivement en allant sur le site en allant dans les parametre du site il acceptait certain domain masi pas tout.
+        le pb du site de ce matin est deffinitivement corriger, j'ai gérer un ticket ou un mail ettait bloqué par lantispam  il fallait juste fair en sorte que lantispam accepte le mail et tout était bon.
+        il y avit un ticket ou j'ai du téléchareger un fichier plus en detail une vidéo pour un utilidateur.
 
-        <br><br><span class="day-highlight">JOUR 8:</span><br> 
-        Reparation d'un téléphone portable avec un hard reset.
+        <br><br><span class="day-highlight">JOUR 8:</span><br> 
+        Reparation d'un téléphone portable avec un hard reset.
 
-        <br><br><span class="day-highlight">JOUR 9:</span><br> 
-        Création de 2 comptz utilisateur 2 stagiaire en comta, et dans lentrepos mise a disposition d'une imprimante, je l'ai connecter au réseau par ethernet elle est en place il ne reste plus qu'a la deploier, réunion sur un deskop en anglais avec les admin réseau du monde en allmagne, pologne, espagene, irland...etc
-        Création de 2 autres utilisateurs et pour une utilisatrice je devais faire la mise a jour de la carte mère. et je continue de mettre a disposition des pc.
-      
-        <br><br><span class="day-highlight">JOUR 10:</span><br> 
-        Création des poste de travail pour les utilisateur donc je mes en place les compte de hier sur les pc portables qui leur serront atribuer, ensuite un utilisateur avait un pb sont pc ramais enormement dans la bar de recherche de la bar des taches
-        je l'ai aider et le solution était de faire un dell command update affin que le pc face ses mise a jour et ensuite j'avais plus qu'a le redemarer et le tour est jouer le pc ne ramais plus. Migration d'un pc de W10 à W11
-        
-        
-        <br><br><span class="day-highlight">JOUR 11:</span><br> 
-        Pour aujoud'hui j'ai du changé la batterie d'un utilisateur et ensuite il y avait un utilisatrice qui narrivait plus a faire de copier coller j'ai pris la main sur sont pc via assitance rapide et je lui es juste vide le press papier et relance sont explorateur de fichier
-        J'ai changé egalement la batterie du chef du service informatique, ensuite j'ai changer un ventilo, et je continue de mettre a disposition les pc pour les nouveau utilisateur du jour 9 en installant le pac office.
-        C'est fini les pc portable sont operationnel!!!!
+        <br><br><span class="day-highlight">JOUR 9:</span><br> 
+        Création de 2 comptz utilisateur 2 stagiaire en comta, et dans lentrepos mise a disposition d'une imprimante, je l'ai connecter au réseau par ethernet elle est en place il ne reste plus qu'a la deploier, réunion sur un deskop en anglais avec les admin réseau du monde en allmagne, pologne, espagene, irland...etc
+        Création de 2 autres utilisateurs et pour une utilisatrice je devais faire la mise a jour de la carte mère. et je continue de mettre a disposition des pc.
+      
+        <br><br><span class="day-highlight">JOUR 10:</span><br> 
+        Création des poste de travail pour les utilisateur donc je mes en place les compte de hier sur les pc portables qui leur serront atribuer, ensuite un utilisateur avait un pb sont pc ramais enormement dans la bar de recherche de la bar des taches
+        je l'ai aider et le solution était de faire un dell command update affin que le pc face ses mise a jour et ensuite j'avais plus qu'a le redemarer et le tour est jouer le pc ne ramais plus. Migration d'un pc de W10 à W11
+        
+        
+        <br><br><span class="day-highlight">JOUR 11:</span><br> 
+        Pour aujoud'hui j'ai du changé la batterie d'un utilisateur et ensuite il y avait un utilisatrice qui narrivait plus a faire de copier coller j'ai pris la main sur sont pc via assitance rapide et je lui es juste vide le press papier et relance sont explorateur de fichier
+        J'ai changé egalement la batterie du chef du service informatique, ensuite j'ai changer un ventilo, et je continue de mettre a disposition les pc pour les nouveau utilisateur du jour 9 en installant le pac office.
+        C'est fini les pc portable sont operationnel!!!!
 
-        <br><br><span class="day-highlight">JOUR 12:</span><br> 
-        Aujourd'hui c'est un jour calme car je fait 8h30 12h donc je fais pas grand chose :(
+        <br><br><span class="day-highlight">JOUR 12:</span><br> 
+        Aujourd'hui c'est un jour calme car je fait 8h30 12h donc je fais pas grand chose :(
 
-        <br><br><span class="day-highlight">JOUR 13:</span><br> 
-        Aujourd'hui jai surtout fais de mise a disposition de pc portable encore pour des eventualiter, mais journée calme les ticket était pas fou mais j'aurais plusieurs mission a faire pour les prochain jour a venir !!!!
-     
-        <br><br><span class="day-highlight">JOUR 14:</span><br> 
-         Je continue de mettre a disposition des pc portables, un utilisateur de skidom a un problem avec sont citrix il va dionc falloir l'appel et prendre la main sur son pc pour voir les pb mais il n'est pas encore dispo donc affaires a suivre
-         La dame d'acceuil devait change sont identifiant et on devait le remette a son nom car elle était nouvelle, je suis aller la voir avec ses nouveau identifiant et mot de passe et je lui est tout régler sont team, sont outlook et sont profile utilisateur.
-         Pour la dame de l'accueil on a du migrée tout ce qu'elle avit sur l'autre compte de l'ancienne dame d'accueil.
-      
-        <br><br><span class="day-highlight">JOUR 15:</span><br> 
-        Aujourd'hui jèai continue a mettre a disposition des pc portables, ensuite on a eu un debut de journée assez charger, j'ai du gérer 3 ticket assez urgent en mêm temps, un utilistaue (un patront) avait sont haut-parleur qui grezillait, ce qu'il fallait faire c'etait lui réinstalet les drive audio.
-        j'ai commence avec assitance rapide mais ca plentait quand je voulais le faire alors je suis passer sur team viwers, et ca a marchhe forcément j'ai du redemarer deux fois sont pc car une fois l'ancien dessinstler il faut redemarer, et pour le nouveau installer il faut reredemare encore. et apres un petit test et tout était bon.
-        ensuite les deux stagiares avit un probleme via citrix rien ne safficahit dans citrix j'ai du les m'être dans un goupe pour qu'il aient enfin accées au bdd de citrix et on a du ensuite refreche les données de citrix et après tout était bon. et un dernier utilisateur avait un probleme au niveau de sont ecran qui navait pas la bonne resolution, alors j'ai pris la main sur le pc et j'ai mis la bonne mais après la police était etrange un peut flou, du coup j'ai du installer sur sont pc dell command update 
-        afin de faire des mise a jour sur sont ordinatuer et probleme régler.
-        Et pour lo'affaire a suivre de hier l'utilisateur a repondu a mon appel téléphonique et on a pu fixe une date affin de regler sont probleme mais il y en avait 3 autre qui ce sont rajouter. mais on verra ca le 19ème jour!!! quand l'utilisateur sera disponible
-      
-        <br><br><span class="day-highlight">JOUR 16:</span><br> 
-        Participation a un projet. situation: il y a un Sharpoint qui contient les pc de l'entrpise, avec un suport EXCEL qui fait comme une BDD de tout les ordinateur de l'entreprise avec tout leur information qu'il soit d'un entiter, ou interne et externe a l'entreprisse. PB: si un pc est externe et interne ou qu'il appartient a une entiter diefferent comme SKYDOME, ECODIS, ESSEMES, les façons et methoder pour acceder au information des pc sont different
-        . et la mission est de faire en sorte qu'il y est un seul moyen une seul magnière. Pour acceder a tout les info des pc interne et externe et de tout les entiter.(voici le plant établier avec des explications)
-        
-        Étape 1 : Le Déclenchement (Le déploiement sur les PC)
-        GPO (GPO_user_task_script_inventory.xml) : Une stratégie de groupe (GPO) est déployée sur les ordinateurs.
-        Tâche Planifiée (Inventory.xml) : Cette GPO installe une tâche planifiée sur chaque machine pour exécuter l'inventaire régulièrement.
+        <br><br><span class="day-highlight">JOUR 13:</span><br> 
+        Aujourd'hui jai surtout fais de mise a disposition de pc portable encore pour des eventualiter, mais journée calme les ticket était pas fou mais j'aurais plusieurs mission a faire pour les prochain jour a venir !!!!
+     
+        <br><br><span class="day-highlight">JOUR 14:</span><br> 
+         Je continue de mettre a disposition des pc portables, un utilisateur de skidom a un problem avec sont citrix il va dionc falloir l'appel et prendre la main sur son pc pour voir les pb mais il n'est pas encore dispo donc affaires a suivre
+         La dame d'acceuil devait change sont identifiant et on devait le remette a son nom car elle était nouvelle, je suis aller la voir avec ses nouveau identifiant et mot de passe et je lui est tout régler sont team, sont outlook et sont profile utilisateur.
+         Pour la dame de l'accueil on a du migrée tout ce qu'elle avit sur l'autre compte de l'ancienne dame d'accueil.
+      
+        <br><br><span class="day-highlight">JOUR 15:</span><br> 
+        Aujourd'hui jèai continue a mettre a disposition des pc portables, ensuite on a eu un debut de journée assez charger, j'ai du gérer 3 ticket assez urgent en mêm temps, un utilistaue (un patront) avait sont haut-parleur qui grezillait, ce qu'il fallait faire c'etait lui réinstalet les drive audio.
+        j'ai commence avec assitance rapide mais ca plentait quand je voulais le faire alors je suis passer sur team viwers, et ca a marchhe forcément j'ai du redemarer deux fois sont pc car une fois l'ancien dessinstler il faut redemarer, et pour le nouveau installer il faut reredemare encore. et apres un petit test et tout était bon.
+        ensuite les deux stagiares avit un probleme via citrix rien ne safficahit dans citrix j'ai du les m'être dans un goupe pour qu'il aient enfin accées au bdd de citrix et on a du ensuite refreche les données de citrix et après tout était bon. et un dernier utilisateur avait un probleme au niveau de sont ecran qui navait pas la bonne resolution, alors j'ai pris la main sur le pc et j'ai mis la bonne mais après la police était etrange un peut flou, du coup j'ai du installer sur sont pc dell command update 
+        afin de faire des mise a jour sur sont ordinatuer et probleme régler.
+        Et pour lo'affaire a suivre de hier l'utilisateur a repondu a mon appel téléphonique et on a pu fixe une date affin de regler sont probleme mais il y en avait 3 autre qui ce sont rajouter. mais on verra ca le 19ème jour!!! quand l'utilisateur sera disponible
+      
+        <br><br><span class="day-highlight">JOUR 16:</span><br> 
+        Participation a un projet. situation: il y a un Sharpoint qui contient les pc de l'entrpise, avec un suport EXCEL qui fait comme une BDD de tout les ordinateur de l'entreprise avec tout leur information qu'il soit d'un entiter, ou interne et externe a l'entreprisse. PB: si un pc est externe et interne ou qu'il appartient a une entiter diefferent comme SKYDOME, ECODIS, ESSEMES, les façons et methoder pour acceder au information des pc sont different
+        . et la mission est de faire en sorte qu'il y est un seul moyen une seul magnière. Pour acceder a tout les info des pc interne et externe et de tout les entiter.(voici le plant établier avec des explications)
+        
+        Étape 1 : Le Déclenchement (Le déploiement sur les PC)
+        GPO (GPO_user_task_script_inventory.xml) : Une stratégie de groupe (GPO) est déployée sur les ordinateurs.
+        Tâche Planifiée (Inventory.xml) : Cette GPO installe une tâche planifiée sur chaque machine pour exécuter l'inventaire régulièrement.
 
-        Étape 2 : La Collecte des Données
-        EndUserAssets.vbs ➔ EndUserAssets.ps1 : Un script VBS lance discrètement un script PowerShell. 
-        C'est ce script PowerShell qui va scanner le PC pour récolter toutes ses informations (nom, processeur, RAM, entité, etc.).
+        Étape 2 : La Collecte des Données
+        EndUserAssets.vbs ➔ EndUserAssets.ps1 : Un script VBS lance discrètement un script PowerShell. 
+        C'est ce script PowerShell qui va scanner le PC pour récolter toutes ses informations (nom, processeur, RAM, entité, etc.).
 
-        Étape 3 : La Transmission des Données (La gestion du problème Interne/Externe)
-        Le script tente d'envoyer les données directement via une connexion directe à la base de données (ADODB). Deux scénarios se présentent :
+        Étape 3 : La Transmission des Données (La gestion du problème Interne/Externe)
+        Le script tente d'envoyer les données directement via une connexion directe à la base de données (ADODB). Deux scénarios se présentent :
 
-       🟢 Chemin A : Le PC est connecté (Succès ADODB)
-        Si le PC est en interne ou a un accès direct au réseau :
-        Le script réussit à écrire directement les informations dans la liste SharePoint principale (End-User_Assets KLA-FR).
+       🟢 Chemin A : Le PC est connecté (Succès ADODB)
+        Si le PC est en interne ou a un accès direct au réseau :
+        Le script réussit à écrire directement les informations dans la liste SharePoint principale (End-User_Assets KLA-FR).
 
-       🔴 Chemin B : Le PC est isolé ou externe (Échec ADODB)
-        Si le PC est externe (sans VPN) ou sur un réseau d'une autre entité bloquant la connexion directe :
-        KlaInventoryHelper.exe : Un programme d'assistance prend le relais suite à l'échec.
-        Email Submission : Les données de l'inventaire sont encapsulées et envoyées automatiquement par E-mail (ce qui fonctionne de presque partout, même en externe).
-        Power Automate (TSK05 End-User Assets) : Un robot cloud reçoit l'e-mail, extrait les données de l'inventaire et les inscrit automatiquement dans la liste SharePoint (End-User_Assets KLA-FR).
-       
-        Étape 4 : La Centralisation Finale
-        Une fois que toutes les données (venant du chemin A ou B) sont centralisées dans la liste SharePoint "KLA-FR" :
-        Elles sont synchronisées avec le fichier Excel maître (EndUserAssets.xlsm).
-        Elles sont ensuite dispatchées vers les listes SharePoint spécifiques de chaque entité (Division - Sharepoint List).
+       🔴 Chemin B : Le PC est isolé ou externe (Échec ADODB)
+        Si le PC est externe (sans VPN) ou sur un réseau d'une autre entité bloquant la connexion directe :
+        KlaInventoryHelper.exe : Un programme d'assistance prend le relais suite à l'échec.
+        Email Submission : Les données de l'inventaire sont encapsulées et envoyées automatiquement par E-mail (ce qui fonctionne de presque partout, même en externe).
+        Power Automate (TSK05 End-User Assets) : Un robot cloud reçoit l'e-mail, extrait les données de l'inventaire et les inscrit automatiquement dans la liste SharePoint (End-User_Assets KLA-FR).
+       
+        Étape 4 : La Centralisation Finale
+        Une fois que toutes les données (venant du chemin A ou B) sont centralisées dans la liste SharePoint "KLA-FR" :
+        Elles sont synchronisées avec le fichier Excel maître (EndUserAssets.xlsm).
+        Elles sont ensuite dispatchées vers les listes SharePoint spécifiques de chaque entité (Division - Sharepoint List).
 
-        
-        (Le plant sans les explications)
-        
-        Process Flow
+        
+        (Le plant sans les explications)
+        
+        Process Flow
 
-        GPO_user_task_script_inventory.xml (GPO)
-        ↓
-        Inventory.xml (Scheduled Task)
-        ↓
-        EndUserAssets.vbs
-        ↓
-        EndUserAssets.ps1
-        ↓
-        ├ ADODB Success → End-User_Assets (KLA-FR - Sharepoint List)
-        └- ADODB Failure
-           ↓
-           KlaInventoryHelper.exe
-           ↓
-           Email Submission
-           ↓
-           TSK05 End-User Assets - Record (Power Automate)
-           ↓
-           End-User_Assets (KLA-FR - Sharepoint List)
-           ↓
-           EndUserAssets.xlsm
-           ↓
-           End-User Assets (Division - Sharepoint List)
-       
+        GPO_user_task_script_inventory.xml (GPO)
+        ↓
+        Inventory.xml (Scheduled Task)
+        ↓
+        EndUserAssets.vbs
+        ↓
+        EndUserAssets.ps1
+        ↓
+        ├ ADODB Success → End-User_Assets (KLA-FR - Sharepoint List)
+        └- ADODB Failure
+           ↓
+           KlaInventoryHelper.exe
+           ↓
+           Email Submission
+           ↓
+           TSK05 End-User Assets - Record (Power Automate)
+           ↓
+           End-User_Assets (KLA-FR - Sharepoint List)
+           ↓
+           EndUserAssets.xlsm
+           ↓
+           End-User Assets (Division - Sharepoint List)
+       
 fichie de donnée dans le pc: tout les onforùmation du pc sont mis dans fichie contenut dans un dossier ENDUSERASSETS dans le dique C: du pc
 
 Script Version 1.4.0 | Run Date : 04/06/2026 14:50 | Parameters : -Debug True -ResetUser False -ResetAll False
@@ -508,7 +508,7 @@ Script Version 1.4.0 | Run Date : 04/06/2026 14:50 | Parameters : -Debug True -R
 [14:50:53] BLC Volume : FullyEncrypted
 [14:50:53] BLC Percentage : 100
 [14:50:55] LastWU : 25/05/2026
-[14:51:19] WUNeeded : Count : 
+[14:51:19] WUNeeded : Count : 
 [14:51:19] LastSeen : 04/06/2026 14:50
 [14:51:19] NetbiosDomain : KLA
 [14:51:19] Manufacturer : Dell Inc. (HKCU Key)
@@ -524,7 +524,7 @@ Script Version 1.4.0 | Run Date : 04/06/2026 14:50 | Parameters : -Debug True -R
 [14:51:24] Script End
 
 un script qui ce met tout le temps a jour sur le pc affin d'avoir tout les info et savoir dou peut venir un probleme.
-      
+      
 
 LE PLANT POUR LE SCRIPT:
 
@@ -539,36 +539,37 @@ destFile = destFolder & "EndUserAssets.ps1"
 
 ' Création du dossier s'il n'existe pas
 If Not fso.FolderExists(destFolder) Then
-    fso.CreateFolder(destFolder)
+    fso.CreateFolder(destFolder)
 End If
 
 ' Récupération des fichiers
 Set scriptSource = fso.GetFile(sourceFile)
 
 If fso.FileExists(destFile) Then
-    Set script = fso.GetFile(destFile)
+    Set script = fso.GetFile(destFile)
 
-    ' Comparaison des dates
-    If scriptSource.DateLastModified <> script.DateLastModified Then
-        fso.CopyFile sourceFile, destFolder, True
-    End If
+    ' Comparaison des dates
+    If scriptSource.DateLastModified <> script.DateLastModified Then
+        fso.CopyFile sourceFile, destFolder, True
+    End If
 Else
-    ' Si le fichier n'existe pas, on le copie directement
-    fso.CopyFile sourceFile, destFolder, True
+    ' Si le fichier n'existe pas, on le copie directement
+    fso.CopyFile sourceFile, destFolder, True
 End If
 
 ' Exécution du script PowerShell
 command = "powershell.exe -ExecutionPolicy Bypass -File """ & destFile & """"
 Set shell = CreateObject("WScript.Shell")
 shell.Run command, 0, False
-      </div>
-      </div>        
-    </div> 
-  </section>
+      </div>
+      </div>        
+    </div> 
+  </section>
 
-  <footer>
-    <span>LORENZO PROVOT</span> — Portfolio BTS SIO · Mions, France · 2026
-  </footer>
+  <footer>
+    <span>LORENZO PROVOT</span> — Portfolio BTS SIO · Mions, France · 2026
+  </footer>
 
 </body>
 </html>
+es que tu peut faire en sorte que dans le jour 16 il y es les retoure a la ligne au bonne endroit mais de modif absolument pas ce que j'ai ecrit et meme pour les autre jour juste mes les retoure a la ligne au bonne endroit comme je lai ecrit
