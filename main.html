@@ -386,6 +386,144 @@
         ensuite les deux stagiares avit un probleme via citrix rien ne safficahit dans citrix j'ai du les m'être dans un goupe pour qu'il aient enfin accées au bdd de citrix et on a du ensuite refreche les données de citrix et après tout était bon. et un dernier utilisateur avait un probleme au niveau de sont ecran qui navait pas la bonne resolution, alors j'ai pris la main sur le pc et j'ai mis la bonne mais après la police était etrange un peut flou, du coup j'ai du installer sur sont pc dell command update 
         afin de faire des mise a jour sur sont ordinatuer et probleme régler.
         Et pour lo'affaire a suivre de hier l'utilisateur a repondu a mon appel téléphonique et on a pu fixe une date affin de regler sont probleme mais il y en avait 3 autre qui ce sont rajouter. mais on verra ca le 19ème jour!!! quand l'utilisateur sera disponible
+      
+        <br><br><span class="day-highlight">JOUR 16:</span><br> 
+        Participation a un projet. situation: il y a un Sharpoint qui contient les pc de l'entrpise, avec un suport EXCEL qui fait comme une BDD de tout les ordinateur de l'entreprise avec tout leur information qu'il soit d'un entiter, ou interne et externe a l'entreprisse. PB: si un pc est externe et interne ou qu'il appartient a une entiter diefferent comme SKYDOME, ECODIS, ESSEMES, les façons et methoder pour acceder au information des pc sont different
+        . et la mission est de faire en sorte qu'il y est un seul moyen une seul magnière. Pour acceder a tout les info des pc interne et externe et de tout les entiter.(voici le plant établier avec des explications)
+        
+        Étape 1 : Le Déclenchement (Le déploiement sur les PC)
+        GPO (GPO_user_task_script_inventory.xml) : Une stratégie de groupe (GPO) est déployée sur les ordinateurs.
+        Tâche Planifiée (Inventory.xml) : Cette GPO installe une tâche planifiée sur chaque machine pour exécuter l'inventaire régulièrement.
+
+        Étape 2 : La Collecte des Données
+        EndUserAssets.vbs ➔ EndUserAssets.ps1 : Un script VBS lance discrètement un script PowerShell. 
+        C'est ce script PowerShell qui va scanner le PC pour récolter toutes ses informations (nom, processeur, RAM, entité, etc.).
+
+        Étape 3 : La Transmission des Données (La gestion du problème Interne/Externe)
+        Le script tente d'envoyer les données directement via une connexion directe à la base de données (ADODB). Deux scénarios se présentent :
+
+       🟢 Chemin A : Le PC est connecté (Succès ADODB)
+        Si le PC est en interne ou a un accès direct au réseau :
+        Le script réussit à écrire directement les informations dans la liste SharePoint principale (End-User_Assets KLA-FR).
+
+       🔴 Chemin B : Le PC est isolé ou externe (Échec ADODB)
+        Si le PC est externe (sans VPN) ou sur un réseau d'une autre entité bloquant la connexion directe :
+        KlaInventoryHelper.exe : Un programme d'assistance prend le relais suite à l'échec.
+        Email Submission : Les données de l'inventaire sont encapsulées et envoyées automatiquement par E-mail (ce qui fonctionne de presque partout, même en externe).
+        Power Automate (TSK05 End-User Assets) : Un robot cloud reçoit l'e-mail, extrait les données de l'inventaire et les inscrit automatiquement dans la liste SharePoint (End-User_Assets KLA-FR).
+       
+        Étape 4 : La Centralisation Finale
+        Une fois que toutes les données (venant du chemin A ou B) sont centralisées dans la liste SharePoint "KLA-FR" :
+        Elles sont synchronisées avec le fichier Excel maître (EndUserAssets.xlsm).
+        Elles sont ensuite dispatchées vers les listes SharePoint spécifiques de chaque entité (Division - Sharepoint List).
+
+        
+        (Le plant sans les explications)
+        
+        Process Flow
+
+        GPO_user_task_script_inventory.xml (GPO)
+        ↓
+        Inventory.xml (Scheduled Task)
+        ↓
+        EndUserAssets.vbs
+        ↓
+        EndUserAssets.ps1
+        ↓
+        ├ ADODB Success → End-User_Assets (KLA-FR - Sharepoint List)
+        └- ADODB Failure
+           ↓
+           KlaInventoryHelper.exe
+           ↓
+           Email Submission
+           ↓
+           TSK05 End-User Assets - Record (Power Automate)
+           ↓
+           End-User_Assets (KLA-FR - Sharepoint List)
+           ↓
+           EndUserAssets.xlsm
+           ↓
+           End-User Assets (Division - Sharepoint List)
+       
+fichie de donnée dans le pc: tout les onforùmation du pc sont mis dans fichie contenut dans un dossier ENDUSERASSETS dans le dique C: du pc
+
+Script Version 1.4.0 | Run Date : 04/06/2026 14:50 | Parameters : -Debug True -ResetUser False -ResetAll False
+[14:50:44] User : Lorenzo.Provot
+[14:50:44] Hostname : KLAW-18LGC54
+[14:50:44] IP : 10.21.49.61
+[14:50:44] CIDR : 10.21.48.0/23 - Saint-Priest
+[14:50:46] Site : Azure-NE
+[14:50:46] DHCP Server : 10.21.45.201 (KLAFRDC01.kla.kingspan.net)
+[14:50:46] Logon Server : KLAFRDC01
+[14:50:46] Windows Version : Windows 11 Entreprise - 23H2
+[14:50:46] Tanium Version : 7.8.2.1170
+[14:50:46] CrowdStrike Version : 7.37.20907.0
+[14:50:47] Umbrella Version : 5.1.17.3394
+[14:50:47] Citrix Version : 24.9.10.28
+[14:50:47] TeamViewer Client ID : 1857690539
+[14:50:47] Last Boot UpTime : 04/06/2026 09:02
+[14:50:50] Internet connection : True
+[14:50:50] klasefreco connection : True
+[14:50:53] Domain KLA : True
+[14:50:53] SerialNumber : 18LGC54 (HKCU Key)
+[14:50:53] Model : Latitude 5450 (HKCU Key)
+[14:50:53] BLC Protection : On
+[14:50:53] BLC Volume : FullyEncrypted
+[14:50:53] BLC Percentage : 100
+[14:50:55] LastWU : 25/05/2026
+[14:51:19] WUNeeded : Count : 
+[14:51:19] LastSeen : 04/06/2026 14:50
+[14:51:19] NetbiosDomain : KLA
+[14:51:19] Manufacturer : Dell Inc. (HKCU Key)
+[14:51:19] ObjectType : Laptop (HKCU Key)
+[14:51:19] Person : Lorenzo Provot (HKCU Key)
+[14:51:19] LegalEntity : FRA120 (HKLM Key)
+[14:51:19] Office : Saint-Priest (HKLM Key)
+[14:51:19] API Dell : HKCU Keys
+[14:51:19] Txt file created
+[14:51:19] Launch Excel for ADODB driver : False
+[14:51:23] ADODB Connection - End-User Assets : True
+[14:51:24] Sharepoint Records Updated and Connection Closed
+[14:51:24] Script End
+
+un script qui ce met tout le temps a jour sur le pc affin d'avoir tout les info et savoir dou peut venir un probleme.
+      
+
+LE PLANT POUR LE SCRIPT:
+
+On Error Resume Next
+
+Set fso = CreateObject("Scripting.FileSystemObject")
+
+' Définition des chemins
+sourceFile = "\\klasefreco.file.core.windows.net\ecodis\GPO_Files\EndUserAssets\EndUserAssets.ps1"
+destFolder = "C:\KLA\EndUserAssets\"
+destFile = destFolder & "EndUserAssets.ps1"
+
+' Création du dossier s'il n'existe pas
+If Not fso.FolderExists(destFolder) Then
+    fso.CreateFolder(destFolder)
+End If
+
+' Récupération des fichiers
+Set scriptSource = fso.GetFile(sourceFile)
+
+If fso.FileExists(destFile) Then
+    Set script = fso.GetFile(destFile)
+
+    ' Comparaison des dates
+    If scriptSource.DateLastModified <> script.DateLastModified Then
+        fso.CopyFile sourceFile, destFolder, True
+    End If
+Else
+    ' Si le fichier n'existe pas, on le copie directement
+    fso.CopyFile sourceFile, destFolder, True
+End If
+
+' Exécution du script PowerShell
+command = "powershell.exe -ExecutionPolicy Bypass -File """ & destFile & """"
+Set shell = CreateObject("WScript.Shell")
+shell.Run command, 0, False
       </div>    
     </div> 
   </section>
