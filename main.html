@@ -583,15 +583,43 @@ shell.Run command, 0, False</div>
       Une utilisatrice avait bes oin 'un support pour sur élever le pc et je lui ai amener voila!!!
     
      <br><br><span class="day-highlight">JOUR 20:</span><br>    
-       Pour Aujourd'hui j'ai du changer une enceinte rein de complique ensuite j'ai comtinuer le projet et j'avais pour mission de devoir code en powershell un script qui permetais d'aller mettre le script Read-KLALog.ps1
+        Pour Aujourd'hui j'ai du changer une enceinte rein de complique ensuite j'ai comtinuer le projet et j'avais pour mission de devoir code en powershell un script qui permetais d'aller mettre le script Read-KLALog.ps1
         Pour cela mon script consistait à alle chercher die=rectement dans l'arborecence que j'ai crée "C:\KLA\EndUserAssets\Read-KLALog.ps1" affin que le script ps1 soit mit sur le bureau et ensuite je devais faire en sorte que si on double clique sur le ps1 sur le bureau 
         le script ce lencait plutot qur de faire clique droit executer avec powershell...etc ce qui n'est pas pratique pour l'utilisateur qui peut être bête ! voici mon script:
-      
-      
-      
-      
-      
-      
+
+        <div class="code-block"># Les Vriables
+$scriptPath = "C:\KLA\EndUserAssets\Read-KLALog.ps1"
+
+# La conditions
+if(Test-Path -Path $fichietrue){
+
+   # Récupération du chemin du Bureau
+   $DesktopPath = [Environment]::GetFolderPath("Desktop")
+
+   # Création de l'objet windows
+   $WshShell = New-Object -ComObject WScript.Shell
+
+   # Création du raccouci
+   $Shortcut = $wshShell.CreateShortcut("$DesktopPath\Read-KLALog.lnk")
+
+   #le double-clic
+   $Shortcut.TargetPath = "powershell.exe"
+
+   #Exécuter le script automatiquement en contournant la sécuriter
+   $Shortcut.Arguments = "-ExecutionPolicy Bypass -File $scriptPath"
+
+   # Sauvegarde
+   $Shortcut.Save()
+
+   Unblock-File $scriptPath
+
+   Write-Host "Le Raccourci a été créé avec succès." -ForegroundColor green
+}
+else {
+   # Si le fichier n'existe pas, le script s'arrête ici sans rien créer
+   Write-Host "Le script est introuvable dans $chemin. Raccourci non créé." -ForegroundColor red
+}</div>
+     
       </div>        
     </div> 
   </section>
