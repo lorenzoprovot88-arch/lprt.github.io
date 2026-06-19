@@ -328,17 +328,18 @@
     <div class="section-line"></div>
   </div>
 
-<img src="Kingspan-logo.jpg" alt="Logo Kingspan">
-<img src="Parck-informatique.png" alt="Parc informatique">
-  
   <div class="stage-context-card" style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 25px; border-radius: 8px; margin-bottom: 30px;">
-    <p class="card-label" style="color: #17a2b8; font-weight: 600; letter-spacing: 1px; margin-bottom: 10px;">// PRÉSENTATION &amp; CONTEXTE D'ENTREPRISE</p>
-    <p style="line-height: 1.6; margin: 0; color: #e0e0e0;">
-    
-
-    
-      <strong>Kingspan Light + Air</strong> est une entité majeure du groupe irlandais Kingspan. À la suite des rachats successifs de plusieurs filiales industrielles (SkyDome, Ecodis, EMES), l'entreprise fait face à un besoin critique de centralisation et d'unification de son patrimoine informatique.
-    </p>
+    <p class="card-label" style="color: #17a2b8; font-weight: 600; letter-spacing: 1px; margin-bottom: 15px;">// PRÉSENTATION &amp; CONTEXTE D'ENTREPRISE</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+      <div style="flex: 1; min-width: 280px;">
+        <p style="line-height: 1.6; margin: 0; color: #e0e0e0;">
+          <strong>Kingspan Light + Air</strong> est une entité majeure du groupe irlandais Kingspan. À la suite des rachats successifs de plusieurs filiales industrielles (SkyDome, Ecodis, EMES), l'entreprise fait face à un besoin critique de centralisation et d'unification de son patrimoine informatique.
+        </p>
+      </div>
+      <div style="flex-shrink: 0; margin: 0 auto;">
+        <img src="Kingspan logo.jpg" alt="Kingspan Logo" style="max-width: 180px; height: auto; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+      </div>
+    </div>
   </div>
 
   <p class="card-label" style="color: #17a2b8; font-weight: 600; letter-spacing: 1px; margin-bottom: 20px;">// PRINCIPALES SITUATIONS PROFESSIONNELLES (RÉFÉRENTIEL BTS SIO)</p>
@@ -382,7 +383,7 @@
       <p style="color: #d0d0d0; line-height: 1.6;">Une fois les données stockées au sein de la liste SharePoint globale "KLA-FR" :</p>
       <ul style="color: #d0d0d0; line-height: 1.6;">
         <li>Elles se synchronisent avec le fichier Excel maître (<code>EndUserAssets.xlsm</code>).</li>
-        <li>Un mécanisme distribue ensuite les données triées vers les listes SharePoint dédiées de chaque filiale (<code>Division - Sharepoint List</code>).</li>
+        <li>Un mechanism distribue ensuite les données triées vers les listes SharePoint dédiées de chaque filiale (<code>Division - Sharepoint List</code>).</li>
       </ul>
 
       <h3 style="color: #fff; font-family: 'Rajdhani', sans-serif;">Schéma du Flux (Process Flow)</h3>
@@ -498,6 +499,11 @@ else {
    Write-Host "Le script source est introuvable. Raccourci non créé." -ForegroundColor red
 }</div>
 
+      <div style="margin-top: 25px; padding: 15px; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.05); border-radius: 6px; text-align: center;">
+        <p style="color: #17a2b8; font-size: 0.9em; margin-top: 0; margin-bottom: 12px; font-weight: bold; text-align: left;">📊 Aperçu visuel de la solution d'inventaire du parc informatique :</p>
+        <img src="Parck informatique.png" alt="Visualisation du Parc Informatique" style="max-width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(23, 162, 184, 0.2); box-shadow: 0 4px 20px rgba(0,0,0,0.6);">
+      </div>
+
       <div style="margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.85em; color: #aaa;">
         <strong>Compétences couvertes :</strong> Compétence 1 (Recensement des ressources), Compétence 4 (Travail en mode projet), Compétence 5 (Déploiement de services).
       </div>
@@ -512,55 +518,36 @@ else {
       </p>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
-        
         <div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
           <strong style="color: #27ae60; display: block; margin-bottom: 5px;">1. Conflits de synchronisation Cloud</strong>
           <span style="font-size: 0.8em; color: #aaa;">JOUR 1 · OneDrive &amp; Excel</span>
-          <p style="font-size: 0.9em; color: #d0d0d0; margin: 5px 0 0 0;">
-            Résolution d'un problème d'ouverture de planning Excel lié à un double profil OneDrive (local et public) provoquant des désynchronisations de fichiers.
-          </p>
+          <p style="font-size: 0.9em; color: #d0d0d0; margin: 5px 0 0 0;">Résolution d'un problème d'ouverture de planning Excel lié à un double profil OneDrive (local et public).</p>
         </div>
-
         <div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
           <strong style="color: #27ae60; display: block; margin-bottom: 5px;">2. Diagnostic de BDD par requêtes SQL</strong>
           <span style="font-size: 0.8em; color: #aaa;">JOUR 4 · Base de données AX</span>
-          <p style="font-size: 0.9em; color: #d0d0d0; margin: 5px 0 0 0;">
-            Analyse de lignes de code et requêtes SQL directement dans la base de données de l'application ERP AX pour corriger une absence d'affichage des contributions de factures.
-          </p>
+          <p style="font-size: 0.9em; color: #d0d0d0; margin: 5px 0 0 0;">Analyse de lignes de code et requêtes SQL directement dans l'ERP AX pour corriger un bug d'affichage de facturation.</p>
         </div>
-
         <div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
           <strong style="color: #27ae60; display: block; margin-bottom: 5px;">3. Routage DNS &amp; Exceptions Web</strong>
           <span style="font-size: 0.8em; color: #aaa;">JOUR 6 &amp; 7 · Réseau &amp; Proxy</span>
-          <p style="font-size: 0.9em; color: #d0d0d0; margin: 5px 0 0 0;">
-            Dépannage d'un site web dont les images ne chargeaient pas : identification d'un appel vers un sous-domaine externe bloqué et ajout d'une exception de domaine.
-          </p>
+          <p style="font-size: 0.9em; color: #d0d0d0; margin: 5px 0 0 0;">Dépannage d'un site web bloqué par l'identification d'un appel vers un sous-domaine externe et ajout d'une exception.</p>
         </div>
-
         <div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
           <strong style="color: #27ae60; display: block; margin-bottom: 5px;">4. Optimisation système (Mises à jour)</strong>
           <span style="font-size: 0.8em; color: #aaa;">JOUR 10 · Dell Command Update</span>
-          <p style="font-size: 0.9em; color: #d0d0d0; margin: 5px 0 0 0;">
-            Traitement de lourds ralentissements systèmes sur la recherche Windows en appliquant les correctifs de pilotes et firmwares manquants via l'utilitaire constructeur Dell.
-          </p>
+          <p style="font-size: 0.9em; color: #d0d0d0; margin: 5px 0 0 0;">Traitement de lourds ralentissements systèmes en appliquant les correctifs de pilotes manquants via l'utilitaire Dell.</p>
         </div>
-
         <div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
           <strong style="color: #27ae60; display: block; margin-bottom: 5px;">5. Gestion des habilitations Active Directory</strong>
           <span style="font-size: 0.8em; color: #aaa;">JOUR 15 · AD &amp; Citrix</span>
-          <p style="font-size: 0.9em; color: #d0d0d0; margin: 5px 0 0 0;">
-            Déblocage d'environnements virtualisés Citrix totalement vides pour des stagiaires en réassignant leurs comptes aux bons groupes de sécurité de l'Active Directory.
-          </p>
+          <p style="font-size: 0.9em; color: #d0d0d0; margin: 5px 0 0 0;">Déblocage d'environnements Citrix vides en réassignant les comptes aux bons groupes de sécurité AD.</p>
         </div>
-
         <div style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
           <strong style="color: #27ae60; display: block; margin-bottom: 5px;">6. Résolution matérielle de niveau BIOS</strong>
           <span style="font-size: 0.8em; color: #aaa;">JOUR 24 · BIOS / UEFI System</span>
-          <p style="font-size: 0.9em; color: #d0d0d0; margin: 5px 0 0 0;">
-            Correction d'un décalage persistant d'une heure sur l'horloge système Windows d'un PC en intervenant directement à la racine au niveau de l'horloge matérielle du BIOS.
-          </p>
+          <p style="font-size: 0.9em; color: #d0d0d0; margin: 5px 0 0 0;">Correction d'un décalage d'heure persistant sous Windows en réajustant l'horloge matérielle directement dans le BIOS.</p>
         </div>
-
       </div>
 
       <div style="margin-top: 20px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.85em; color: #aaa;">
@@ -584,7 +571,7 @@ else {
       <span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 4px; font-size: 0.85em;">SharePoint</span>
       <span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 4px; font-size: 0.85em;">Bases de données AX (SQL)</span>
       <span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 4px; font-size: 0.85em;">Dell Command Update</span>
-      <span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 4px; font-size: 0.85em;">Réseaux Cisco (Switches, VLANs, Routeurs)</span>
+      <span style="background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 4px; font-size: 0.85em;">Réseaux Cisco</span>
     </div>
   </div>
 </section>
