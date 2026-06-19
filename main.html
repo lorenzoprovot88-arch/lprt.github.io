@@ -399,22 +399,43 @@ shell.Run command, 0, False</div>
         Déploiement du script d'évaluation de vitesse d'écriture nommé <code style="color: #17a2b8;">Speedtest.ps1</code> exécuté via PowerShell sur les sessions de trois utilisateurs distincts pour mesurer avec précision le temps d'exécution.
       </p>
 
-      <span class="day-highlight">JOUR 21 — Automatisation de la collecte des journaux d'erreurs (Logs)</span>
+   <span class="day-highlight">JOUR 21 — Automatisation du déploiement de l'outil de lecture de logs</span>
       <p style="color: #d0d0d0; font-size: 0.95em; line-height: 1.5;">
-        Afin de centraliser les anomalies rencontrées lors de l'exécution en masse sur les postes clients, j'ai développé un script d'automatisation robuste. Ce script analyse les logs locaux de chaque machine et rapatrie uniquement les erreurs critiques vers un serveur de stockage partagé de la DSI pour audit.
+        Afin de faciliter l'analyse des journaux d'erreurs par l'équipe support, j'ai développé un script PowerShell chargé de générer dynamiquement un raccourci bureau. Ce script instancie un objet COM Windows Script Host pour lier le script maître <code style="color: #17a2b8;">Read-KLALog.ps1</code> à un lanceur PowerShell contournant de manière transparente la politique d'exécution locale (<code style="color: #17a2b8;">Bypass</code>).
       </p>
       
-      <div class="code-block"># Script développé pour rapatrier les erreurs d'inventaire vers le serveur de stockage
-$LocalLogPath = "C:\KLA\EndUserAssets\Logs\"
-$NetworkLogServer = "\\prisv0001.kla.kingspan.net\fra120\Services_KLA\IT_Logs\Errors\"
-$Hostname = hostname
+      <div class="code-block"># Définition des variables de chemin
+$scriptPath = "C:\KLA\EndUserAssets\Read-KLALog.ps1"
 
-if (Test-Path $LocalLogPath) {
-    $ErrorLogs = Get-ChildItem -Path $LocalLogPath -Filter "*error*.txt"
-    foreach ($Log in $ErrorLogs) {
-        $TargetName = $Hostname + "_" + $Log.Name
-        Copy-Item -Path $Log.FullName -Destination ($NetworkLogServer + $TargetName) -Force
-    }
+# Condition de vérification de l'existence du fichier source
+if(Test-Path -Path $scriptPath){
+
+   # Récupération dynamique du chemin du Bureau de l'utilisateur connecté
+   $DesktopPath = [Environment]::GetFolderPath("Desktop")
+
+   # Instanciation de l'objet COM Windows Script Host
+   $WshShell = New-Object -ComObject WScript.Shell
+
+   # Création et configuration du fichier de raccourci
+   $Shortcut = $WshShell.CreateShortcut("$DesktopPath\Read-KLALog.lnk")
+
+   # Définition de la cible d'exécution lors du double-clic
+   $Shortcut.TargetPath = "powershell.exe"
+
+   # Arguments pour exécuter le script automatiquement en contournant la politique de sécurité locale
+   $Shortcut.Arguments = "-ExecutionPolicy Bypass -File $scriptPath"
+
+   # Sauvegarde physique du raccourci sur le bureau
+   $Shortcut.Save()
+
+   # Déblocage de la sécurité du fichier script sous-jacent
+   Unblock-File $scriptPath
+
+   Write-Host "Le Raccourci a été créé avec succès." -ForegroundColor green
+}
+else {
+   # Si le fichier source est absent, interruption de la procédure
+   Write-Host "Le script source est introuvable. Raccourci non créé." -ForegroundColor red
 }</div>
 
       <div style="margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.85em; color: #aaa;">
