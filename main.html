@@ -321,7 +321,6 @@
   </section>
 
   <div class="divider"></div>
-
 <section id="stage-detail" style="background: #000000; padding: 40px 20px;">
   <div class="section-header">
     <span class="section-num">06</span>
@@ -344,15 +343,70 @@
       <h3 style="margin-top: 0; color: #fff; font-family: 'Rajdhani', sans-serif; font-size: 1.5em;">🚀 Situation Majeure (Mode Projet)</h3>
       <p style="color: #17a2b8; font-size: 1.1em; font-weight: bold; margin-bottom: 15px;">Centralisation et automatisation de l'inventaire du parc multi-entités</p>
       
-      <p style="color: #e0e0e0; line-height: 1.6;">
-        <strong>Problématique :</strong> Selon l'emplacement réseau de la machine (bureau, télétravail hors VPN) ou son entité de rattachement, les protocoles et les droits d'accès pour interroger et remonter ces informations varient, rendant la centralisation complexe et hétérogène.
-      </p>
-
       <span class="day-highlight">JOUR 16 — Conception de l'architecture &amp; Déploiement initial</span>
-      <p style="color: #d0d0d0; font-size: 0.95em; line-height: 1.5;">
-        Mise en place d'une méthode universelle et transparente pour collecter et unifier les données de tous les assets du groupe via GPO et tâches planifiées. Le script <code style="color: #17a2b8;">EndUserAssets.vbs</code> appelle silencieusement le script PowerShell maître et compare les dates de modification pour se mettre à jour automatiquement depuis le cloud Azure.
-      </p>
       
+      <h3 style="color: #fff; font-family: 'Rajdhani', sans-serif;">Architecture de la Solution (Le Plan Établi)</h3>
+      <p><strong>Étape 1 : Le Déclenchement (Déploiement en masse)</strong></p>
+      <ul style="color: #d0d0d0; line-height: 1.6;">
+        <li><strong>GPO (<code>GPO_user_task_script_inventory.xml</code>) :</strong> Déploiement d'une stratégie de groupe sur l'ensemble de l'Active Directory.</li>
+        <li><strong>Tâche Planifiée (<code>Inventory.xml</code>) :</strong> La GPO inscrit une tâche planifiée locale sur chaque machine pour exécuter l'inventaire de façon récurrente.</li>
+      </ul>
+
+      <h3 style="color: #fff; font-family: 'Rajdhani', sans-serif;">Étape 2 : La Collecte Locale des Données</h3>
+      <p style="color: #d0d0d0; line-height: 1.6;">Le script <code>EndUserAssets.vbs</code> appelle silencieusement en arrière-plan un script PowerShell principal (<code>EndUserAssets.ps1</code>). Ce dernier requête le système (WMI/CIM) pour extraire toutes les caractéristiques de la machine (Nom d'hôte, CPU, RAM, OS, versions des agents de sécurité, numéro de série, entité, etc.).</p>
+
+      <h3 style="color: #fff; font-family: 'Rajdhani', sans-serif;">Étape 3 : La Transmission des Données &amp; Gestion du Réseau</h3>
+      <p style="color: #d0d0d0; line-height: 1.6;">Le script tente une écriture directe dans la base de données via un composant <strong>ADODB</strong>. Deux scénarios de routage s'exécutent automatiquement :</p>
+      
+      <ul style="color: #d0d0d0; line-height: 1.6; list-style-type: none; padding-left: 0;">
+        <li style="margin-bottom: 15px;"><span class="status-success">🟢 Chemin A : Succès de la liaison ADODB</span><br>
+        Le PC est connecté au réseau interne ou sous VPN : les données sont injectées directement dans la liste SharePoint racine (<strong>End-User_Assets KLA-FR</strong>).</li>
+        
+        <li><span class="status-failure">🔴 Chemin B : Échec de la liaison ADODB (Machine externe / isolée)</span><br>
+        Si le PC est sur un réseau externe ou un sous-réseau bloqué :
+          <ul class="inner-list">
+            <li>L'exécutable d'assistance <code>KlaInventoryHelper.exe</code> prend automatiquement le relais.</li>
+            <li><strong>Email Submission :</strong> Les données collectées sont encapsulées et transmises de manière sécurisée par e-mail (flux universellement ouvert).</li>
+            <li><strong>Power Automate (<code>TSK05 End-User Assets</code>) :</strong> Un processus Cloud intercepte l'e-mail, extrait le contenu de l'inventaire et va l'inscrire automatiquement dans la liste SharePoint principale.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3 style="color: #fff; font-family: 'Rajdhani', sans-serif;">Centralisation et Distribution Finale</h3>
+      <p style="color: #d0d0d0; line-height: 1.6;">Une fois les données stockées au sein de la liste SharePoint globale "KLA-FR" :</p>
+      <ul style="color: #d0d0d0; line-height: 1.6;">
+        <li>Elles se synchronisent avec le fichier Excel maître (<code>EndUserAssets.xlsm</code>).</li>
+        <li>Un mécanisme distribue ensuite les données triées vers les listes SharePoint dédiées de chaque filiale (<code>Division - Sharepoint List</code>).</li>
+      </ul>
+
+      <h3 style="color: #fff; font-family: 'Rajdhani', sans-serif;">Schéma du Flux (Process Flow)</h3>
+      <div class="process-flow">GPO_user_task_script_inventory.xml (GPO)
+↓
+Inventory.xml (Scheduled Task)
+↓
+EndUserAssets.vbs
+↓
+EndUserAssets.ps1
+↓
+├─ 🟢 ADODB Success ➔ End-User_Assets (KLA-FR - Sharepoint List)
+└─ 🔴 ADODB Failure
+      ↓
+      KlaInventoryHelper.exe
+      ↓
+      Email Submission
+      ↓
+      TSK05 End-User Assets - Record (Power Automate)
+      ↓
+      End-User_Assets (KLA-FR - Sharepoint List)
+      ↓
+      EndUserAssets.xlsm
+      ↓
+      End-User Assets (Division - Sharepoint List)</div>
+
+      <h3 style="color: #fff; font-family: 'Rajdhani', sans-serif;">Stockage local sur le Poste</h3>
+      <p style="color: #d0d0d0; line-height: 1.6;">Toutes les informations récoltées par le script sont sauvegardées localement dans un fichier texte brut dans le répertoire <code>C:\KLA\EndUserAssets\</code>. Ce script s'exécute de façon continue pour assurer la fraîcheur des données et faciliter le diagnostic en cas de panne.</p>
+
+      <p style="color: #17a2b8; font-weight: bold; margin-top: 20px;">Script VBScript de Synchronisation et de Déploiement (EndUserAssets.vbs) :</p>
       <div class="code-block">On Error Resume Next
 Set fso = CreateObject("Scripting.FileSystemObject")
 
@@ -390,7 +444,7 @@ shell.Run command, 0, False</div>
       <p style="color: #d0d0d0; font-size: 0.95em; line-height: 1.5;">
         Lancement des phases de tests de performance et de récupération de données sur plusieurs chemins d'accès réseaux distincts afin de valider l'intégrité de la remontée :
       </p>
-      <ul class="inner-list" style="color: #d0d0d0;">
+      <ul class="inner-list" style="color: #d0d0d0; line-height: 1.6;">
         <li><code>"K:\FRA120\Radan\test"</code></li>
         <li><code>"L:\FRA120\Radan\test"</code></li>
         <li><code>"\\prisv0001.kla.kingspan.net\fra120\Services_KLA\Production\radan\test"</code></li>
@@ -399,7 +453,7 @@ shell.Run command, 0, False</div>
         Déploiement du script d'évaluation de vitesse d'écriture nommé <code style="color: #17a2b8;">Speedtest.ps1</code> exécuté via PowerShell sur les sessions de trois utilisateurs distincts pour mesurer avec précision le temps d'exécution.
       </p>
 
-   <span class="day-highlight">JOUR 21 — Automatisation du déploiement de l'outil de lecture de logs</span>
+      <span class="day-highlight">JOUR 21 — Automatisation du déploiement de l'outil de lecture de logs</span>
       <p style="color: #d0d0d0; font-size: 0.95em; line-height: 1.5;">
         Afin de faciliter l'analyse des journaux d'erreurs par l'équipe support, j'ai développé un script PowerShell chargé de générer dynamiquement un raccourci bureau. Ce script instancie un objet COM Windows Script Host pour lier le script maître <code style="color: #17a2b8;">Read-KLALog.ps1</code> à un lanceur PowerShell contournant de manière transparente la politique d'exécution locale (<code style="color: #17a2b8;">Bypass</code>).
       </p>
